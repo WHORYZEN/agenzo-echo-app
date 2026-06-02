@@ -18,7 +18,7 @@ export function SiteFooter() {
             {TEXT.split("").map((ch, i) => (
               <motion.span
                 key={i}
-                className="inline-block"
+                className={`inline-block ${i >= 6 ? "text-brand" : ""}`}
                 initial={{ y: 80, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={viewportOnce}
@@ -28,7 +28,6 @@ export function SiteFooter() {
               </motion.span>
             ))}
           </span>
-          <sup className="text-[0.25em] align-super">®</sup>
         </h2>
         <motion.div
           className="mt-10 flex justify-center"
@@ -42,7 +41,7 @@ export function SiteFooter() {
       </div>
 
       <div className="container-x border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
-        <div>© {new Date().getFullYear()} DigiFrenzy®. All rights reserved.</div>
+        <div>© {new Date().getFullYear()} DigiFrenzy. All rights reserved.</div>
         <div className="flex gap-6">
           <a href="mailto:support@digifrenzy.com" className="hover:text-foreground transition-colors">support@digifrenzy.com</a>
           <a href="#" className="hover:text-foreground transition-colors">Instagram</a>

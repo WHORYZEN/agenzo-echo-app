@@ -32,19 +32,20 @@
 }
 
 :root {
-  --background: oklch(0.92 0.005 80);
+  --brand-blue: oklch(0.66 0.21 265);
+  --background: oklch(0.975 0.018 250);
   --foreground: oklch(0.15 0.005 60);
-  --paper: oklch(0.94 0.004 80);
+  --paper: oklch(0.985 0.012 250);
   --ink: oklch(0.12 0 0);
   --card: oklch(1 0 0 / 0.6);
   --card-foreground: oklch(0.15 0.005 60);
-  --muted: oklch(0.88 0.005 80);
+  --muted: oklch(0.94 0.022 250);
   --muted-foreground: oklch(0.45 0.005 60);
-  --accent: oklch(0.85 0.005 80);
+  --accent: oklch(0.92 0.03 250);
   --accent-foreground: oklch(0.15 0.005 60);
   --primary: oklch(0.12 0 0);
   --primary-foreground: oklch(0.98 0 0);
-  --border: oklch(0.82 0.005 80);
+  --border: oklch(0.88 0.025 250);
 }
 
 @layer base {
@@ -141,6 +142,16 @@
 }
 .hover-lift:hover {
   transform: translateY(-6px);
+}
+
+.text-brand {
+  color: var(--brand-blue);
+}
+.hover-tint-blue {
+  transition: background-color 0.3s ease;
+}
+.hover-tint-blue:hover {
+  background-color: color-mix(in oklab, var(--brand-blue) 12%, transparent);
 }
 
 .form-input {

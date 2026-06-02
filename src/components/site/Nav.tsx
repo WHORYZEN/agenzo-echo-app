@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useMotionValueEvent } from "framer
 import { useState } from "react";
 import { MessageSquare } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/logo_digifrenzy_white.png";
 
 export function Nav() {
   const reduce = useReducedMotion();
@@ -19,15 +20,20 @@ export function Nav() {
 
   const Logo = (
     <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">
-      <Link to="/" className="text-[22px] font-semibold tighter leading-none whitespace-nowrap">
-        DigiFrenzy<sup className="text-[10px] ml-0.5">®</sup>
+      <Link to="/" className="block">
+        <img
+          src={logo}
+          alt="DigiFrenzy"
+          className="h-7 w-auto"
+          style={{ filter: "invert(1)" }}
+        />
       </Link>
     </motion.div>
   );
 
-  const menuItems: Array<{ l: string; to: string; n?: string; hash?: string }> = [
+  const menuItems: Array<{ l: string; to: string; hash?: string }> = [
     { l: "Home", to: "/" },
-    { l: "Work", to: "/", hash: "work", n: "04" },
+    { l: "Work", to: "/", hash: "work" },
     { l: "Services", to: "/services" },
     { l: "Pricing", to: "/pricing" },
   ];
@@ -35,7 +41,7 @@ export function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-6 pt-5">
       <div className="flex items-center justify-between">
-        <div className="min-w-[100px] flex items-center">{!merged && Logo}</div>
+        <div className="min-w-[120px] flex items-center">{!merged && Logo}</div>
 
         <motion.nav
           layout
@@ -54,10 +60,9 @@ export function Nav() {
               key={it.l}
               to={it.to}
               hash={it.hash}
-              className="px-5 py-2.5 rounded-full text-sm font-medium hover:bg-white/70 transition-colors flex items-center gap-1"
+              className="hover-tint-blue px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1"
             >
               {it.l}
-              {it.n && <sup className="text-[10px] text-muted-foreground">({it.n})</sup>}
             </Link>
           ))}
         </motion.nav>
