@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const slides = [slide1, slide2, slide3, slide1, slide2, slide3, slide1, slide2];
+const slides = [slideTote.url, slideForma.url, slideQuantstamp.url, slideTacobell.url];
 
 function Home() {
   const fallback = <div style={{ minHeight: "60vh" }} />;
