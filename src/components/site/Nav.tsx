@@ -2,7 +2,7 @@ import { motion, useReducedMotion, useScroll, useMotionValueEvent, AnimatePresen
 import { useState } from "react";
 import { MessageSquare, Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import logo from "@/assets/logo_digifrenzy_white.png";
+import logoAsset from "@/assets/logo_digifrenzy_blue.png.asset.json";
 
 export function Nav() {
   const reduce = useReducedMotion();
@@ -25,19 +25,13 @@ export function Nav() {
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
-  const renderLogo = (invert: boolean) => (
+  const Logo = (
     <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">
       <Link to="/" className="block">
-        <img
-          src={logo}
-          alt="DigiFrenzy"
-          className="h-7 w-auto"
-          style={invert ? { filter: "invert(1)" } : undefined}
-        />
+        <img src={logoAsset.url} alt="DigiFrenzy" className="h-8 w-auto" />
       </Link>
     </motion.div>
   );
-  const Logo = renderLogo(false);
 
   const menuItems: Array<{ l: string; to: string; hash?: string }> = [
     { l: "Home", to: "/" },
@@ -70,7 +64,7 @@ export function Nav() {
         >
           {merged && (
             <>
-              {renderLogo(true)}
+              {Logo}
               <span className="mx-2 h-5 w-px bg-foreground/15" />
             </>
           )}
