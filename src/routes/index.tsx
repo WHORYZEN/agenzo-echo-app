@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 
-import heroBg from "@/assets/hero-bg.jpg";
+import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import slide1 from "@/assets/slide-1.jpg";
 import slide2 from "@/assets/slide-2.jpg";
 import slide3 from "@/assets/slide-3.jpg";
@@ -75,12 +75,14 @@ function Hero() {
   const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
     <section className="relative min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden">
-      <motion.div
-        className="absolute inset-0 -z-10"
-        style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.6, ease: easeOut }}
+      <video
+        className="absolute inset-0 -z-10 w-full h-full object-cover"
+        src={heroVideo.url}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
       />
       <div className="absolute inset-0 -z-10 bg-background/30" />
 

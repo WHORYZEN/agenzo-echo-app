@@ -1,15 +1,12 @@
-# Hero section vertical padding adjustment
+## Plan: Looping video background for Hero
 
-**File:** `src/routes/index.tsx` (line 77)
+1. Upload the attached MP4 to Lovable Assets:
+   - `lovable-assets create --file /mnt/user-uploads/fluid-mixing-creates-unique-abstract-background-2025-12-17-10-11-59-utc.mp4 --filename hero-bg.mp4 > src/assets/hero-bg.mp4.asset.json`
 
-Change the Hero `<section>` classes:
-
-- `pt-28` (112px) → `pt-40` (160px) — gives ≥150px above the H1 from the section's top edge
-- `pb-10` (40px) → `pb-4` (16px) — tightens the gap below the CTA buttons, shortening the section from the bottom
-
-Resulting line:
-```tsx
-<section className="relative min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden">
-```
+2. In `src/routes/index.tsx` Hero (lines 78-85):
+   - Replace the `motion.div` image background with a `<video>` element using the asset URL.
+   - Attributes: `autoPlay`, `loop`, `muted`, `playsInline`, no `controls`; classes `absolute inset-0 -z-10 w-full h-full object-cover`.
+   - Keep the `bg-background/30` overlay div for text legibility.
+   - Remove the now-unused `heroBg` import if no longer referenced.
 
 No other files change.
