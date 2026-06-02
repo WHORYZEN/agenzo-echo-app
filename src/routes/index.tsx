@@ -511,7 +511,7 @@ function Testimonials() {
 /* ============ STATS TRIO ============ */
 function StatsTrio() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <motion.div
         className="container-x grid md:grid-cols-3 gap-6 md:gap-8"
         variants={staggerParent(0.12)}
