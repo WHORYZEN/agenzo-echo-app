@@ -262,8 +262,8 @@ function TeamSection() {
       <div className="container-x">
         <div className="mb-10">
           <SectionHeader eyebrow="— Our Crew">
-            Meet the Minds
-            <br />Behind the Work.
+            Meet the <span className="text-brand">Minds</span>
+            <br /><span className="text-brand">Behind the Work.</span>
           </SectionHeader>
         </div>
 
