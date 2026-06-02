@@ -244,8 +244,8 @@ const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORG
 
 function PartnerMarquee() {
   return (
-    <section className="py-14 md:py-16 border-y border-border/60">
-      <div className="container-x flex items-center gap-8 mb-10 px-6 md:px-10">
+    <section className="section border-y border-border/60">
+      <div className="container-x flex items-center gap-8 mb-10">
         <div className="eyebrow text-muted-foreground">— Trusted Partners</div>
         <div className="ml-auto">
           <PillButton dark href="/pricing">Choose Plan</PillButton>
