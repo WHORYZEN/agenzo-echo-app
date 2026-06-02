@@ -115,7 +115,7 @@ function StatTile({ label, value, right }: { label: string; value: string; right
   );
 }
 
-const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "PLANTSMED", "BAARAT", "HIDEOUT"];
+const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "BAARAT", "POC"];
 const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORGE", "MEDIA HOUSE", "SCALE CO", "NORTH STAR"];
 
 function PartnerMarquee() {
@@ -349,7 +349,7 @@ function Testimonials() {
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
-              "Honestly, working with DIGIFRNEZNY* has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
+              "Honestly, working with DIGIFRNEZNY has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
             </p>
             <div className="flex items-center justify-between mt-8">
               <div className="flex items-center gap-4">
@@ -538,8 +538,8 @@ function Achievements() {
 
 const PROCESS = [
   { n: ".01", title: "Strategy & Planning", sub: "Discovery, research, and roadmap", img: process1 },
-  { n: ".02", title: "Design & Development", sub: "Brand, web, and creative execution", img: process2 },
-  { n: ".03", title: "Launch & Growth", sub: "Go-live, optimise, scale results", img: process3 },
+  { n: "\n", title: "Design & Development", sub: "Brand, web, and creative execution", img: process2 },
+  { n: "\n", title: "Launch & Growth", sub: "Go-live, optimise, scale results", img: process3 },
 ];
 
 function ProcessSection() {
@@ -586,8 +586,8 @@ function ProcessSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
               <div className="absolute top-5 left-5 right-5 flex justify-between text-white text-xs">
-                <span className="glass-dark text-white rounded-full px-3 py-1.5">D\ni\ng\ni\nF\nr\ne\nn\nz\ny*</span>
-                <span>{i === 0 ? "FREE" : p.n}</span>
+                <span className="glass-dark text-white rounded-full px-3 py-1.5">{["03", "02", "01"][i]}</span>
+                <span>{i === 0 ? "\n\n\n" : p.n}</span>
               </div>
               <div className="absolute bottom-5 left-5 right-5 text-white">
                 <div className="text-xl font-medium tight">{p.title}</div>
