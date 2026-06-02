@@ -58,8 +58,8 @@ function ServicesPage() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Nav />
-      <main className="pt-40 pb-12 px-6">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+      <main className="pt-40 pb-12 px-6 md:px-10">
+        <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— What We Do</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
             Our Services<sup className="text-[0.25em] align-super">®</sup>
@@ -69,15 +69,15 @@ function ServicesPage() {
           </p>
         </motion.div>
 
-        <div className="mt-20 space-y-16">
+        <div className="container-x mt-20 space-y-12 md:space-y-16">
           {SERVICES.map((s, i) => (
             <motion.div
               key={s.title}
               className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: i * 0.05 }}
+              viewport={{ once: true, margin: "-15% 0px" }}
+              transition={{ duration: 1.1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" />

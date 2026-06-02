@@ -15,7 +15,7 @@ export function Nav() {
 
   const spring = reduce
     ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 260, damping: 26, mass: 0.9 };
+    : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
   const Logo = (
     <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">

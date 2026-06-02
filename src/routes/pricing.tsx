@@ -68,8 +68,8 @@ function PricingPage() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Nav />
-      <main className="pt-40 pb-12 px-6">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+      <main className="pt-40 pb-12 px-6 md:px-10">
+        <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— Premium Plans</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
             Our Pricing<sup className="text-[0.25em] align-super">®</sup>
@@ -79,17 +79,20 @@ function PricingPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5 mt-20">
+        <div className="container-x grid md:grid-cols-3 gap-6 md:gap-8 mt-20">
           {PLANS.map((p, i) => (
             <motion.div
               key={p.name}
-              className={`rounded-3xl p-8 flex flex-col gap-6 border ${
-                p.featured ? "bg-foreground text-background border-foreground" : "glass border-border/60"
+              className={`rounded-3xl p-8 flex flex-col gap-6 border h-full ${
+                p.featured
+                  ? "bg-foreground text-background border-foreground shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] md:scale-[1.02]"
+                  : "glass border-border/60"
               }`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              viewport={{ once: true, margin: "-15% 0px" }}
+              transition={{ duration: 1.1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -6 }}
             >
               <div className="flex justify-between items-center text-xs">
                 <span className={p.featured ? "text-background/70" : "text-muted-foreground"}>{p.name}</span>

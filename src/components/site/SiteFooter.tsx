@@ -1,28 +1,52 @@
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion";
 import { PillButton } from "./PillButton";
+import { easeOut, viewportOnce } from "@/lib/motion";
+
+const TEXT = "Let's talk";
 
 export function SiteFooter() {
   return (
-    <footer className="px-6 pt-28 pb-8">
-      <div className="text-center mb-12">
+    <footer className="px-6 md:px-10 pt-28 pb-8">
+      <div className="container-x text-center mb-12">
         <div className="eyebrow text-muted-foreground mb-6">— Let's build</div>
         <h2
-          className="font-semibold tighter leading-[0.85]"
-          style={{ fontSize: "clamp(4rem, 16vw, 18rem)" }}
+          className="font-semibold leading-[0.85]"
+          style={{ fontSize: "clamp(4rem, 15vw, 14rem)", letterSpacing: "-0.08em" }}
         >
-          Let's talk<sup className="text-[0.25em] align-super">®</sup>
+          <span className="inline-flex">
+            {TEXT.split("").map((ch, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                initial={{ y: 80, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={viewportOnce}
+                transition={{ duration: 0.9, ease: easeOut, delay: i * 0.05 }}
+              >
+                {ch === " " ? "\u00A0" : ch}
+              </motion.span>
+            ))}
+          </span>
+          <sup className="text-[0.25em] align-super">®</sup>
         </h2>
-        <div className="mt-10 flex justify-center">
+        <motion.div
+          className="mt-10 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.7, delay: 0.5, ease: easeOut }}
+        >
           <PillButton dark href="#contact">Start a Project</PillButton>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
+      <div className="container-x border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
         <div>© {new Date().getFullYear()} DigiFrenzy®. All rights reserved.</div>
         <div className="flex gap-6">
-          <a href="mailto:support@digifrenzy.com" className="hover:text-foreground">support@digifrenzy.com</a>
-          <a href="#" className="hover:text-foreground">Instagram</a>
-          <a href="#" className="hover:text-foreground">LinkedIn</a>
+          <a href="mailto:support@digifrenzy.com" className="hover:text-foreground transition-colors">support@digifrenzy.com</a>
+          <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
+          <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
         </div>
         <div className="flex items-center gap-1">
           <Plus className="w-3 h-3" /> Crafted with care
