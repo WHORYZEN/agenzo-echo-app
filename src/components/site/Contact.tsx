@@ -105,7 +105,7 @@ export function Contact() {
         <div className="text-center mb-10">
           <div className="eyebrow text-muted-foreground mb-4">— Start a Project</div>
           <h2 className="tighter font-semibold" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
-            Tell us about your brand.
+            Tell us about your <span className="text-brand">brand.</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
             Share a few details and we'll get back with a tailored plan to grow your business.

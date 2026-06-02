@@ -28,7 +28,7 @@ export function FAQ() {
           <div className="eyebrow text-muted-foreground mb-4">— FAQ</div>
           <h2 className="tighter font-semibold leading-[0.95]" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
             Answers Before
-            <br /> You Ask.
+            <br /> You <span className="text-brand">Ask.</span>
           </h2>
         </motion.div>
         <div className="md:col-span-7 divide-y divide-border/60 border-t border-b border-border/60">
