@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 
-import factCar from "@/assets/fact-car.jpg";
+import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -69,7 +69,7 @@ function WhyChooseUs() {
           viewport={viewportOnce}
         >
           <motion.div variants={scaleIn} className="md:col-span-7 rounded-3xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-[600px]">
-            <img src={factCar} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src={whyDigifrenzy.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
           </motion.div>
 
           <div className="md:col-span-5 flex flex-col gap-6 md:gap-8">
