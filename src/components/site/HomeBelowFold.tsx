@@ -349,7 +349,7 @@ function Testimonials() {
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
-              "Honestly, working with DIGIFRNEZNY has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
+              "Honestly, working with DIGIFRNEZNY* has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
             </p>
             <div className="flex items-center justify-between mt-8">
               <div className="flex items-center gap-4">
