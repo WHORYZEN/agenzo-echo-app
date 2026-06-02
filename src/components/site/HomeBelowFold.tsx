@@ -181,19 +181,19 @@ function FactSection() {
         >
           <img src={flower.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
-        <div className="md:col-span-7 flex flex-col justify-between gap-6 bg-[var(--brand-blue)] text-white rounded-3xl p-8">
+        <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-white/70">— DIGIFRNEZNY* FACT</div>
+            <div className="eyebrow text-muted-foreground">— DIGIFRNEZNY* FACT</div>
           </motion.div>
           <div>
             <motion.div
               variants={fadeUp}
-              className="font-semibold tighter leading-[0.9] text-white"
+              className="font-semibold tighter leading-[0.9]"
               style={{ fontSize: "clamp(5rem, 14vw, 14rem)" }}
             >
               90+
             </motion.div>
-            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md text-white">
+            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md">
               Projects delivered for clients across industries globally.
             </motion.p>
           </div>
@@ -474,26 +474,28 @@ function StatsTrio() {
         viewport={viewportOnce}
       >
         <BigStat label="Years in Industry" value="10+" hint="Delivering digital excellence worldwide." />
-        <BigStat label="Projects Delivered" value="90+" hint="For clients across industries globally." />
+        <BigStat label="Projects Delivered" value="90+" hint="For clients across industries globally." highlighted />
         <BigStat label="Client Satisfaction" value="50+" hint="Consistently exceeding expectations." />
       </motion.div>
     </section>
   );
 }
 
-function BigStat({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function BigStat({ label, value, hint, highlighted }: { label: string; value: string; hint?: string; highlighted?: boolean }) {
   return (
     <motion.div
       variants={fadeUp}
       whileHover={hoverLift}
-      className="glass rounded-3xl p-8 min-h-[260px] flex flex-col justify-between"
+      className={`rounded-3xl p-8 min-h-[260px] flex flex-col justify-between ${
+        highlighted ? "bg-[var(--brand-blue)] text-white" : "glass"
+      }`}
     >
-      <div className="eyebrow text-muted-foreground">{label}</div>
+      <div className={`eyebrow ${highlighted ? "text-white/80" : "text-muted-foreground"}`}>{label}</div>
       <div>
         <div className="font-semibold tighter leading-none" style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}>
           {value}
         </div>
-        {hint && <p className="text-sm text-muted-foreground mt-4 max-w-[260px]">{hint}</p>}
+        {hint && <p className={`text-sm mt-4 max-w-[260px] ${highlighted ? "text-white/80" : "text-muted-foreground"}`}>{hint}</p>}
       </div>
     </motion.div>
   );
