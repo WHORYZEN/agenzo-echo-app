@@ -44,7 +44,7 @@ function Home() {
 }
 
 function Hero() {
-  const headline = "DIGIFRNEZNY*";
+  const headline = "DIGIFRNEZNY";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
@@ -64,7 +64,7 @@ function Hero() {
           className="text-white tighter font-bold leading-[0.85] mt-16 flex flex-wrap"
           style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
         >
-          {headline.split("\n").map((ch, i) => (
+          {headline.split("").map((ch, i) => (
             <motion.span
               key={i}
               className={`inline-block ${i >= 4 ? "text-brand" : ""}`}
