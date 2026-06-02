@@ -5,6 +5,7 @@ import { Nav } from "@/components/site/Nav";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SplitText } from "@/components/site/SplitText";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -72,7 +73,7 @@ function PricingPage() {
         <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— Premium Plans</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Our Pricing<sup className="text-[0.25em] align-super">®</sup>
+            <SplitText text="Our Pricing" trigger="mount" suffix={<sup className="text-[0.25em] align-super">®</sup>} />
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             Transparent pricing tailored to your brand's needs. Let's find the plan that takes your business to the next level.

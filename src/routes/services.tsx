@@ -5,6 +5,8 @@ import { PillButton } from "@/components/site/PillButton";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SplitText } from "@/components/site/SplitText";
+import { hoverLift } from "@/lib/motion";
 
 import s1 from "@/assets/project-1.jpg";
 import s2 from "@/assets/project-2.jpg";
@@ -62,7 +64,7 @@ function ServicesPage() {
         <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— What We Do</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Our Services<sup className="text-[0.25em] align-super">®</sup>
+            <SplitText text="Our Services" trigger="mount" suffix={<sup className="text-[0.25em] align-super">®</sup>} />
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             End-to-end digital solutions designed to elevate your brand, accelerate growth, and create unforgettable experiences.
@@ -76,6 +78,7 @@ function ServicesPage() {
               className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={hoverLift}
               viewport={{ once: true, margin: "-15% 0px" }}
               transition={{ duration: 1.1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >

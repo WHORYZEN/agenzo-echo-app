@@ -29,7 +29,8 @@ import { PillButton } from "@/components/site/PillButton";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { fadeUp, fadeIn, scaleIn, staggerParent, viewportOnce, easeOut } from "@/lib/motion";
+import { fadeUp, fadeIn, scaleIn, staggerParent, viewportOnce, easeOut, hoverLift, hoverLiftSm } from "@/lib/motion";
+import { SplitText } from "@/components/site/SplitText";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -203,13 +204,13 @@ function WhyChooseUs() {
           </motion.div>
 
           <div className="md:col-span-5 flex flex-col gap-6 md:gap-8">
-            <motion.div variants={fadeUp} className="glass rounded-3xl p-8 flex-1">
+            <motion.div variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-8 flex-1">
               <p className="text-xl leading-snug tight">
                 We specialize in turning brands into <strong>digital powerhouses</strong> — from stunning websites to data-driven marketing campaigns built to deliver results that move the needle.
               </p>
             </motion.div>
             <motion.div variants={staggerParent(0.08)} className="grid grid-cols-2 gap-4 md:gap-6">
-              <motion.div variants={fadeUp}>
+              <motion.div variants={fadeUp} whileHover={hoverLift}>
                 <StatTile
                   label="Clients Served"
                   value="299+"
@@ -222,7 +223,7 @@ function WhyChooseUs() {
                   }
                 />
               </motion.div>
-              <motion.div variants={fadeUp}>
+              <motion.div variants={fadeUp} whileHover={hoverLift}>
                 <StatTile label="Years in Industry" value="10+" />
               </motion.div>
             </motion.div>
@@ -286,7 +287,7 @@ function FactSection() {
         whileInView="show"
         viewport={viewportOnce}
       >
-        <motion.div variants={scaleIn} className="md:col-span-5 rounded-3xl overflow-hidden aspect-square">
+        <motion.div variants={scaleIn} whileHover={hoverLiftSm} className="md:col-span-5 rounded-3xl overflow-hidden aspect-square">
           <img src={flower} alt="" className="w-full h-full object-cover" loading="lazy" />
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
@@ -334,7 +335,7 @@ function SelectedWork() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Featured Works</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              Selected Work.<sup className="text-[0.25em] ml-2 text-muted-foreground">({PROJECTS.length})</sup>
+              <SplitText text="Selected Work." suffix={<sup className="text-[0.25em] ml-2 text-muted-foreground">({PROJECTS.length})</sup>} />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
@@ -463,7 +464,7 @@ function Testimonials() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Client Voices</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              Trusted By Many.
+              <SplitText text="Trusted By Many." />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
@@ -480,6 +481,7 @@ function Testimonials() {
         >
           <motion.div
             variants={fadeUp}
+            whileHover={hoverLift}
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
@@ -498,7 +500,7 @@ function Testimonials() {
           </motion.div>
           <div className="md:col-span-5 flex flex-col gap-6">
             {TESTIMONIALS_SMALL.map((t) => (
-              <motion.div key={t.name} variants={fadeUp} className="glass rounded-3xl p-6">
+              <motion.div key={t.name} variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-6">
                 <p className="text-sm leading-relaxed">{t.text}</p>
                 <div className="flex items-center gap-3 mt-4">
                   <img src={t.img} alt="" className="w-9 h-9 rounded-full object-cover" loading="lazy" />
@@ -537,7 +539,7 @@ function StatsTrio() {
 
 function BigStat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <motion.div variants={fadeUp} className="glass rounded-3xl p-8 min-h-[260px] flex flex-col justify-between">
+    <motion.div variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-8 min-h-[260px] flex flex-col justify-between">
       <div className="eyebrow text-muted-foreground">{label}</div>
       <div>
         <div className="font-semibold tighter leading-none" style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}>
@@ -575,6 +577,7 @@ function PartnersGrid() {
             <motion.div
               key={l}
               variants={scaleIn}
+              whileHover={hoverLiftSm}
               className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70 hover:opacity-100 transition-opacity"
             >
               {l}
@@ -595,6 +598,7 @@ function ShowReel() {
         initial={{ opacity: 0, scale: 0.97 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={viewportOnce}
+        whileHover={{ scale: 1.01, transition: { duration: 0.6, ease: easeOut } }}
         transition={{ duration: 1.1, ease: easeOut }}
       >
         <img src={showreel} alt="" className="w-full h-full object-cover" loading="lazy" />
@@ -608,10 +612,10 @@ function ShowReel() {
         </button>
         <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between text-white">
           <h2 className="font-semibold tighter leading-none" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Every Pixel
+            <SplitText text="Every Pixel" />
           </h2>
           <div className="font-semibold tighter" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Crafted<sup className="text-[0.3em]">®</sup>
+            <SplitText text="Crafted" suffix={<sup className="text-[0.3em]">®</sup>} />
           </div>
         </div>
       </motion.div>
@@ -647,7 +651,7 @@ function Achievements() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          <motion.div variants={scaleIn} className="md:col-span-5 rounded-3xl overflow-hidden bg-muted min-h-[400px]">
+          <motion.div variants={scaleIn} whileHover={hoverLiftSm} className="md:col-span-5 rounded-3xl overflow-hidden bg-muted min-h-[400px]">
             <img src={award} alt="" className="w-full h-full object-cover" loading="lazy" />
           </motion.div>
           <div className="md:col-span-7 divide-y divide-border/60">
@@ -655,6 +659,7 @@ function Achievements() {
               <motion.div
                 key={a.n}
                 variants={fadeUp}
+                whileHover={{ x: 4, transition: { duration: 0.4, ease: easeOut } }}
                 className="py-8 grid grid-cols-12 gap-4 items-center group hover:bg-foreground/[0.02] transition-colors px-2 rounded-2xl"
               >
                 <div className="col-span-2 text-sm text-muted-foreground">{a.n}</div>
@@ -798,7 +803,7 @@ function Pricing() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Plans Built for Growth</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              Pricing.<sup className="text-[0.25em] ml-2 text-muted-foreground">(3)</sup>
+              <SplitText text="Pricing." suffix={<sup className="text-[0.25em] ml-2 text-muted-foreground">(3)</sup>} />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
