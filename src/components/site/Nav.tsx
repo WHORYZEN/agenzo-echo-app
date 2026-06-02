@@ -25,18 +25,19 @@ export function Nav() {
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
-  const Logo = (
+  const renderLogo = (invert: boolean) => (
     <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">
       <Link to="/" className="block">
         <img
           src={logo}
           alt="DigiFrenzy"
           className="h-7 w-auto"
-          style={{ filter: "invert(1)" }}
+          style={invert ? { filter: "invert(1)" } : undefined}
         />
       </Link>
     </motion.div>
   );
+  const Logo = renderLogo(false);
 
   const menuItems: Array<{ l: string; to: string; hash?: string }> = [
     { l: "Home", to: "/" },
@@ -69,7 +70,7 @@ export function Nav() {
         >
           {merged && (
             <>
-              {Logo}
+              {renderLogo(true)}
               <span className="mx-2 h-5 w-px bg-foreground/15" />
             </>
           )}
