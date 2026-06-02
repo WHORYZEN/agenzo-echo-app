@@ -582,7 +582,7 @@ function PartnersGrid() {
 /* ============ SHOW REEL ============ */
 function ShowReel() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <motion.div
         className="container-x relative rounded-[2rem] overflow-hidden aspect-[16/9]"
         initial={{ opacity: 0, scale: 0.97 }}
