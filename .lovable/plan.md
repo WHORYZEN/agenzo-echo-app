@@ -1,34 +1,33 @@
-
 ## Goal
-Improve perceived performance with lazy loading and add consistent Framer Motion animations across every page and shared component.
+Fix the header on mobile so the logo stays visible, the "Get in touch" CTA collapses into the message icon only, and a hamburger menu button appears next to it that opens the nav links.
 
-## Current state
-- `framer-motion` is already used on the home page (`src/routes/index.tsx`).
-- Images already use `loading="lazy"`.
-- `pricing.tsx`, `services.tsx`, and most components under `src/components/site/*` (Nav, Contact, FAQ, SiteFooter, PillButton) have no motion or lazy treatment yet.
-- All home sections are bundled together in `index.tsx`, inflating initial JS.
+## Changes (only `src/components/site/Nav.tsx`)
 
-## Plan
+### 1. Keep logo visible on mobile
+- Currently the left logo slot is hidden once `merged` is true (after scrolling 50vh) and the logo only re-appears inside the desktop pill nav (`hidden md:flex`). On mobile that pill never renders, so the logo disappears entirely once scrolled.
+- Fix: always render the standalone `Logo` on mobile regardless of `merged`. Keep the existing merge-into-pill behavior on `md+` only.
+  - Left slot: `{(!merged || isMobileBreakpoint) && Logo}` — simplest approach: render Logo always on `<md` via a wrapper with `md:hidden` when merged, and the existing logic on `md+`.
 
-### 1. Lazy loading
-- Split the home page: keep `Hero` + `Nav` eager; convert all below-the-fold sections (`WhyChooseUs`, `PartnerMarquee`, `FactSection`, `SelectedWork`, `TeamSection`, `Testimonials`, `StatsTrio`, `PartnersGrid`, `ShowReel`, `Achievements`, `ProcessSection`, `Pricing`, `FAQ`, `Contact`, `SiteFooter`) into separate files under `src/components/site/sections/` and load them via `React.lazy` + `Suspense` with a lightweight skeleton fallback.
-- Wrap each lazy section in an IntersectionObserver-based wrapper (`<LazyMount>`) so its chunk only fetches when it nears the viewport.
-- Convert `pricing.tsx` and `services.tsx` to lazy file routes (`.lazy.tsx`) per TanStack code-splitting guidance; keep critical route config in the base file.
-- Keep `loading="lazy"` on images; add `decoding="async"` where missing. Add `preload="metadata"` to the hero video.
+### 2. Get in touch button → icon-only on mobile
+- Hide the "Get in touch" text on mobile, shrink the pill to just the circular message icon.
+- On `md+` keep the current pill (text + icon) unchanged.
+- Implementation: wrap the label in `<span class="hidden md:inline">Get in touch</span>`, and adjust the wrapper paddings so on mobile it becomes a compact circular icon button (e.g., `p-1 md:pl-5 md:pr-2 md:py-2`, remove `min-w-[100px]` on mobile).
 
-### 2. Framer Motion coverage
-- Reuse existing tokens in `src/lib/motion.ts` (`fadeUp`, `staggerParent`, `viewportOnce`, etc.).
-- Add entry animations (fade/slide/stagger) to `Nav`, `Contact`, `FAQ`, `SiteFooter`, `PillButton` hover/tap.
-- Add `whileInView` reveal animations to every section in `pricing.tsx` and `services.tsx` matching the home page rhythm.
-- Add a global page transition: wrap `<Outlet />` in `__root.tsx` with `AnimatePresence` + a `motion.div` keyed by route pathname (fade + small y).
-- Respect `prefers-reduced-motion` via a small helper that short-circuits variants to identity when reduced motion is set.
+### 3. Add hamburger menu button (mobile only)
+- New button shown only on `<md`, placed to the LEFT of the icon-only Get in touch button (so the right side reads: [hamburger] [message icon]).
+- Uses lucide `Menu` icon (and `X` when open), matching the glass-pill aesthetic (same circular `w-9 h-9` foreground-on-background style as the existing message icon, wrapped in a `glass` pill for consistency, or styled as a standalone circular button — will match the message icon styling for visual symmetry).
+- Clicking toggles a mobile menu panel.
 
-### 3. Technical notes
-- Use `React.lazy(() => import(...))` per section; each `Suspense` fallback renders a `min-h-[60vh]` placeholder to prevent layout shift.
-- `LazyMount` uses `IntersectionObserver` with `rootMargin: "300px"` to start fetching just before the section scrolls in.
-- No new dependencies required (`framer-motion` already installed).
-- No backend or data changes.
+### 4. Mobile menu panel
+- A `framer-motion` animated dropdown that slides/fades down from the header on mobile only.
+- Contains the same `menuItems` (Home, Work, Services, Pricing) as vertical links, styled with the existing `hover-tint-blue` treatment, inside a `glass` rounded container with padding.
+- Closes on link click and on route change.
+- Respects `useReducedMotion` (instant open/close when reduced).
+
+### 5. Technical notes
+- Add `useState` for `mobileOpen`; add `Menu`, `X` imports from `lucide-react`.
+- Use Tailwind responsive utilities (`md:hidden`, `hidden md:flex`) — no JS breakpoint hook needed.
+- No changes outside `Nav.tsx`. No copy, color, or token changes. Desktop layout/behavior untouched.
 
 ### Out of scope
-- No copy, layout, or color changes.
-- No changes to hero video behavior beyond `preload` hint.
+- No changes to other components, routes, or the merge-on-scroll animation behavior on desktop.
