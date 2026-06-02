@@ -1,11 +1,44 @@
-## Problem
-On mobile, the header logo renders directly over the dark hero video. The image is inverted (`filter: invert(1)`), turning the white logo black — which disappears against the dark hero background. On desktop it's readable because the logo sits inside the `glass` pill which provides a light backdrop.
+## Goal
 
-## Fix (only `src/components/site/Nav.tsx`)
+Make the frosted/blur glass effect on the header (and other `.glass` surfaces) render reliably in the published build, not just in the dev preview.
 
-1. Remove the unconditional `filter: invert(1)` from the `<img>` inside `Logo`. Keep the logo in its natural white form so it's visible over the dark hero on mobile.
-2. Apply the invert only when the logo is rendered inside the desktop glass pill (i.e. the `merged` state on `md+`), where the background is light. Simplest implementation: make `Logo` accept an `invert` boolean, render `<div className="md:hidden">{Logo(false)}</div>` and `<div className="hidden md:block">{!merged && Logo(false)}</div>` for the left slot (over hero = white), and `Logo(true)` inside the merged pill.
-3. No other changes — desktop appearance, hamburger, CTA, and mobile menu remain untouched.
+## Root cause
 
-## Out of scope
-Any change to the merge-on-scroll behavior, the hero, or other components.
+`src/styles.css` defines `.glass` and `.glass-dark` with both the standard `backdrop-filter` and a hand-written `-webkit-backdrop-filter` immediately after it, with identical values:
+
+```css
+.glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);  /* ← the problem */
+  border: 1px solid rgba(255,255,255,0.4);
+}
+```
+
+In production, Lightning CSS dedupes the two same-value declarations and keeps the last one in source order (the `-webkit-` form), dropping the standard `backdrop-filter`. Chrome does not honor `-webkit-backdrop-filter` (Safari-only prefix), so the glass effect silently disappears for Chrome users on the published site — which matches "doesn't work seamlessly in the header." Dev preview is fine because Lightning CSS optimization doesn't run the same way.
+
+## Fix
+
+Remove the hand-written `-webkit-backdrop-filter` lines. The build pipeline auto-prefixes for Safari, so the standard property alone is correct and safe.
+
+### Edit `src/styles.css`
+
+```css
+.glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.glass-dark {
+  background: rgba(10,10,10,0.7);
+  backdrop-filter: blur(20px);
+}
+```
+
+No changes to `Nav.tsx` — all the `glass` / `backdrop-blur-md` usages there are already correct.
+
+## Verification
+
+- View the header in the preview (default scroll and scrolled state) — pill should show a translucent frosted blur over hero content.
+- Confirm in the published URL after deploy that the header glass renders in Chrome (this is the case Lightning CSS broke).
