@@ -181,19 +181,19 @@ function FactSection() {
         >
           <img src={flower.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
-        <div className="md:col-span-7 flex flex-col justify-between gap-6">
+        <div className="md:col-span-7 flex flex-col justify-between gap-6 bg-[var(--brand-blue)] text-white rounded-3xl p-8">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— DIGIFRNEZNY* FACT</div>
+            <div className="eyebrow text-white/70">— DIGIFRNEZNY* FACT</div>
           </motion.div>
           <div>
             <motion.div
               variants={fadeUp}
-              className="font-semibold tighter leading-[0.9]"
+              className="font-semibold tighter leading-[0.9] text-white"
               style={{ fontSize: "clamp(5rem, 14vw, 14rem)" }}
             >
               90+
             </motion.div>
-            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md">
+            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md text-white">
               Projects delivered for clients across industries globally.
             </motion.p>
           </div>
