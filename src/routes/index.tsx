@@ -60,16 +60,6 @@ function Hero() {
       <div className="absolute inset-0 z-[1] bg-background/30" />
 
       <div className="container-x relative z-10">
-        <motion.div
-          className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 text-xs"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1, ease: easeOut }}
-        >
-          <span className="rotate-180 [writing-mode:vertical-rl] tracking-widest">{"\n"}</span>
-          <div className="w-px h-32 bg-foreground/30" />
-        </motion.div>
-
         <h1
           className="text-white tighter font-bold leading-[0.85] mt-16 flex flex-wrap"
           style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
