@@ -55,7 +55,7 @@ function WhyChooseUs() {
     <section className="section">
       <div className="container-x">
         <div className="mb-10">
-          <SectionHeader eyebrow="— Why D\ni\ng\ni\nF\nr\ne\nn\nz\ny*">
+          <SectionHeader eyebrow="— WHY DIGIFRENZY*">
             Transforming Brands
             <br /> <span className="text-brand">Digitally.</span>
           </SectionHeader>
