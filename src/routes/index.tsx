@@ -17,9 +17,9 @@ const HomeBelowFold = lazy(() => import("@/components/site/HomeBelowFold"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DIGIFRNEZNY* — Digital Agency" },
-      { name: "description", content: "DIGIFRNEZNY* crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
+      { title: "DIGIFRNEZNY — Digital Agency" },
+      { name: "description", content: "DIGIFRNEZNY crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { property: "og:title", content: "DIGIFRNEZNY — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
@@ -44,7 +44,7 @@ function Home() {
 }
 
 function Hero() {
-  const headline = "DIGIFRNEZNY*";
+  const headline = "DIGIFRNEZNY";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
@@ -64,7 +64,7 @@ function Hero() {
           className="text-white tighter font-bold leading-[0.85] mt-16 flex flex-wrap"
           style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
         >
-          {headline.split("\n").map((ch, i) => (
+          {headline.split("").map((ch, i) => (
             <motion.span
               key={i}
               className={`inline-block ${i >= 4 ? "text-brand" : ""}`}
