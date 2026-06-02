@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageSquare, Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo_digifrenzy_blue.png.asset.json";
@@ -9,6 +9,7 @@ export function Nav() {
   const { scrollY } = useScroll();
   const [merged, setMerged] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
   const routerState = useRouterState();
 
   useMotionValueEvent(scrollY, "change", (y) => {
@@ -21,12 +22,29 @@ export function Nav() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useState(() => currentPath);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hero = document.querySelector("[data-hero]");
+    if (!hero) {
+      setHeroVisible(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [currentPath]);
+
   const spring = reduce
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
-  const Logo = (
-    <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">
+  const renderLogo = (className = "") => (
+    <motion.div layoutId="digifrenzy-logo" transition={spring} className={`leading-none ${className}`}>
       <Link to="/" className="block">
         <img src={logoAsset.url} alt="DigiFrenzy" className="h-8 w-auto" />
       </Link>
