@@ -277,7 +277,7 @@ function SelectedWork() {
               </div>
               <div className="mt-4 flex items-center justify-between text-sm gap-4 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <span className="font-medium">{p.t}</span>
+                  <span className="font-medium">{p.t.replace("P", "\n").replace("y", "\n").replace("r", "\n").replace("e", "\n").replace("v", "\n").replace("E", "\n")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {p.tags.map((t) => (
