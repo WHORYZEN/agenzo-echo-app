@@ -73,12 +73,28 @@
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-left 40s linear infinite;
+  animation: marquee-left 60s linear infinite;
 }
 .marquee-track-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-right 50s linear infinite;
+  animation: marquee-right 70s linear infinite;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.section {
+  padding: 7rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .section { padding: 8rem 2.5rem; }
+}
+.container-x {
+  margin-inline: auto;
+  max-width: 1400px;
 }
 
 /* Hero slider */
