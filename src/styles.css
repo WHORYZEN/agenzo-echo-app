@@ -101,7 +101,7 @@
 .slider-track {
   display: flex;
   width: max-content;
-  animation: marquee-left 35s linear infinite;
+  animation: marquee-left 55s linear infinite;
   gap: 1rem;
 }
 
