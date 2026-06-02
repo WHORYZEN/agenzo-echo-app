@@ -48,14 +48,10 @@ function Hero() {
   const headline = "DIGIFRENZY";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
-      <video
+      <img
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
-        src={heroVideo.url}
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
+        src={heroBlue.url}
+        alt=""
         aria-hidden="true"
       />
       <div className="absolute inset-0 z-[1] bg-background/30" />
