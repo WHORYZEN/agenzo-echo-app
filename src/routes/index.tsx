@@ -240,7 +240,7 @@ function StatTile({ label, value, right }: { label: string; value: string; right
 
 /* ============ PARTNER MARQUEE ============ */
 const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "PLANTSMED", "BAARAT", "HIDEOUT"];
-const LOGOS2 = ["DIGIFRENZY®", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORGE", "MEDIA HOUSE", "SCALE CO", "NORTH STAR"];
+const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORGE", "MEDIA HOUSE", "SCALE CO", "NORTH STAR"];
 
 function PartnerMarquee() {
   return (
