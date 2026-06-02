@@ -180,7 +180,7 @@ function WhyChooseUs() {
         <div className="mb-16">
           <SectionHeader eyebrow="— Why D\ni\ng\ni\nF\nr\ne\nn\nz\ny*">
             Transforming Brands
-            <br /> Digitally.
+            <br /> <span className="text-brand">Digitally.</span>
           </SectionHeader>
         </div>
 
