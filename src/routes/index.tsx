@@ -244,8 +244,8 @@ const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORG
 
 function PartnerMarquee() {
   return (
-    <section className="py-14 md:py-16 border-y border-border/60">
-      <div className="container-x flex items-center gap-8 mb-10 px-6 md:px-10">
+    <section className="section border-y border-border/60">
+      <div className="container-x flex items-center gap-8 mb-10">
         <div className="eyebrow text-muted-foreground">— Trusted Partners</div>
         <div className="ml-auto">
           <PillButton dark href="/pricing">Choose Plan</PillButton>
@@ -511,7 +511,7 @@ function Testimonials() {
 /* ============ STATS TRIO ============ */
 function StatsTrio() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <motion.div
         className="container-x grid md:grid-cols-3 gap-6 md:gap-8"
         variants={staggerParent(0.12)}
@@ -544,7 +544,7 @@ function BigStat({ label, value, hint }: { label: string; value: string; hint?: 
 /* ============ PARTNERS GRID ============ */
 function PartnersGrid() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <div className="container-x">
         <motion.div
           className="text-center mb-12"
@@ -582,7 +582,7 @@ function PartnersGrid() {
 /* ============ SHOW REEL ============ */
 function ShowReel() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <motion.div
         className="container-x relative rounded-[2rem] overflow-hidden aspect-[16/9]"
         initial={{ opacity: 0, scale: 0.97 }}
