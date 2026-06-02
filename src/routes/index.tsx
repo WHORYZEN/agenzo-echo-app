@@ -544,7 +544,7 @@ function BigStat({ label, value, hint }: { label: string; value: string; hint?: 
 /* ============ PARTNERS GRID ============ */
 function PartnersGrid() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
+    <section className="section">
       <div className="container-x">
         <motion.div
           className="text-center mb-12"
