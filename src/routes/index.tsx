@@ -35,9 +35,9 @@ import { SplitText } from "@/components/site/SplitText";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DigiFrenzy — Digital Agency" },
-      { name: "description", content: "DigiFrenzy crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "DigiFrenzy — Digital Agency" },
+      { title: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
+      { name: "description", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { property: "og:title", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
@@ -72,7 +72,7 @@ function Home() {
 
 /* ============ HERO ============ */
 function Hero() {
-  const headline = "DigiFrenzy";
+  const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
     <section className="relative min-h-screen pt-28 pb-24 px-6 md:px-10 overflow-hidden">
       <motion.div
@@ -99,7 +99,7 @@ function Hero() {
           className="text-white tighter font-bold leading-[0.85] mt-16 flex flex-wrap"
           style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
         >
-          {headline.split("").map((ch, i) => (
+          {headline.split("\n").map((ch, i) => (
             <motion.span
               key={i}
               className={`inline-block ${i >= 4 ? "text-brand" : ""}`}
@@ -178,7 +178,7 @@ function WhyChooseUs() {
     <section className="section">
       <div className="container-x">
         <div className="mb-16">
-          <SectionHeader eyebrow="— Why DigiFrenzy">
+          <SectionHeader eyebrow="— Why D\ni\ng\ni\nF\nr\ne\nn\nz\ny*">
             Transforming Brands
             <br /> Digitally.
           </SectionHeader>
@@ -284,7 +284,7 @@ function FactSection() {
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— DigiFrenzy Fact</div>
+            <div className="eyebrow text-muted-foreground">— D\ni\ng\ni\nF\nr\ne\nn\nz\ny* Fact</div>
           </motion.div>
           <div>
             <motion.div
@@ -475,7 +475,7 @@ function Testimonials() {
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
-              "Honestly, working with DigiFrenzy has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
+              "Honestly, working with D\ni\ng\ni\nF\nr\ne\nn\nz\ny* has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
             </p>
             <div className="flex items-center justify-between mt-8">
               <div className="flex items-center gap-4">
@@ -632,7 +632,7 @@ function Achievements() {
           viewport={viewportOnce}
           className="eyebrow text-muted-foreground mb-12"
         >
-          — Why Choose DigiFrenzy
+          — Why Choose D\ni\ng\ni\nF\nr\ne\nn\nz\ny*
         </motion.div>
         <motion.div
           className="grid md:grid-cols-12 gap-6 md:gap-8"
@@ -716,7 +716,7 @@ function ProcessSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
               <div className="absolute top-5 left-5 right-5 flex justify-between text-white text-xs">
-                <span className="glass-dark text-white rounded-full px-3 py-1.5">DigiFrenzy</span>
+                <span className="glass-dark text-white rounded-full px-3 py-1.5">D\ni\ng\ni\nF\nr\ne\nn\nz\ny*</span>
                 <span>{i === 0 ? "FREE" : p.n}</span>
               </div>
               <div className="absolute bottom-5 left-5 right-5 text-white">

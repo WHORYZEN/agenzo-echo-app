@@ -3,7 +3,7 @@ import { useState } from "react";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 
 const FAQS = [
-  { q: "What does a project with DigiFrenzy look like?", a: "We start with a discovery call to understand your goals, then build a custom strategy, execute with our creative team, and deliver measurable results — all within clear timelines." },
+  { q: "What does a project with D\ni\ng\ni\nF\nr\ne\nn\nz\ny* look like?", a: "We start with a discovery call to understand your goals, then build a custom strategy, execute with our creative team, and deliver measurable results — all within clear timelines." },
   { q: "How is your pricing structured?", a: "We offer flexible monthly retainer plans and one-time project pricing. Every package is tailored to your specific business needs and goals." },
   { q: "Do you work with fixed-scope projects?", a: "Yes. We offer both fixed-scope and ongoing retainer models depending on what works best for your brand." },
   { q: "What kind of ROI can I expect?", a: "Our clients typically see a 3–5x return on their marketing investment within the first 6 months, depending on industry and strategy." },
