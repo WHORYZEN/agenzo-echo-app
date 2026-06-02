@@ -40,3 +40,13 @@ export const softSpring: Transition = {
   damping: 28,
   mass: 1,
 };
+
+export const hoverLift = {
+  y: -6,
+  transition: { duration: 0.5, ease: easeOut },
+};
+
+export const hoverLiftSm = {
+  y: -4,
+  transition: { duration: 0.5, ease: easeOut },
+};
