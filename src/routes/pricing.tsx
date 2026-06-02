@@ -5,6 +5,7 @@ import { Nav } from "@/components/site/Nav";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SplitText } from "@/components/site/SplitText";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({

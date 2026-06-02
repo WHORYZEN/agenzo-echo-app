@@ -5,6 +5,8 @@ import { PillButton } from "@/components/site/PillButton";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SplitText } from "@/components/site/SplitText";
+import { hoverLift } from "@/lib/motion";
 
 import s1 from "@/assets/project-1.jpg";
 import s2 from "@/assets/project-2.jpg";
