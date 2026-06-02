@@ -88,16 +88,6 @@ function Hero() {
         </h1>
 
         <motion.div
-          className="mt-4 flex items-center gap-3 text-xs font-medium tracking-[0.2em]"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1, ease: easeOut }}
-        >
-          <span className="w-8 h-px bg-foreground" />
-          {"\n"}
-        </motion.div>
-
-        <motion.div
           className="mt-16 grid md:grid-cols-2 gap-10 items-end"
           variants={staggerParent(0.15, 1.2)}
           initial="hidden"
