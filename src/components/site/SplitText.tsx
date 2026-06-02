@@ -21,25 +21,17 @@ export function SplitText({
   className?: string;
   suffix?: ReactNode;
 }) {
-  const animProps =
-    trigger === "mount"
-      ? { initial: "hidden" as const, animate: "show" as const }
-      : { initial: "hidden" as const, whileInView: "show" as const, viewport: viewportOnce };
-
+  const useMount = trigger === "mount";
   return (
-    <span className={`inline-flex flex-wrap ${className}`} {...animProps}>
+    <span className={`inline-flex flex-wrap ${className}`}>
       {text.split("").map((ch, i) => (
         <motion.span
           key={i}
           className="inline-block"
-          variants={{
-            hidden: { y, opacity: 0 },
-            show: { y: 0, opacity: 1 },
-          }}
-          initial="hidden"
-          {...(trigger === "mount"
-            ? { animate: "show" }
-            : { whileInView: "show", viewport: viewportOnce })}
+          initial={{ y, opacity: 0 }}
+          {...(useMount
+            ? { animate: { y: 0, opacity: 1 } }
+            : { whileInView: { y: 0, opacity: 1 }, viewport: viewportOnce })}
           transition={{ duration, ease: easeOut, delay: delay + i * stagger }}
         >
           {ch === " " ? "\u00A0" : ch}
