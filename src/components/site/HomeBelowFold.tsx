@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 
 import factCar from "@/assets/fact-car.jpg";
-import flower from "@/assets/flower.jpg";
+import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -155,7 +155,7 @@ function FactSection() {
         viewport={viewportOnce}
       >
         <motion.div variants={scaleIn} whileHover={hoverLiftSm} className="md:col-span-5 rounded-3xl overflow-hidden aspect-square">
-          <img src={flower} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+          <img src={flower.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
