@@ -67,7 +67,7 @@ function Hero() {
           {headline.split("").map((ch, i) => (
             <motion.span
               key={i}
-              className={`inline-block ${i >= 4 ? "text-brand" : ""}`}
+              className={`inline-block ${i >= 6 ? "text-brand" : ""}`}
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.9, ease: easeOut, delay: 0.1 + i * 0.04 }}
