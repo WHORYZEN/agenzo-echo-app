@@ -23,7 +23,7 @@ export function Nav() {
       <Link to="/" className="block">
         <img
           src={logo}
-          alt="DigiFrenzy"
+          alt="D\ni\ng\ni\nF\nr\ne\nn\nz\ny*"
           className="h-7 w-auto"
           style={{ filter: "invert(1)" }}
         />
