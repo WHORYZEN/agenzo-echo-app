@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState } from "react";
 import { ArrowUpRight, Plus, MessageSquare, Check, Play } from "lucide-react";
 
 import heroBg from "@/assets/hero-bg.jpg";
