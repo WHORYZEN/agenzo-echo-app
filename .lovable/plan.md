@@ -1,12 +1,17 @@
 ## Goal
-Replace the image in the "Why DigiFrenzy" section with the uploaded blue VR portrait.
+Replace the 3 slideshow images in the hero section's bottom-right marquee with the 4 uploaded images.
 
 ## Changes
-1. Upload `user-uploads://743586588516943616.jpeg` to Lovable Assets as `src/assets/why-digifrenzy.jpeg.asset.json`.
-2. In `src/components/site/HomeBelowFold.tsx`:
-   - Import the new asset JSON.
-   - Replace `src={factCar}` (line 72, inside `WhyChooseUs`) with the new asset URL.
-   - Leave the existing `factCar` import in place if it's used elsewhere; otherwise remove it.
+1. Upload each of the 4 user-uploaded images to Lovable Assets:
+   - `user-uploads://Brand_Identity_-_Tote_Bag.jpeg` → `src/assets/hero-slide-tote.jpeg.asset.json`
+   - `user-uploads://Furniture_Website_for_Forma_Studio.jpeg` → `src/assets/hero-slide-forma.jpeg.asset.json`
+   - `user-uploads://Quantstamp_Social_Media_Templates_for_a_Web3_Security_Brand.jpeg` → `src/assets/hero-slide-quantstamp.jpeg.asset.json`
+   - `user-uploads://Some_feel_good_photos_shot_for_the_Taco_Bell-2.jpeg` → `src/assets/hero-slide-tacobell.jpeg.asset.json`
+
+2. In `src/routes/index.tsx`:
+   - Replace the `slide1`, `slide2`, `slide3` imports with the 4 new asset JSON imports.
+   - Update the `slides` array to use `[tote, forma, quantstamp, tacobell]` (the array is already duplicated in render via `.concat(slides)` for the marquee loop).
+   - Use `.url` from each asset pointer when mapping.
 
 ## Verification
-Check the `/` route preview — the left tile of the "Why DigiFrenzy" section should show the blue portrait.
+Visit `/` — the bottom-right marquee in the hero should cycle through the 4 new images.
