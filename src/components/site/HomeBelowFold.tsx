@@ -206,8 +206,8 @@ function FactSection() {
 const PROJECTS = [
   {
     n: "01.",
-    t: "MYAI500",
-    y: "2025",
+    t: "\n",
+    y: "\n",
     tags: ["Portfolio", "AI Voice Assistant"],
     img: project1,
     ratio: "aspect-[16/10]",
