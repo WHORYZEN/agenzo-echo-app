@@ -44,7 +44,7 @@ function Home() {
 }
 
 function Hero() {
-  const headline = "DIGIFRNEZNY";
+  const headline = "DIGIFR\nE\nNZNY";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
