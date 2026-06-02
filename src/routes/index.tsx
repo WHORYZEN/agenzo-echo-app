@@ -2,11 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
 
-import heroBlue from "@/assets/hero-slide-blue.jpeg.asset.json";
+import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import slide1 from "@/assets/slide-1.jpg";
 import slide2 from "@/assets/slide-2.jpg";
 import slide3 from "@/assets/slide-3.jpg";
-
 
 import { Nav } from "@/components/site/Nav";
 import { PillButton } from "@/components/site/PillButton";
@@ -48,10 +47,14 @@ function Hero() {
   const headline = "DIGIFRENZY";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
-      <img
+      <video
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
-        src={heroBlue.url}
-        alt=""
+        src={heroVideo.url}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
         aria-hidden="true"
       />
       <div className="absolute inset-0 z-[1] bg-background/30" />
