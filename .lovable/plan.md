@@ -1,16 +1,24 @@
-## Changes
+## Problem
+The `.section` utility in `src/styles.css` uses `padding: 7rem 1.5rem` (mobile) and `8rem 2.5rem` (desktop). With stacked sections, that creates ~256px of empty space between Hero → Why Us and similar transitions, making the page feel sparse.
 
-1. **`src/routes/__root.tsx`** — strip the two remaining ® marks from the default meta `title` and `og:title` (`"DigiFrenzy® — Digital Agency"` → `"DigiFrenzy — Digital Agency"`).
+Many other sections also use `py-20 md:py-24` (Partner marquee, Pricing band, Contact, etc.), which compound the same airy feel.
 
-2. **`src/components/site/SiteFooter.tsx`** — the footer currently has no image logo, just a text "© DigiFrenzy" line. Add the Framer Clone Craft logo:
-   - Import `logo from "@/assets/logo_digifrenzy_white.png"`.
-   - Replace the plain text in the bottom copyright row with `<img src={logo} alt="DigiFrenzy" className="h-6 w-auto" />` followed by `© {year}. All rights reserved.`
-   - Footer background is the light page background, so the white-on-transparent PNG needs `style={{ filter: "invert(1)" }}` (same treatment as Nav) so it shows as dark.
+## Fix
 
-3. **`src/components/site/Nav.tsx`** — already uses this same asset; no change needed beyond confirming it's the only logo source.
+1. **`src/styles.css` — `.section`**
+   - Mobile: `padding: 4rem 1.5rem` (was 7rem)
+   - Desktop: `padding: 5rem 2.5rem` (was 8rem)
 
-4. Confirm no other `®` characters or alternate wordmark variants remain anywhere in `src/`.
+2. **Standardize one-off section paddings on the home page** (`src/routes/index.tsx`) and sibling pages where `py-20 md:py-24` is used as section spacing — change to `py-14 md:py-16`:
+   - PartnerMarquee, Pricing band, Contact area, FAQ, Footer top spacer if present
+   - Same sweep across `src/routes/pricing.tsx` and `src/routes/services.tsx` for consistency
 
-## Out of scope
-- The giant "Let's talk" footer headline stays (it's a CTA, not a logo).
-- No color, layout, or motion changes.
+3. **Internal heading-to-content gaps**: where a SectionHeader is followed by `mb-16` / `mb-14`, reduce to `mb-10`. Limited to the home page Why Us, Works, Testimonials, Pricing, Services list intros.
+
+No color, copy, or layout structure changes — purely vertical rhythm tightening.
+
+## Files touched
+- `src/styles.css`
+- `src/routes/index.tsx`
+- `src/routes/pricing.tsx`
+- `src/routes/services.tsx`

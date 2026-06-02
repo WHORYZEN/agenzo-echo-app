@@ -88,10 +88,10 @@
 }
 
 .section {
-  padding: 7rem 1.5rem;
+  padding: 4rem 1.5rem;
 }
 @media (min-width: 768px) {
-  .section { padding: 8rem 2.5rem; }
+  .section { padding: 5rem 2.5rem; }
 }
 .container-x {
   margin-inline: auto;

@@ -177,7 +177,7 @@ function WhyChooseUs() {
   return (
     <section className="section">
       <div className="container-x">
-        <div className="mb-16">
+        <div className="mb-10">
           <SectionHeader eyebrow="— Why D\ni\ng\ni\nF\nr\ne\nn\nz\ny*">
             Transforming Brands
             <br /> <span className="text-brand">Digitally.</span>
@@ -244,7 +244,7 @@ const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORG
 
 function PartnerMarquee() {
   return (
-    <section className="py-20 md:py-24 border-y border-border/60">
+    <section className="py-14 md:py-16 border-y border-border/60">
       <div className="container-x flex items-center gap-8 mb-10 px-6 md:px-10">
         <div className="eyebrow text-muted-foreground">— Trusted Partners</div>
         <div className="ml-auto">
@@ -317,7 +317,7 @@ function SelectedWork() {
     <section id="work" className="section">
       <div className="container-x">
         <motion.div
-          className="flex items-end justify-between mb-14 flex-wrap gap-6"
+          className="flex items-end justify-between mb-10 flex-wrap gap-6"
           variants={staggerParent()}
           initial="hidden"
           whileInView="show"
@@ -386,7 +386,7 @@ function TeamSection() {
   return (
     <section className="section">
       <div className="container-x">
-        <div className="mb-14">
+        <div className="mb-10">
           <SectionHeader eyebrow="— Our Crew">
             Meet the Minds
             <br />Behind the Work.
@@ -445,7 +445,7 @@ function Testimonials() {
     <section className="section">
       <div className="container-x">
         <motion.div
-          className="flex items-end justify-between flex-wrap gap-6 mb-14"
+          className="flex items-end justify-between flex-wrap gap-6 mb-10"
           variants={staggerParent()}
           initial="hidden"
           whileInView="show"
@@ -511,7 +511,7 @@ function Testimonials() {
 /* ============ STATS TRIO ============ */
 function StatsTrio() {
   return (
-    <section className="px-6 md:px-10 py-20 md:py-24">
+    <section className="px-6 md:px-10 py-14 md:py-16">
       <motion.div
         className="container-x grid md:grid-cols-3 gap-6 md:gap-8"
         variants={staggerParent(0.12)}
@@ -544,7 +544,7 @@ function BigStat({ label, value, hint }: { label: string; value: string; hint?: 
 /* ============ PARTNERS GRID ============ */
 function PartnersGrid() {
   return (
-    <section className="px-6 md:px-10 py-20 md:py-24">
+    <section className="px-6 md:px-10 py-14 md:py-16">
       <div className="container-x">
         <motion.div
           className="text-center mb-12"
@@ -582,7 +582,7 @@ function PartnersGrid() {
 /* ============ SHOW REEL ============ */
 function ShowReel() {
   return (
-    <section className="px-6 md:px-10 py-20 md:py-24">
+    <section className="px-6 md:px-10 py-14 md:py-16">
       <motion.div
         className="container-x relative rounded-[2rem] overflow-hidden aspect-[16/9]"
         initial={{ opacity: 0, scale: 0.97 }}
@@ -677,7 +677,7 @@ function ProcessSection() {
   return (
     <section className="section">
       <div className="container-x">
-        <div className="mb-14">
+        <div className="mb-10">
           <SectionHeader eyebrow="— Our Approach">
             From Vision to
             <br /> Measurable Value.
@@ -783,7 +783,7 @@ function Pricing() {
     <section id="pricing" className="section">
       <div className="container-x">
         <motion.div
-          className="flex items-end justify-between flex-wrap gap-6 mb-14"
+          className="flex items-end justify-between flex-wrap gap-6 mb-10"
           variants={staggerParent()}
           initial="hidden"
           whileInView="show"
