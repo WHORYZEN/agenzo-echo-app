@@ -70,7 +70,7 @@ export function Nav() {
         >
           {merged && (
             <>
-              {Logo}
+              {renderLogo(true)}
               <span className="mx-2 h-5 w-px bg-foreground/15" />
             </>
           )}
