@@ -1,17 +1,21 @@
 ## Goal
-Replace the 3 slideshow images in the hero section's bottom-right marquee with the 4 uploaded images.
+Use the 4 portfolio images from the Framer Clone Craft project as the "Selected Work" images on the home page, matching them to the existing project titles.
+
+## Mapping
+- 01. MYAI500 → `portfolio-myai500.png`
+- 02. MYNX Softwares Inc → `portfolio-mynx.png`
+- 03. Jouri Law → `portfolio-jouri-law.png`
+- 04. MYCA500 → `portfolio-myca500.png`
 
 ## Changes
-1. Upload each of the 4 user-uploaded images to Lovable Assets:
-   - `user-uploads://Brand_Identity_-_Tote_Bag.jpeg` → `src/assets/hero-slide-tote.jpeg.asset.json`
-   - `user-uploads://Furniture_Website_for_Forma_Studio.jpeg` → `src/assets/hero-slide-forma.jpeg.asset.json`
-   - `user-uploads://Quantstamp_Social_Media_Templates_for_a_Web3_Security_Brand.jpeg` → `src/assets/hero-slide-quantstamp.jpeg.asset.json`
-   - `user-uploads://Some_feel_good_photos_shot_for_the_Taco_Bell-2.jpeg` → `src/assets/hero-slide-tacobell.jpeg.asset.json`
-
-2. In `src/routes/index.tsx`:
-   - Replace the `slide1`, `slide2`, `slide3` imports with the 4 new asset JSON imports.
-   - Update the `slides` array to use `[tote, forma, quantstamp, tacobell]` (the array is already duplicated in render via `.concat(slides)` for the marquee loop).
-   - Use `.url` from each asset pointer when mapping.
+1. Copy the 4 PNGs from Framer Clone Craft `public/` into this project's `/tmp/`, then upload each via `lovable-assets` to create `.asset.json` pointers in `src/assets/`:
+   - `src/assets/work-myai500.png.asset.json`
+   - `src/assets/work-mynx.png.asset.json`
+   - `src/assets/work-jouri.png.asset.json`
+   - `src/assets/work-myca500.png.asset.json`
+2. In `src/components/site/HomeBelowFold.tsx`:
+   - Remove the current `project1`/`project2`/`project3`/`project4` imports (including the previous MYai500 cover override).
+   - Import the 4 new asset JSONs and use `.url` for each entry in the `PROJECTS` array.
 
 ## Verification
-Visit `/` — the bottom-right marquee in the hero should cycle through the 4 new images.
+Visit `/` → "Selected Work" section shows the 4 new portfolio images in order.
