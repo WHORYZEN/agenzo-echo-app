@@ -16,10 +16,10 @@ import s4 from "@/assets/project-4.jpg";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — DigiFrenzy Digital Agency" },
+      { title: "Services — D\ni\ng\ni\nF\nr\ne\nn\nz\ny* Digital Agency" },
       { name: "description", content: "End-to-end digital services: social media marketing, SEO, website development, and 3D animation & branding." },
-      { property: "og:title", content: "Services — DigiFrenzy" },
-      { property: "og:description", content: "Marketing, SEO, web development, and 3D branding by DigiFrenzy." },
+      { property: "og:title", content: "Services — D\ni\ng\ni\nF\nr\ne\nn\nz\ny*" },
+      { property: "og:description", content: "Marketing, SEO, web development, and 3D branding by D\ni\ng\ni\nF\nr\ne\nn\nz\ny*." },
     ],
   }),
   component: ServicesPage,
