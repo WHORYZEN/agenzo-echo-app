@@ -74,9 +74,9 @@ function Home() {
 function Hero() {
   const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
-    <section className="relative min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-black">
+    <section className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
-        className="absolute inset-0 -z-10 w-full h-full object-cover"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
         src={heroVideo.url}
         autoPlay
         loop
@@ -85,9 +85,9 @@ function Hero() {
         preload="auto"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 -z-10 bg-background/30" />
+      <div className="absolute inset-0 z-[1] bg-background/30" />
 
-      <div className="container-x">
+      <div className="container-x relative z-10">
         <motion.div
           className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 text-xs"
           initial={{ opacity: 0 }}
