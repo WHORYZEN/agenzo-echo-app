@@ -27,22 +27,15 @@ import { PillButton } from "@/components/site/PillButton";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import {
-  fadeUp,
-  fadeIn,
-  scaleIn,
-  staggerParent,
-  viewportOnce,
-  easeOut,
-  hoverLift,
-  hoverLiftSm,
-} from "@/lib/motion";
+import { fadeUp, fadeIn, scaleIn, staggerParent, viewportOnce, easeOut, hoverLift, hoverLiftSm } from "@/lib/motion";
 import { SplitText } from "@/components/site/SplitText";
 
 function SectionHeader({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
   return (
     <motion.div variants={staggerParent()} initial="hidden" whileInView="show" viewport={viewportOnce}>
-      <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">{eyebrow}</motion.div>
+      <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">
+        {eyebrow}
+      </motion.div>
       <motion.h2
         variants={fadeUp}
         className="tighter font-semibold leading-[0.95]"
@@ -72,14 +65,24 @@ function WhyChooseUs() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          <motion.div variants={scaleIn} className="md:col-span-7 rounded-3xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-[600px]">
-            <img src={whyDigifrenzy.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+          <motion.div
+            variants={scaleIn}
+            className="md:col-span-7 rounded-3xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-[600px]"
+          >
+            <img
+              src={whyDigifrenzy.url}
+              alt=""
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
           </motion.div>
 
           <div className="md:col-span-5 flex flex-col gap-6 md:gap-8">
             <motion.div variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-8 flex-1">
               <p className="text-xl leading-snug tight">
-                We specialize in turning brands into <strong>digital powerhouses</strong> — from stunning websites to data-driven marketing campaigns built to deliver results that move the needle.
+                We specialize in turning brands into <strong>digital powerhouses</strong> — from stunning websites to
+                data-driven marketing campaigns built to deliver results that move the needle.
               </p>
             </motion.div>
             <motion.div variants={staggerParent(0.08)} className="grid grid-cols-2 gap-4 md:gap-6">
@@ -90,7 +93,14 @@ function WhyChooseUs() {
                   right={
                     <div className="flex -space-x-2">
                       {[avatar1, avatar2, avatar3].map((a, i) => (
-                        <img key={i} src={a} className="w-9 h-9 rounded-full border-2 border-background object-cover" alt="" loading="lazy" decoding="async" />
+                        <img
+                          key={i}
+                          src={a}
+                          className="w-9 h-9 rounded-full border-2  object-cover"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
                       ))}
                     </div>
                   }
@@ -119,8 +129,8 @@ function StatTile({ label, value, right }: { label: string; value: string; right
   );
 }
 
-const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "BAARAT", "POC"];
-const LOGOS2 = ["DIGIFRENZY", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORGE", "MEDIA HOUSE", "SCALE CO", "NORTH STAR"];
+const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
+const LOGOS2 = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
 
 function PartnerMarquee() {
   return (
@@ -128,19 +138,25 @@ function PartnerMarquee() {
       <div className="container-x flex items-center gap-8 mb-10">
         <div className="eyebrow text-muted-foreground">— Trusted Partners</div>
         <div className="ml-auto">
-          <PillButton dark href="/pricing">Choose Plan</PillButton>
+          <PillButton dark href="/pricing">
+            Choose Plan
+          </PillButton>
         </div>
       </div>
 
       <div className="space-y-6 overflow-hidden marquee-mask">
         <div className="marquee-track">
           {[...LOGOS, ...LOGOS].map((l, i) => (
-            <div key={i} className="text-3xl md:text-4xl font-semibold tighter mx-10 opacity-70">{l}</div>
+            <div key={i} className="text-3xl md:text-4xl font-semibold tighter mx-10 opacity-70">
+              {l}
+            </div>
           ))}
         </div>
         <div className="marquee-track-reverse">
           {[...LOGOS2, ...LOGOS2].map((l, i) => (
-            <div key={i} className="text-3xl md:text-4xl font-light italic mx-10 opacity-60">{l}</div>
+            <div key={i} className="text-3xl md:text-4xl font-light italic mx-10 opacity-60">
+              {l}
+            </div>
           ))}
         </div>
       </div>
@@ -158,7 +174,11 @@ function FactSection() {
         whileInView="show"
         viewport={viewportOnce}
       >
-        <motion.div variants={scaleIn} whileHover={hoverLiftSm} className="md:col-span-5 rounded-3xl overflow-hidden aspect-square">
+        <motion.div
+          variants={scaleIn}
+          whileHover={hoverLiftSm}
+          className="md:col-span-5 rounded-3xl overflow-hidden aspect-square"
+        >
           <img src={flower.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
@@ -184,8 +204,22 @@ function FactSection() {
 }
 
 const PROJECTS = [
-  { n: "01.", t: "MYAI500", y: "2025", tags: ["Portfolio", "AI Voice Assistant"], img: project1, ratio: "aspect-[16/10]" },
-  { n: "02.", t: "MYNX Softwares Inc", y: "2024", tags: ["IT Services", "Software Dev"], img: project2, ratio: "aspect-[4/5]" },
+  {
+    n: "01.",
+    t: "MYAI500",
+    y: "2025",
+    tags: ["Portfolio", "AI Voice Assistant"],
+    img: project1,
+    ratio: "aspect-[16/10]",
+  },
+  {
+    n: "02.",
+    t: "MYNX Softwares Inc",
+    y: "2024",
+    tags: ["IT Services", "Software Dev"],
+    img: project2,
+    ratio: "aspect-[4/5]",
+  },
   { n: "03.", t: "Jouri Law", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
   { n: "04.", t: "MYCA500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
@@ -202,8 +236,14 @@ function SelectedWork() {
           viewport={viewportOnce}
         >
           <div>
-            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Featured Works</motion.div>
-            <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">
+              — Featured Works
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="tighter font-semibold"
+              style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}
+            >
               <SplitText text="Selected Work." accentFrom={9} />
             </motion.h2>
           </div>
@@ -241,7 +281,9 @@ function SelectedWork() {
                 </div>
                 <div className="flex items-center gap-2">
                   {p.tags.map((t) => (
-                    <span key={t} className="text-[10px] uppercase tracking-widest px-3 py-1 glass rounded-full">{t}</span>
+                    <span key={t} className="text-[10px] uppercase tracking-widest px-3 py-1 glass rounded-full">
+                      {t}
+                    </span>
                   ))}
                   <span className="text-muted-foreground ml-2">{p.y}</span>
                 </div>
@@ -267,7 +309,8 @@ function TeamSection() {
         <div className="mb-10">
           <SectionHeader eyebrow="— Our Crew">
             Meet the <span className="text-brand">Minds</span>
-            <br /><span className="text-brand">Behind the Work.</span>
+            <br />
+            <span className="text-brand">Behind the Work.</span>
           </SectionHeader>
         </div>
 
@@ -313,9 +356,24 @@ function TeamSection() {
 }
 
 const TESTIMONIALS_SMALL = [
-  { name: "Priya Iyer", role: "Founder, D2C Brand", text: "I was a bit unsure in the beginning, but the team handled everything so patiently. From content to ads, they took care of it all. Very happy with how our brand looks now.", img: avatar2 },
-  { name: "Rohan Mehta", role: "CEO, SaaS Startup", text: "These guys really know their stuff. The website they built for us is fast, clean, and our customers love it. Best decision we took this year for the business.", img: avatar3 },
-  { name: "Ananya Reddy", role: "Marketing Head", text: "Loved the whole experience. Proper updates, never had to chase them, and the creatives were top-notch. Will definitely keep working with them long term.", img: avatar1 },
+  {
+    name: "Priya Iyer",
+    role: "Founder, D2C Brand",
+    text: "I was a bit unsure in the beginning, but the team handled everything so patiently. From content to ads, they took care of it all. Very happy with how our brand looks now.",
+    img: avatar2,
+  },
+  {
+    name: "Rohan Mehta",
+    role: "CEO, SaaS Startup",
+    text: "These guys really know their stuff. The website they built for us is fast, clean, and our customers love it. Best decision we took this year for the business.",
+    img: avatar3,
+  },
+  {
+    name: "Ananya Reddy",
+    role: "Marketing Head",
+    text: "Loved the whole experience. Proper updates, never had to chase them, and the creatives were top-notch. Will definitely keep working with them long term.",
+    img: avatar1,
+  },
 ];
 
 function Testimonials() {
@@ -330,8 +388,14 @@ function Testimonials() {
           viewport={viewportOnce}
         >
           <div>
-            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Client Voices</motion.div>
-            <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">
+              — Client Voices
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="tighter font-semibold"
+              style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}
+            >
               <SplitText text="Trusted By Many." accentFrom={11} />
             </motion.h2>
           </div>
@@ -353,11 +417,18 @@ function Testimonials() {
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
-              "Honestly, working with DIGIFRNEZNY* has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
+              "Honestly, working with DIGIFRNEZNY* has been such a smooth ride. They actually listen, deliver on time,
+              and the results speak for themselves. Our enquiries doubled in just two months."
             </p>
             <div className="flex items-center justify-between mt-8">
               <div className="flex items-center gap-4">
-                <img src={avatar1} alt="" className="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" />
+                <img
+                  src={avatar1}
+                  alt=""
+                  className="w-12 h-12 rounded-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <div className="font-medium">Aarav Sharma</div>
                   <div className="text-xs text-muted-foreground">Director, Local Business</div>
@@ -371,7 +442,13 @@ function Testimonials() {
               <motion.div key={t.name} variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-6">
                 <p className="text-sm leading-relaxed">{t.text}</p>
                 <div className="flex items-center gap-3 mt-4">
-                  <img src={t.img} alt="" className="w-9 h-9 rounded-full object-cover" loading="lazy" decoding="async" />
+                  <img
+                    src={t.img}
+                    alt=""
+                    className="w-9 h-9 rounded-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <div className="text-sm font-medium">{t.name}</div>
                     <div className="text-xs text-muted-foreground">{t.role}</div>
@@ -406,7 +483,11 @@ function StatsTrio() {
 
 function BigStat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <motion.div variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-8 min-h-[260px] flex flex-col justify-between">
+    <motion.div
+      variants={fadeUp}
+      whileHover={hoverLift}
+      className="glass rounded-3xl p-8 min-h-[260px] flex flex-col justify-between"
+    >
       <div className="eyebrow text-muted-foreground">{label}</div>
       <div>
         <div className="font-semibold tighter leading-none" style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}>
@@ -429,8 +510,12 @@ function PartnersGrid() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-3">— Our Relationships</motion.div>
-          <motion.p variants={fadeUp} className="text-lg">Trusted by brands worldwide.</motion.p>
+          <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-3">
+            — Our Relationships
+          </motion.div>
+          <motion.p variants={fadeUp} className="text-lg">
+            Trusted by brands worldwide.
+          </motion.p>
         </motion.div>
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-px bg-border/60 border border-border/60 rounded-3xl overflow-hidden"
@@ -515,7 +600,11 @@ function Achievements() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          <motion.div variants={scaleIn} whileHover={hoverLiftSm} className="md:col-span-5 rounded-3xl overflow-hidden bg-muted min-h-[400px]">
+          <motion.div
+            variants={scaleIn}
+            whileHover={hoverLiftSm}
+            className="md:col-span-5 rounded-3xl overflow-hidden bg-muted min-h-[400px]"
+          >
             <img src={award} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
           </motion.div>
           <div className="md:col-span-7 divide-y divide-border/60">
@@ -663,8 +752,14 @@ function Pricing() {
           viewport={viewportOnce}
         >
           <div>
-            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Plans Built for Growth</motion.div>
-            <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+            <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">
+              — Plans Built for Growth
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="tighter font-semibold"
+              style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}
+            >
               <SplitText text="Pricing." accentFrom={0} />
             </motion.h2>
           </div>
@@ -694,7 +789,9 @@ function Pricing() {
             >
               <div className="flex justify-between items-center text-xs">
                 <span className={p.featured ? "text-background/70" : "text-muted-foreground"}>{p.name}</span>
-                <span className={`rounded-full px-3 py-1 ${p.featured ? "bg-background/15" : "bg-background/60"}`}>{p.days}</span>
+                <span className={`rounded-full px-3 py-1 ${p.featured ? "bg-background/15" : "bg-background/60"}`}>
+                  {p.days}
+                </span>
               </div>
               <div className="font-semibold tighter" style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}>
                 {p.price}
@@ -709,13 +806,17 @@ function Pricing() {
                 Get Started
                 <ArrowUpRight className="w-4 h-4" />
               </a>
-              <div className={`text-xs uppercase tracking-widest ${p.featured ? "text-background/50" : "text-muted-foreground"}`}>
+              <div
+                className={`text-xs uppercase tracking-widest ${p.featured ? "text-background/50" : "text-muted-foreground"}`}
+              >
                 What's included:
               </div>
               <ul className="space-y-3 text-sm mt-auto">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3">
-                    <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${p.featured ? "bg-background" : "bg-foreground"}`} />
+                    <span
+                      className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${p.featured ? "bg-background" : "bg-foreground"}`}
+                    />
                     {f}
                   </li>
                 ))}
