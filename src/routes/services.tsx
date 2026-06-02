@@ -16,10 +16,10 @@ import s4 from "@/assets/project-4.jpg";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — DigiFrenzy® Digital Agency" },
+      { title: "Services — DigiFrenzy Digital Agency" },
       { name: "description", content: "End-to-end digital services: social media marketing, SEO, website development, and 3D animation & branding." },
-      { property: "og:title", content: "Services — DigiFrenzy®" },
-      { property: "og:description", content: "Marketing, SEO, web development, and 3D branding by DigiFrenzy®." },
+      { property: "og:title", content: "Services — DigiFrenzy" },
+      { property: "og:description", content: "Marketing, SEO, web development, and 3D branding by DigiFrenzy." },
     ],
   }),
   component: ServicesPage,
@@ -64,7 +64,7 @@ function ServicesPage() {
         <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— What We Do</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            <SplitText text="Our Services" trigger="mount" suffix={<sup className="text-[0.25em] align-super">®</sup>} />
+            <SplitText text="Our Services" trigger="mount" accentFrom={4} />
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             End-to-end digital solutions designed to elevate your brand, accelerate growth, and create unforgettable experiences.
@@ -86,7 +86,6 @@ function ServicesPage() {
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center">
-                <div className="text-xs text-muted-foreground mb-4">({String(i + 1).padStart(2, "0")})</div>
                 <h2 className="text-3xl font-semibold tight mb-2">{s.title}</h2>
                 <div className="eyebrow text-muted-foreground mb-6">{s.tag}</div>
                 <p className="text-muted-foreground mb-8">{s.description}</p>

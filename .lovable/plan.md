@@ -1,48 +1,68 @@
-## Goal
-Finish the Agenzo motion parity pass by applying the three remaining template patterns — marquee edge masking, hover-lift across cards, and per-character entrances — consistently to every section, so timings feel identical site-wide.
+## Color system
 
-## What's already in place
-- `marquee-mask` exists and is used on the hero slider + `PartnerMarquee`.
-- Per-character entrance exists on the Hero `DigiFrenzy` headline and `SiteFooter` "Let's talk".
-- Hover lift exists on Team, Process, and Pricing cards.
+Source of truth = Framer Clone Craft accent: `hsl(228 100% 66%)` (~#5271FF).
 
-## Gaps to close
+Update `src/styles.css` `:root` tokens (keep `oklch`, mapped from that HSL):
 
-### 1. Marquee masking — apply everywhere a track runs
-- `src/routes/index.tsx` Hero slider already has it. Confirm.
-- `PartnersGrid` is a static grid; not a marquee → skip.
-- No other marquees today. Action: harden `.slider-track` so it inherits the same 6% fade as `.marquee-mask` by composing the mask on the wrapper (already done) — verify visually only.
+- `--brand-blue: oklch(0.66 0.21 265)` — full strength, used for emphasized heading words, link hovers, focus rings.
+- `--background: oklch(0.975 0.018 250)` — very light tint of brand blue (replaces current beige).
+- `--paper: oklch(0.985 0.012 250)` — slightly lighter card surface.
+- `--muted: oklch(0.94 0.022 250)`, `--accent: oklch(0.92 0.03 250)`, `--border: oklch(0.88 0.025 250)` — re-tinted to sit on the new background.
+- `--foreground`, `--primary`, `--primary-foreground` unchanged (buttons stay black-on-white as today, matching the Framer template's neutral `.btn-primary`).
 
-### 2. Per-character entrance — extend beyond hero/footer
-Create a shared `<SplitText />` helper in `src/lib/motion.ts` (or new `src/components/site/SplitText.tsx`) wrapping the existing per-letter stagger (y 80→0, opacity 0→1, 0.9s `easeOut`, stagger 0.04–0.05s, `viewportOnce`). Apply to:
-- `SelectedWork` H2 "Selected Work."
-- `Testimonials` H2 "Trusted By Many."
-- `Pricing` H2 "Pricing."
-- `pricing.tsx` H1 "Our Pricing"
-- `services.tsx` H1 "Our Services"
-- `ShowReel` overlay words "Every Pixel" + "Crafted"
+Glass + hover tint:
+- `.glass` background stays white-translucent (unchanged) so the blur is preserved.
+- Nav pill item hover: replace `hover:bg-white/70` with a new utility `.hover-tint-blue` → `background: color-mix(in oklab, var(--brand-blue) 10%, transparent)`. Low enough opacity to keep the glass effect visible.
 
-Smaller section headers driven by `SectionHeader` keep their current `fadeUp` (mass entrance), to preserve hierarchy — only the largest display H1/H2s get per-character.
+## Logo
 
-### 3. Hover lift — apply to remaining card surfaces
-Add `whileHover={{ y: -6 }}` with `transition={{ duration: 0.5, ease: easeOut }}` and a subtle shadow tween to:
-- `WhyChooseUs` glass copy card + both `StatTile`s
-- `FactSection` image card (lift -4)
-- `Testimonials` large quote card + each small testimonial card
-- `StatsTrio` `BigStat` cards
-- `PartnersGrid` cells (lift -4, no shadow — keeps grid feel)
-- `Achievements` image card + each award row (already has bg hover; add subtle `x: 4` on row hover for parity with Agenzo)
-- `ShowReel` outer card (scale 1.01 on hover)
-- `services.tsx` service rows (lift -6)
+- Copy `src/assets/logo_digifrenzy_white.png` from Framer Clone Craft into this project's `src/assets/`.
+- Replace the text-based `DigiFrenzy®` wordmark inside `src/components/site/Nav.tsx` with `<img src={logo} alt="DigiFrenzy" />`. Apply `filter: invert(1)` (or the dark sibling if present) so the white-on-dark source renders correctly on the new light-blue background. Keep the existing `layoutId="digifrenzy-logo"` so the scroll merge animation still works.
+- Footer logo (`SiteFooter`) keeps the same image, no invert (footer is dark).
 
-Use a tiny shared helper object `hoverLift` in `src/lib/motion.ts` to keep timings identical (`{ y: -6, transition: { duration: 0.5, ease: easeOut } }`) and a `hoverLiftSm` variant (`y: -4`).
+## Heading emphasis (blue accent)
 
-## Files
-- edit `src/lib/motion.ts` — export `hoverLift`, `hoverLiftSm`
-- new `src/components/site/SplitText.tsx` — reusable per-character entrance
-- edit `src/routes/index.tsx` — wire SplitText to listed H2s, apply hover lifts
-- edit `src/routes/services.tsx` — SplitText on H1, hover lift on rows
-- edit `src/routes/pricing.tsx` — SplitText on H1
+Rule: in each major H1/H2 on the site, the **key/last word** is wrapped in `<span class="text-brand">` (new utility mapped to `--brand-blue`). Paragraph copy is untouched. Concretely:
+
+- Hero: `DigiFrenzy` → `Digi` foreground + `Frenzy` brand-blue. SplitText per-letter stays; the `Frenzy` letters get the brand color.
+- `SelectedWork` H2: "Selected **Work**."
+- `Testimonials` H2: "Trusted By **Many**."
+- `Pricing` H2: "**Pricing**."
+- `services.tsx` H1: "Our **Services**"
+- `pricing.tsx` H1: "Our **Pricing**"
+- `WhyChooseUs`, `Achievements`, `FAQ`, `Contact`, `ShowReel` overlay get the same treatment on their final word.
+
+(Section eyebrows, body paragraphs, and small section headers stay neutral.)
+
+## Remove ® trademark
+
+Strip every `<sup>®</sup>` (and the literal ® character) from:
+
+- `Nav.tsx` (logo + any menu copy)
+- Hero wordmark and SplitText `suffix` prop usages in `index.tsx`, `services.tsx`, `pricing.tsx`
+- `SiteFooter`, `Contact`, `FAQ`, page metadata titles (`"— DigiFrenzy® Digital Agency"` → `"— DigiFrenzy Digital Agency"`)
+
+## Remove (NN) annotations
+
+Drop the parenthesised numeric counters everywhere on the home page:
+
+- Nav menu: remove the `(04)` next to "Work" in `Nav.tsx` (delete the `n` field on menu items + the `<sup>` render).
+- Home sections (`SelectedWork`, `WhyChooseUs`, `StatsTrio`, `Achievements`, `Testimonials`, `Pricing`, `Process` if present): remove the `(01)…(NN)` labels next to section titles / cards.
+- Keep numeric counters that are part of stats (e.g. "120+", "98%") — those are not annotations.
+
+## Files touched
+
+- `src/styles.css` — new tokens, `.text-brand`, `.hover-tint-blue`, retire beige values.
+- `src/components/site/Nav.tsx` — logo image, blue hover tint, drop `(04)` and ®.
+- `src/components/site/SiteFooter.tsx` — drop ®.
+- `src/components/site/SplitText.tsx` — accept a `coloredFrom`/`brandWord` prop OR just inline a colored span around the relevant letters (whichever is cleaner; SplitText already supports a `suffix`, we'll add `accentFrom`).
+- `src/routes/index.tsx` — Hero `Frenzy` accent, H2 accents, drop all `(NN)` annotations + ®.
+- `src/routes/services.tsx` — H1 accent, remove ® suffix, remove the `(01)…(04)` chips above each service row.
+- `src/routes/pricing.tsx` — H1 accent, remove ® suffix.
+- `src/components/site/Contact.tsx`, `FAQ.tsx` — heading accent, drop ®/annotations if present.
+- `src/assets/logo_digifrenzy_white.png` — copied from Framer Clone Craft.
 
 ## Out of scope
-No new sections, copy, colors, or layout/spacing changes. Motion timings stay on the existing `easeOut [0.22, 1, 0.36, 1]` curve and `durations` scale already defined in `src/lib/motion.ts`.
+
+- Button styling, motion timings, layout/spacing, copy, route structure — all unchanged.
+- No dark mode work.

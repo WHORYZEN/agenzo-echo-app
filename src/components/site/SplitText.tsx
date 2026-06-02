@@ -11,6 +11,8 @@ export function SplitText({
   trigger = "inView",
   className = "",
   suffix,
+  accentFrom,
+  accentClassName = "text-brand",
 }: {
   text: string;
   delay?: number;
@@ -20,6 +22,9 @@ export function SplitText({
   trigger?: "inView" | "mount";
   className?: string;
   suffix?: ReactNode;
+  /** Character index from which to apply the accent color class. */
+  accentFrom?: number;
+  accentClassName?: string;
 }) {
   const useMount = trigger === "mount";
   return (
@@ -27,7 +32,7 @@ export function SplitText({
       {text.split("").map((ch, i) => (
         <motion.span
           key={i}
-          className="inline-block"
+          className={`inline-block ${accentFrom !== undefined && i >= accentFrom ? accentClassName : ""}`}
           initial={{ y, opacity: 0 }}
           {...(useMount
             ? { animate: { y: 0, opacity: 1 } }
