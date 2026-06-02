@@ -35,9 +35,9 @@ import { SplitText } from "@/components/site/SplitText";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DigiFrenzy — Digital Agency" },
-      { name: "description", content: "DigiFrenzy crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "DigiFrenzy — Digital Agency" },
+      { title: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
+      { name: "description", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { property: "og:title", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
@@ -72,7 +72,7 @@ function Home() {
 
 /* ============ HERO ============ */
 function Hero() {
-  const headline = "DigiFrenzy";
+  const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
     <section className="relative min-h-screen pt-28 pb-24 px-6 md:px-10 overflow-hidden">
       <motion.div
@@ -99,7 +99,7 @@ function Hero() {
           className="text-white tighter font-bold leading-[0.85] mt-16 flex flex-wrap"
           style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
         >
-          {headline.split("").map((ch, i) => (
+          {headline.split("\n").map((ch, i) => (
             <motion.span
               key={i}
               className={`inline-block ${i >= 4 ? "text-brand" : ""}`}

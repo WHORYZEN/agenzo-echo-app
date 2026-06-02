@@ -79,9 +79,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DigiFrenzy — Digital Agency" },
-      { name: "description", content: "DigiFrenzy crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "DigiFrenzy — Digital Agency" },
+      { title: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
+      { name: "description", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { property: "og:title", content: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
