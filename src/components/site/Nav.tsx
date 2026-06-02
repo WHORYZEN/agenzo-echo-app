@@ -43,8 +43,8 @@ export function Nav() {
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
-  const renderLogo = (className = "") => (
-    <motion.div layoutId="digifrenzy-logo" transition={spring} className={`leading-none ${className}`}>
+  const renderLogo = (className = "", withLayout = true) => (
+    <motion.div layoutId={withLayout ? "digifrenzy-logo" : undefined} transition={spring} className={`leading-none ${className}`}>
       <Link to="/" className="block">
         <img src={logoAsset.url} alt="DigiFrenzy" className="h-8 w-auto" />
       </Link>
@@ -70,7 +70,7 @@ export function Nav() {
         <div className="min-w-[40px] md:min-w-[120px] flex items-center">
           {/* On mobile, always show logo. On desktop, hide when merged (merges into pill). */}
           <div className="md:hidden">
-            {renderLogo(heroVisible ? "rounded-md bg-background/85 p-1 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md" : "rounded-md glass p-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)]")}
+            {renderLogo(heroVisible ? "rounded-md bg-background/85 p-1 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md" : "rounded-md glass p-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)]", false)}
           </div>
           <div className="hidden md:block">{!merged && renderLogo()}</div>
         </div>
