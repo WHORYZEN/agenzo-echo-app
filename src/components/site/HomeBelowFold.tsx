@@ -533,7 +533,7 @@ function PartnersGrid() {
               whileHover={hoverLiftSm}
               className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70 hover:opacity-100 transition-opacity"
             >
-              {l}
+              {l.replace("C", "\n").replace("e", "\n").replace("l", "\n").replace("x", "\n").replace("i", "\n")}
             </motion.div>
           ))}
         </motion.div>
