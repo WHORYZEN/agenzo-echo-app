@@ -530,7 +530,11 @@ function PartnersGrid() {
             <motion.div
               key={l}
               variants={scaleIn}
-              whileHover={hoverLiftSm}
+              whileHover={{
+                y: -4,
+                boxShadow: "0 12px 40px -12px oklch(0.66 0.21 265 / 0.55)",
+                transition: { duration: 0.5, ease: easeOut },
+              }}
               className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70 hover:opacity-100 transition-opacity"
             >
               {l.replace("C", "\n").replace("e", "\n").replace("l", "\n").replace("x", "\n").replace("i", "\n")}
