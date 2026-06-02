@@ -3,7 +3,8 @@ import { ArrowUpRight, Play } from "lucide-react";
 
 import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
-import project1 from "@/assets/project-1.jpg";
+import project1Asset from "@/assets/myai500-cover.png.asset.json";
+const project1 = project1Asset.url;
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
