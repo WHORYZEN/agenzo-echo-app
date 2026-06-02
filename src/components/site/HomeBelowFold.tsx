@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 
-import factCar from "@/assets/fact-car.jpg";
+import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
