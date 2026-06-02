@@ -74,7 +74,7 @@ function Home() {
 function Hero() {
   const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
-    <section className="relative min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden">
+    <section className="relative min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-black">
       <video
         className="absolute inset-0 -z-10 w-full h-full object-cover"
         src={heroVideo.url}
@@ -82,6 +82,7 @@ function Hero() {
         loop
         muted
         playsInline
+        preload="auto"
         aria-hidden="true"
       />
       <div className="absolute inset-0 -z-10 bg-background/30" />
