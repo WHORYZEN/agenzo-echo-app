@@ -35,9 +35,9 @@ import { SplitText } from "@/components/site/SplitText";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DigiFrenzy® — Digital Agency" },
+      { title: "DigiFrenzy — Digital Agency" },
       { name: "description", content: "DigiFrenzy crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "DigiFrenzy® — Digital Agency" },
+      { property: "og:title", content: "DigiFrenzy — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
@@ -102,7 +102,7 @@ function Hero() {
           {headline.split("").map((ch, i) => (
             <motion.span
               key={i}
-              className="inline-block"
+              className={`inline-block ${i >= 4 ? "text-brand" : ""}`}
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.9, ease: easeOut, delay: 0.1 + i * 0.04 }}
@@ -110,14 +110,6 @@ function Hero() {
               {ch}
             </motion.span>
           ))}
-          <motion.sup
-            className="text-[0.3em] align-super"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1, ease: easeOut }}
-          >
-            ®
-          </motion.sup>
         </h1>
 
         <motion.div
@@ -293,7 +285,6 @@ function FactSection() {
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
             <div className="eyebrow text-muted-foreground">— DigiFrenzy Fact</div>
-            <div className="text-xs text-muted-foreground">01 / 04</div>
           </motion.div>
           <div>
             <motion.div
@@ -335,7 +326,7 @@ function SelectedWork() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Featured Works</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              <SplitText text="Selected Work." suffix={<sup className="text-[0.25em] ml-2 text-muted-foreground">({PROJECTS.length})</sup>} />
+              <SplitText text="Selected Work." accentFrom={9} />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
@@ -367,7 +358,6 @@ function SelectedWork() {
               </div>
               <div className="mt-4 flex items-center justify-between text-sm gap-4 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <span className="text-muted-foreground">{p.n}</span>
                   <span className="font-medium">{p.t}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -464,7 +454,7 @@ function Testimonials() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Client Voices</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              <SplitText text="Trusted By Many." />
+              <SplitText text="Trusted By Many." accentFrom={11} />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
@@ -495,7 +485,7 @@ function Testimonials() {
                   <div className="text-xs text-muted-foreground">Director, Local Business</div>
                 </div>
               </div>
-              <div className="text-xs text-muted-foreground">01 / 04</div>
+              <div />
             </div>
           </motion.div>
           <div className="md:col-span-5 flex flex-col gap-6">
@@ -573,7 +563,7 @@ function PartnersGrid() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          {["MYAI500", "MYNX®", "JOURI", "MYCA500", "ACT", "PLANTSMED", "HIDEOUT"].map((l) => (
+          {["MYAI500", "MYNX", "JOURI", "MYCA500", "ACT", "PLANTSMED", "HIDEOUT"].map((l) => (
             <motion.div
               key={l}
               variants={scaleIn}
@@ -605,7 +595,7 @@ function ShowReel() {
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute top-8 left-8 right-8 flex justify-between text-white">
           <div className="eyebrow">Show reel</div>
-          <div className="eyebrow">2025®</div>
+          <div className="eyebrow">2025</div>
         </div>
         <button className="absolute inset-0 m-auto w-24 h-24 bg-white text-foreground rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-500">
           <Play className="w-7 h-7 fill-current" />
@@ -615,7 +605,7 @@ function ShowReel() {
             <SplitText text="Every Pixel" />
           </h2>
           <div className="font-semibold tighter" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            <SplitText text="Crafted" suffix={<sup className="text-[0.3em]">®</sup>} />
+            <SplitText text="Crafted" accentFrom={0} />
           </div>
         </div>
       </motion.div>
@@ -625,10 +615,10 @@ function ShowReel() {
 
 /* ============ ACHIEVEMENTS ============ */
 const AWARDS = [
-  { n: "(01)", org: "Speed", t: "Launch your site in just 30 minutes" },
-  { n: "(02)", org: "Platform", t: "From 0 to 100 — all in one platform" },
-  { n: "(03)", org: "Support", t: "24/6 dedicated team, always available" },
-  { n: "(04)", org: "Scale", t: "Built to grow with your business" },
+  { n: "Speed", org: "Speed", t: "Launch your site in just 30 minutes" },
+  { n: "Platform", org: "Platform", t: "From 0 to 100 — all in one platform" },
+  { n: "Support", org: "Support", t: "24/6 dedicated team, always available" },
+  { n: "Scale", org: "Scale", t: "Built to grow with your business" },
 ];
 
 function Achievements() {
@@ -662,9 +652,8 @@ function Achievements() {
                 whileHover={{ x: 4, transition: { duration: 0.4, ease: easeOut } }}
                 className="py-8 grid grid-cols-12 gap-4 items-center group hover:bg-foreground/[0.02] transition-colors px-2 rounded-2xl"
               >
-                <div className="col-span-2 text-sm text-muted-foreground">{a.n}</div>
-                <div className="col-span-3 text-sm">{a.org}</div>
-                <div className="col-span-6 text-xl tight">{a.t}</div>
+                <div className="col-span-4 text-sm font-medium">{a.org}</div>
+                <div className="col-span-7 text-xl tight">{a.t}</div>
                 <div className="col-span-1 flex justify-end">
                   <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
                 </div>
@@ -803,7 +792,7 @@ function Pricing() {
           <div>
             <motion.div variants={fadeUp} className="eyebrow text-muted-foreground mb-4">— Plans Built for Growth</motion.div>
             <motion.h2 variants={fadeUp} className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-              <SplitText text="Pricing." suffix={<sup className="text-[0.25em] ml-2 text-muted-foreground">(3)</sup>} />
+              <SplitText text="Pricing." accentFrom={0} />
             </motion.h2>
           </div>
           <motion.p variants={fadeUp} className="max-w-sm text-muted-foreground">
