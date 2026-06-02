@@ -2,6 +2,7 @@ import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import { PillButton } from "./PillButton";
 import { easeOut, viewportOnce } from "@/lib/motion";
+import logo from "@/assets/logo_digifrenzy_white.png";
 
 const TEXT = "Let's talk";
 
@@ -41,7 +42,10 @@ export function SiteFooter() {
       </div>
 
       <div className="container-x border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
-        <div>© {new Date().getFullYear()} DigiFrenzy. All rights reserved.</div>
+        <div className="flex items-center gap-3">
+          <img src={logo} alt="DigiFrenzy" className="h-6 w-auto" style={{ filter: "invert(1)" }} />
+          <span>© {new Date().getFullYear()}. All rights reserved.</span>
+        </div>
         <div className="flex gap-6">
           <a href="mailto:support@digifrenzy.com" className="hover:text-foreground transition-colors">support@digifrenzy.com</a>
           <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
