@@ -94,6 +94,12 @@ function Hero() {
           animate="show"
         >
           <motion.div variants={fadeUp}>
+            <div className="flex items-start gap-4 mb-8">
+              <span className="text-2xl">/</span>
+              <p className="text-lg max-w-md leading-snug">
+                We craft bold brands, high-performance websites, and data-driven marketing strategies that move the needle.
+              </p>
+            </div>
             <div className="flex gap-3 flex-wrap">
               <PillButton dark href="#work">View Our Work</PillButton>
               <PillButton dark href="#contact">Contact Us</PillButton>
