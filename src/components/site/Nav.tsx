@@ -69,8 +69,10 @@ export function Nav() {
         {/* Left: Logo */}
         <div className="min-w-[40px] md:min-w-[120px] flex items-center">
           {/* On mobile, always show logo. On desktop, hide when merged (merges into pill). */}
-          <div className="md:hidden">{Logo}</div>
-          <div className="hidden md:block">{!merged && Logo}</div>
+          <div className="md:hidden">
+            {renderLogo(heroVisible ? "rounded-md bg-background/85 p-1 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md" : "rounded-md glass p-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)]")}
+          </div>
+          <div className="hidden md:block">{!merged && renderLogo()}</div>
         </div>
 
         {/* Center: Desktop pill nav */}
@@ -82,7 +84,7 @@ export function Nav() {
         >
           {merged && (
             <>
-              {Logo}
+              {renderLogo()}
               <span className="mx-2 h-5 w-px bg-foreground/15" />
             </>
           )}
