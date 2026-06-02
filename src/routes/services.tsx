@@ -64,7 +64,7 @@ function ServicesPage() {
         <motion.div className="container-x" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
           <div className="eyebrow text-muted-foreground mb-4">— What We Do</div>
           <h1 className="tighter font-semibold leading-[0.9]" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Our Services<sup className="text-[0.25em] align-super">®</sup>
+            <SplitText text="Our Services" trigger="mount" suffix={<sup className="text-[0.25em] align-super">®</sup>} />
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             End-to-end digital solutions designed to elevate your brand, accelerate growth, and create unforgettable experiences.
