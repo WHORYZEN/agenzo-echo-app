@@ -72,7 +72,7 @@ function Hero() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.9, ease: easeOut, delay: 0.1 + i * 0.04 }}
             >
-              {ch}
+              {ch === "\n" ? <div className="w-full" /> : ch}
             </motion.span>
           ))}
         </h1>
