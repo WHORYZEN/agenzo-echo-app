@@ -74,7 +74,7 @@ function Home() {
 function Hero() {
   const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
-    <section className="relative min-h-screen pt-28 pb-24 px-6 md:px-10 overflow-hidden">
+    <section className="relative min-h-screen pt-28 pb-10 px-6 md:px-10 overflow-hidden">
       <motion.div
         className="absolute inset-0 -z-10"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
