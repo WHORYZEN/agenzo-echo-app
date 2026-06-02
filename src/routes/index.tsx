@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
 
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
-import slide1 from "@/assets/slide-1.jpg";
-import slide2 from "@/assets/slide-2.jpg";
-import slide3 from "@/assets/slide-3.jpg";
+import slideTote from "@/assets/hero-slide-tote.jpeg.asset.json";
+import slideForma from "@/assets/hero-slide-forma.jpeg.asset.json";
+import slideQuantstamp from "@/assets/hero-slide-quantstamp.jpeg.asset.json";
+import slideTacobell from "@/assets/hero-slide-tacobell.jpeg.asset.json";
 
 import { Nav } from "@/components/site/Nav";
 import { PillButton } from "@/components/site/PillButton";
