@@ -66,7 +66,7 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1, ease: easeOut }}
         >
-          <span className="rotate-180 [writing-mode:vertical-rl] tracking-widest">SCROLL DOWN</span>
+          <span className="rotate-180 [writing-mode:vertical-rl] tracking-widest">{"\n"}</span>
           <div className="w-px h-32 bg-foreground/30" />
         </motion.div>
 
@@ -94,7 +94,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 1.1, ease: easeOut }}
         >
           <span className="w-8 h-px bg-foreground" />
-          DIGITAL AGENCY
+          {"\n"}
         </motion.div>
 
         <motion.div
