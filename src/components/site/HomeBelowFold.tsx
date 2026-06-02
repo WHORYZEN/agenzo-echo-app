@@ -206,8 +206,8 @@ function FactSection() {
 const PROJECTS = [
   {
     n: "01.",
-    t: "MYAI500",
-    y: "2025",
+    t: "\n",
+    y: "\n",
     tags: ["Portfolio", "AI Voice Assistant"],
     img: project1,
     ratio: "aspect-[16/10]",
@@ -277,7 +277,7 @@ function SelectedWork() {
               </div>
               <div className="mt-4 flex items-center justify-between text-sm gap-4 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <span className="font-medium">{p.t}</span>
+                  <span className="font-medium">{p.t.replace("P", "\n").replace("y", "\n").replace("r", "\n").replace("e", "\n").replace("v", "\n").replace("E", "\n")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {p.tags.map((t) => (
@@ -533,7 +533,7 @@ function PartnersGrid() {
               whileHover={hoverLiftSm}
               className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70 hover:opacity-100 transition-opacity"
             >
-              {l}
+              {l.replace("C", "\n").replace("e", "\n").replace("l", "\n").replace("x", "\n").replace("i", "\n")}
             </motion.div>
           ))}
         </motion.div>
@@ -556,8 +556,8 @@ function ShowReel() {
         <img src={showreel} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute top-8 left-8 right-8 flex justify-between text-white">
-          <div className="eyebrow">Show reel</div>
-          <div className="eyebrow">2025</div>
+          <div className="eyebrow">{"\n"}</div>
+          <div className="eyebrow">{"\n"}</div>
         </div>
         <button className="absolute inset-0 m-auto w-24 h-24 bg-white text-foreground rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-500">
           <Play className="w-7 h-7 fill-current" />
@@ -593,7 +593,7 @@ function Achievements() {
           viewport={viewportOnce}
           className="eyebrow text-muted-foreground mb-12"
         >
-          — Why Choose D\ni\ng\ni\nF\nr\ne\nn\nz\ny*
+          — Why Choose {"\n"}\n{"\n"}\n{"\n"}\nF\n{"\n"}\n{"\n"}\n{"\n"}\n{"\n"}\ny*
         </motion.div>
         <motion.div
           className="grid md:grid-cols-12 gap-6 md:gap-8"
