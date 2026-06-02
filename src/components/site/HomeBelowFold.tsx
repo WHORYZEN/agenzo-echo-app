@@ -109,8 +109,8 @@ function WhyChooseUs() {
 
 function StatTile({ label, value, right }: { label: string; value: string; right?: React.ReactNode }) {
   return (
-    <div className="glass rounded-3xl p-6 flex flex-col justify-between min-h-[180px] h-full">
-      <div className="text-xs text-muted-foreground">{label}</div>
+    <div className="bg-[var(--brand-blue)] text-white rounded-3xl p-6 flex flex-col justify-between min-h-[180px] h-full">
+      <div className="text-xs opacity-80">{label}</div>
       <div className="flex items-end justify-between">
         <div className="text-5xl font-semibold tighter">{value}</div>
         {right}
