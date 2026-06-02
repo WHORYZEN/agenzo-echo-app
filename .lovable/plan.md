@@ -1,49 +1,24 @@
-# Agenzo-style Agency Landing Page
+## Goal
+Transform the floating nav so the top-left logo merges into the centered menu pill once the user scrolls past ~50% of the hero. The expanded pill (logo + menu) stays locked until the user scrolls back into the hero.
 
-A faithful structural and stylistic clone of the agenzo.framer.ai layout — same neutral light theme, oversized geometric sans display, pill-shaped floating nav, rounded card chips, and section rhythm. Original copy/imagery will be generated (no scraping of the source's protected assets) but composition, type scale, colors, radii, and motion will match closely.
+## Behavior
+- **In hero (scrollY < 50% of viewport hero height):** current state — logo sits top-left, menu pill centered, CTA right.
+- **Past threshold:** logo animates from its top-left position toward the center pill; pill width expands leftward with a springy "bubble" morph to absorb the logo on its left side; logo settles inside the pill. Pill remains in this merged state for the rest of the page.
+- **Scrolling back into hero:** reverse the morph — logo detaches and returns to top-left, pill contracts back to menu-only.
 
-## Visual system
-
-- **Palette (light, warm-neutral):**
-  - Background: `#EDEAE5` (warm beige/grey)
-  - Foreground: `#0A0A0A` (near-black)
-  - Card/Glass: `rgba(255,255,255,0.55)` with backdrop blur
-  - Muted text: `#6B6B66`
-  - Accent: pure white for hero headline, black for pill buttons
-- **Typography:** Inter Tight / Geist (or similar geometric sans) for body; **Inter Display / Geist** Black for the massive hero wordmark. Tight tracking, uppercase eyebrow labels.
-- **Radii:** Full pill (`9999px`) for nav and buttons, `1.25rem` (20px) for cards and image tiles.
-- **Motion:** Framer Motion — hero word fade/scale-in, sticky scroll snap, horizontal marquee tickers, hover lift on project cards, slow auto-scroll on hero image slider.
-
-## Sections (in order)
-
-1. **Floating top nav** — left logo "Agenzo®", center pill containing Studio / Project⁽¹²⁾ / Service / Blog, right "Meet" pill with icon.
-2. **Hero** — giant "Agenzo®" wordmark, "— DESIGN AGENCY" eyebrow, right-side vertical "Scroll down" label, descriptive paragraph bottom-left, two pill CTAs (View Our Work, Connect Us), bottom horizontal image slider strip.
-3. **Why choose us / Team intro** — large heading "Meet the Minds Behind the Work", supporting paragraph, stat cards (100+ Fields, 12 Countries) with stacked avatars.
-4. **Trusted partner marquee** — two horizontal rows of logos scrolling opposite directions, "Choose Plan" pill button beside.
-5. **Agenzo Fact** — large image card with overlay stat "100+ Projects successfully launched".
-6. **Selected Work** — section eyebrow + "Selected Work. (5)" heading, horizontal row of 5 project cover cards with index, title, year.
-7. **Our Member** — "Meet the Team Behind the Vision" — 3 portrait cards with role tag, hashtag, name.
-8. **Testimonials** — quote block with client photo, name, company logo, pagination "01/04".
-9. **Stats trio** — Happy people 1M+, ROI 50%, Client Retention 50%.
-10. **Trusted-by partner logos grid.**
-11. **Show reel** — full-bleed video/image tile with overlay "Show reel — 2025®".
-12. **Achievements** — Awwwards / Dribbble / CSS Design Award / FWA list with one featured image.
-13. **Our Process** — 3 numbered process steps with imagery (.01 .02 .03).
-14. **Pricing** — eyebrow + "Pricing (3)", Monthly/Yearly toggle, 3 pill-bordered plan cards (Low-budget $500, Standard $5,000, Premium) with feature checklist and Choose Plan CTA.
-15. **Footer / CTA band** — big "Let's work together" wordmark, contact pill, social row, copyright.
-
-## Technical details
-
-- **Routing:** Single page at `src/routes/index.tsx`. Replace placeholder. Add section components under `src/components/sections/`.
-- **Styling:** Update `src/styles.css` tokens — set `--background`, `--foreground`, `--card`, `--muted`, `--border`, `--radius` to match warm-neutral system in `oklch`. Load Google Fonts (Inter Tight + a display variant) via `<link>` in `__root.tsx` head.
-- **Assets:** Generate placeholder imagery with `imagegen` for: hero slider tiles (3–5), team portraits (3), project covers (5), process imagery (3), show-reel still, awards still, fact card image. Logos rendered as simple SVG monograms.
-- **Components:** Reusable `PillButton`, `SectionEyebrow`, `Marquee` (CSS keyframes), `ProjectCard`, `TeamCard`, `PricingCard`, `StatTile`.
-- **Animation:** `framer-motion` (already common; install if missing) for entrance fades and scroll-driven transforms. Marquees via pure CSS `@keyframes`.
-- **SEO:** Per-route `head()` with title "Agenzo — Design Agency", meta description, OG tags.
-- **No backend** required.
+## Implementation (frontend only)
+1. **Nav component** (`src/routes/index.tsx` or extract `src/components/sections/Nav.tsx`):
+   - Track scroll with framer-motion `useScroll` + `useTransform`, or `useMotionValueEvent` against the hero section ref.
+   - Compute `merged` boolean when `scrollY > heroHeight * 0.5`.
+2. **Shared layout animation** using framer-motion `layout` + `layoutId="agenzo-logo"`:
+   - Render the logo in two possible slots: (a) top-left fixed wrapper when `!merged`, (b) inside the pill's left side when `merged`. Framer Motion's `layoutId` handles the smooth position/size morph automatically.
+3. **Pill bubble morph:**
+   - Wrap pill in `motion.div` with `layout` and a spring transition (`type: "spring", stiffness: 260, damping: 26`) for the elastic bubble feel.
+   - Animate `paddingLeft`, `gap`, and add a subtle `scale`/blur on the logo entry (`initial={{scale:0.6, opacity:0}} animate={{scale:1, opacity:1}}`) for the bubble pop.
+   - Add a tiny backdrop-blur + box-shadow tween to emphasize the merge.
+4. **State lock:** no special lock needed — `merged` is purely derived from scroll position, so reversing scroll naturally reverses the morph. (User asked it to "remain constant until back to hero" — derived state already satisfies this.)
+5. **Accessibility:** keep nav items in the same DOM order; respect `prefers-reduced-motion` by snapping instead of springing.
 
 ## Out of scope
-
-- Sub-routes (Project detail, Blog, Contact pages) — nav links scroll to sections or are placeholders.
-- CMS, forms submission, dark mode toggle.
-- Exact reproduction of source images/logos (will use generated equivalents).
+- No changes to hero content, other sections, colors, or fonts.
+- No new routes, no backend.
