@@ -29,7 +29,8 @@ import { PillButton } from "@/components/site/PillButton";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { fadeUp, fadeIn, scaleIn, staggerParent, viewportOnce, easeOut } from "@/lib/motion";
+import { fadeUp, fadeIn, scaleIn, staggerParent, viewportOnce, easeOut, hoverLift, hoverLiftSm } from "@/lib/motion";
+import { SplitText } from "@/components/site/SplitText";
 
 export const Route = createFileRoute("/")({
   head: () => ({
