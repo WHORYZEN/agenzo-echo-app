@@ -76,8 +76,8 @@ function ServicesPage() {
               className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: i * 0.05 }}
+              viewport={{ once: true, margin: "-15% 0px" }}
+              transition={{ duration: 1.1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
