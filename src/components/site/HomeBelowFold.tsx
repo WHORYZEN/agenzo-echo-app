@@ -80,7 +80,7 @@ function WhyChooseUs() {
 
           <div className="md:col-span-5 flex flex-col gap-6 md:gap-8">
             <motion.div variants={fadeUp} whileHover={hoverLift} className="glass rounded-3xl p-8 flex-1">
-              <p className="text-xl leading-snug tight">
+              <p className="text-[28px] leading-snug tight">
                 We specialize in turning brands into <strong>digital powerhouses</strong> — from stunning websites to
                 data-driven marketing campaigns built to deliver results that move the needle.
               </p>
