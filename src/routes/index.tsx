@@ -46,7 +46,7 @@ function Home() {
 function Hero() {
   const headline = "D\ni\ng\ni\nF\nr\ne\nn\nz\ny*";
   return (
-    <section className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
+    <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
         src={heroVideo.url}

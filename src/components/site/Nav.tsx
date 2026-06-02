@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageSquare, Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo_digifrenzy_blue.png.asset.json";
@@ -9,6 +9,7 @@ export function Nav() {
   const { scrollY } = useScroll();
   const [merged, setMerged] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
   const routerState = useRouterState();
 
   useMotionValueEvent(scrollY, "change", (y) => {
@@ -21,12 +22,29 @@ export function Nav() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useState(() => currentPath);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hero = document.querySelector("[data-hero]");
+    if (!hero) {
+      setHeroVisible(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [currentPath]);
+
   const spring = reduce
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 200, damping: 28, mass: 1 };
 
-  const Logo = (
-    <motion.div layoutId="digifrenzy-logo" transition={spring} className="leading-none">
+  const renderLogo = (className = "", withLayout = true) => (
+    <motion.div layoutId={withLayout ? "digifrenzy-logo" : undefined} transition={spring} className={`leading-none ${className}`}>
       <Link to="/" className="block">
         <img src={logoAsset.url} alt="DigiFrenzy" className="h-8 w-auto" />
       </Link>
@@ -51,8 +69,10 @@ export function Nav() {
         {/* Left: Logo */}
         <div className="min-w-[40px] md:min-w-[120px] flex items-center">
           {/* On mobile, always show logo. On desktop, hide when merged (merges into pill). */}
-          <div className="md:hidden">{Logo}</div>
-          <div className="hidden md:block">{!merged && Logo}</div>
+          <div className="md:hidden">
+            {renderLogo(heroVisible ? "rounded-md bg-background/85 p-1 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md" : "rounded-md glass p-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)]", false)}
+          </div>
+          <div className="hidden md:block">{!merged && renderLogo()}</div>
         </div>
 
         {/* Center: Desktop pill nav */}
@@ -64,7 +84,7 @@ export function Nav() {
         >
           {merged && (
             <>
-              {Logo}
+              {renderLogo()}
               <span className="mx-2 h-5 w-px bg-foreground/15" />
             </>
           )}
