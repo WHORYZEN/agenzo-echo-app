@@ -127,6 +127,22 @@
   transform: translateY(-6px);
 }
 
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  color: inherit;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-input:focus {
+  border-color: hsl(var(--foreground));
+  background: rgba(255,255,255,0.9);
+}
+
 .noise::before {
   content: "";
   position: absolute;

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
-import { ArrowUpRight, Plus, MessageSquare, Check, Play } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Check, Play } from "lucide-react";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import slide1 from "@/assets/slide-1.jpg";
@@ -13,7 +12,6 @@ import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
-import project5 from "@/assets/project-5.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
@@ -25,9 +23,22 @@ import award from "@/assets/award.jpg";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
-import testimonialImg from "@/assets/testimonial.jpg";
+
+import { Nav } from "@/components/site/Nav";
+import { PillButton } from "@/components/site/PillButton";
+import { FAQ } from "@/components/site/FAQ";
+import { Contact } from "@/components/site/Contact";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "DigiFrenzy® — Digital Agency" },
+      { name: "description", content: "DigiFrenzy crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { property: "og:title", content: "DigiFrenzy® — Digital Agency" },
+      { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
+    ],
+  }),
   component: Home,
 });
 
@@ -50,85 +61,10 @@ function Home() {
       <Achievements />
       <ProcessSection />
       <Pricing />
-      <FooterCTA />
+      <FAQ />
+      <Contact />
+      <SiteFooter />
     </div>
-  );
-}
-
-/* ============ NAV ============ */
-function Nav() {
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-  const [merged, setMerged] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const threshold = (typeof window !== "undefined" ? window.innerHeight : 800) * 0.5;
-    setMerged(y > threshold);
-  });
-
-  const spring = reduce
-    ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 260, damping: 26, mass: 0.9 };
-
-  const Logo = (
-    <motion.a
-      layoutId="agenzo-logo"
-      href="#"
-      className="text-[22px] font-semibold tighter leading-none whitespace-nowrap"
-      transition={spring}
-    >
-      Agenzo<sup className="text-[10px] ml-0.5">®</sup>
-    </motion.a>
-  );
-
-  const menuItems = [
-    { l: "Studio" },
-    { l: "Project", n: "12" },
-    { l: "Service" },
-    { l: "Blog" },
-  ];
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-6 pt-5">
-      <div className="flex items-center justify-between">
-        {/* Left slot — holds logo only when not merged */}
-        <div className="min-w-[100px] flex items-center">
-          {!merged && Logo}
-        </div>
-
-        {/* Center pill — absorbs logo with bubble morph when merged */}
-        <motion.nav
-          layout
-          transition={spring}
-          className="hidden md:flex glass rounded-full py-2 items-center gap-1 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
-          style={{ paddingLeft: merged ? 18 : 8, paddingRight: 8 }}
-        >
-          {merged && (
-            <>
-              {Logo}
-              <span className="mx-2 h-5 w-px bg-foreground/15" />
-            </>
-          )}
-          {menuItems.map((it) => (
-            <a
-              key={it.l}
-              href="#"
-              className="px-5 py-2.5 rounded-full text-sm font-medium hover:bg-white/70 transition-colors flex items-center gap-1"
-            >
-              {it.l}
-              {it.n && <sup className="text-[10px] text-muted-foreground">({it.n})</sup>}
-            </a>
-          ))}
-        </motion.nav>
-
-        <button className="glass rounded-full pl-5 pr-2 py-2 flex items-center gap-3 text-sm font-medium shadow-[0_8px_30px_rgba(0,0,0,0.06)] min-w-[100px] justify-end">
-          Meet
-          <span className="w-9 h-9 bg-foreground text-background rounded-full flex items-center justify-center">
-            <MessageSquare className="w-4 h-4" />
-          </span>
-        </button>
-      </div>
-    </header>
   );
 }
 
@@ -138,11 +74,7 @@ function Hero() {
     <section className="relative min-h-screen pt-32 pb-8 px-6">
       <div
         className="absolute inset-0 -z-10"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
       <div className="absolute inset-0 -z-10 bg-background/30" />
 
@@ -156,14 +88,14 @@ function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
         className="text-white tighter font-bold leading-[0.85] mt-16"
-        style={{ fontSize: "clamp(5rem, 18vw, 20rem)" }}
+        style={{ fontSize: "clamp(4rem, 14vw, 16rem)" }}
       >
-        Agenzo<sup className="text-[0.3em] align-super">®</sup>
+        DigiFrenzy<sup className="text-[0.3em] align-super">®</sup>
       </motion.h1>
 
       <div className="mt-4 flex items-center gap-3 text-xs font-medium tracking-[0.2em]">
         <span className="w-8 h-px bg-foreground" />
-        DESIGN AGENCY
+        DIGITAL AGENCY
       </div>
 
       <div className="mt-16 grid md:grid-cols-2 gap-10 items-end">
@@ -171,22 +103,19 @@ function Hero() {
           <div className="flex items-start gap-4 mb-8">
             <span className="text-2xl">/</span>
             <p className="text-lg max-w-md leading-snug">
-              We craft futuristic experiences where technology, emotion, and visual storytelling merge into one seamless flow.
+              We craft bold brands, high-performance websites, and data-driven marketing strategies that move the needle.
             </p>
           </div>
-          <div className="flex gap-3">
-            <PillButton dark>View Our Work</PillButton>
-            <PillButton dark>Connect Us</PillButton>
+          <div className="flex gap-3 flex-wrap">
+            <PillButton dark href="#work">View Our Work</PillButton>
+            <PillButton dark href="#contact">Contact Us</PillButton>
           </div>
         </div>
 
         <div className="overflow-hidden rounded-2xl -mr-12 md:-mr-24">
           <div className="slider-track">
             {slides.concat(slides).map((s, i) => (
-              <div
-                key={i}
-                className="w-[320px] md:w-[400px] aspect-[16/10] rounded-2xl overflow-hidden flex-shrink-0"
-              >
+              <div key={i} className="w-[320px] md:w-[400px] aspect-[16/10] rounded-2xl overflow-hidden flex-shrink-0">
                 <img src={s} alt="" className="w-full h-full object-cover" loading="lazy" />
               </div>
             ))}
@@ -197,40 +126,14 @@ function Hero() {
   );
 }
 
-function PillButton({
-  children,
-  dark = false,
-  className = "",
-}: {
-  children: React.ReactNode;
-  dark?: boolean;
-  className?: string;
-}) {
-  return (
-    <button
-      className={`group rounded-full px-6 py-3.5 text-sm font-medium flex items-center gap-3 transition-all ${
-        dark ? "bg-foreground text-background hover:bg-foreground/90" : "bg-white text-foreground hover:bg-white/90"
-      } ${className}`}
-    >
-      {children}
-      <span className="w-7 h-7 bg-background text-foreground rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
-        <ArrowUpRight className="w-3.5 h-3.5" />
-      </span>
-    </button>
-  );
-}
-
-/* ============ WHY CHOOSE US / TEAM INTRO ============ */
+/* ============ WHY CHOOSE US ============ */
 function WhyChooseUs() {
   return (
     <section className="px-6 py-28">
-      <div className="eyebrow text-muted-foreground mb-6">— Why choose us</div>
-      <h2
-        className="tighter font-semibold leading-[0.95] mb-16"
-        style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}
-      >
-        Meet the Minds
-        <br /> Behind the Work.
+      <div className="eyebrow text-muted-foreground mb-6">— Why DigiFrenzy</div>
+      <h2 className="tighter font-semibold leading-[0.95] mb-16" style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}>
+        Transforming Brands
+        <br /> Digitally.
       </h2>
 
       <div className="grid md:grid-cols-12 gap-6">
@@ -241,28 +144,22 @@ function WhyChooseUs() {
         <div className="md:col-span-5 flex flex-col gap-6">
           <div className="glass rounded-3xl p-8 flex-1">
             <p className="text-xl leading-snug tight">
-              At <strong>Agenzo® Studio</strong>, we bring together designers, strategists, and makers to craft bold, thoughtful digital experiences made with care and curiosity.
+              We specialize in turning brands into <strong>digital powerhouses</strong> — from stunning websites to data-driven marketing campaigns built to deliver results that move the needle.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <StatTile
-              label="Over Fields"
-              value="100+"
+              label="Clients Served"
+              value="299+"
               right={
                 <div className="flex -space-x-2">
                   {[avatar1, avatar2, avatar3].map((a, i) => (
-                    <img
-                      key={i}
-                      src={a}
-                      className="w-9 h-9 rounded-full border-2 border-background object-cover"
-                      alt=""
-                      loading="lazy"
-                    />
+                    <img key={i} src={a} className="w-9 h-9 rounded-full border-2 border-background object-cover" alt="" loading="lazy" />
                   ))}
                 </div>
               }
             />
-            <StatTile label="Countries Over World" value="12" />
+            <StatTile label="Years in Industry" value="10+" />
           </div>
         </div>
       </div>
@@ -270,15 +167,7 @@ function WhyChooseUs() {
   );
 }
 
-function StatTile({
-  label,
-  value,
-  right,
-}: {
-  label: string;
-  value: string;
-  right?: React.ReactNode;
-}) {
+function StatTile({ label, value, right }: { label: string; value: string; right?: React.ReactNode }) {
   return (
     <div className="glass rounded-3xl p-6 flex flex-col justify-between min-h-[180px]">
       <div className="text-xs text-muted-foreground">{label}</div>
@@ -291,34 +180,28 @@ function StatTile({
 }
 
 /* ============ PARTNER MARQUEE ============ */
-const LOGOS = [
-  "FORMA", "OBJECT", "LUMEN", "AXIOM", "NORTH/", "VANTAGE", "ECHO®", "OBSCURA",
-];
-const LOGOS2 = ["NEBULA", "PARALLAX", "MERIDIAN", "ORBIT", "VECTOR", "FIELD", "MONOLITH", "STRATA"];
+const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "PLANTSMED", "BAARAT", "HIDEOUT"];
+const LOGOS2 = ["DIGIFRENZY®", "STUDIO", "GROWTH LAB", "PIXEL CRAFT", "BRAND FORGE", "MEDIA HOUSE", "SCALE CO", "NORTH STAR"];
 
 function PartnerMarquee() {
   return (
     <section className="py-20 border-y border-border/60">
       <div className="flex items-center gap-8 mb-8 px-6">
-        <div className="eyebrow text-muted-foreground">— Trusted Partner</div>
+        <div className="eyebrow text-muted-foreground">— Trusted Partners</div>
         <div className="ml-auto">
-          <PillButton dark>Choose Plan</PillButton>
+          <PillButton dark href="/pricing">Choose Plan</PillButton>
         </div>
       </div>
 
       <div className="space-y-6 overflow-hidden">
         <div className="marquee-track">
           {[...LOGOS, ...LOGOS].map((l, i) => (
-            <div key={i} className="text-3xl font-semibold tighter mx-10 opacity-70">
-              {l}
-            </div>
+            <div key={i} className="text-3xl font-semibold tighter mx-10 opacity-70">{l}</div>
           ))}
         </div>
         <div className="marquee-track-reverse">
           {[...LOGOS2, ...LOGOS2].map((l, i) => (
-            <div key={i} className="text-3xl font-light italic mx-10 opacity-60">
-              {l}
-            </div>
+            <div key={i} className="text-3xl font-light italic mx-10 opacity-60">{l}</div>
           ))}
         </div>
       </div>
@@ -326,7 +209,7 @@ function PartnerMarquee() {
   );
 }
 
-/* ============ FACT SECTION ============ */
+/* ============ FACT ============ */
 function FactSection() {
   return (
     <section className="px-6 py-28">
@@ -336,17 +219,14 @@ function FactSection() {
         </div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <div className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— Agenzo Fact</div>
+            <div className="eyebrow text-muted-foreground">— DigiFrenzy Fact</div>
             <div className="text-xs text-muted-foreground">01 / 04</div>
           </div>
           <div>
-            <div
-              className="font-semibold tighter leading-[0.9]"
-              style={{ fontSize: "clamp(5rem, 14vw, 14rem)" }}
-            >
-              100+
+            <div className="font-semibold tighter leading-[0.9]" style={{ fontSize: "clamp(5rem, 14vw, 14rem)" }}>
+              90+
             </div>
-            <p className="mt-6 text-xl max-w-md">Projects successfully launched worldwide across over 12 countries.</p>
+            <p className="mt-6 text-xl max-w-md">Projects delivered for clients across industries globally.</p>
           </div>
         </div>
       </div>
@@ -356,51 +236,44 @@ function FactSection() {
 
 /* ============ SELECTED WORK ============ */
 const PROJECTS = [
-  { n: "01.", t: "Neon Frame System", y: "2025", img: project1, ratio: "aspect-[16/10]" },
-  { n: "02.", t: "Lumen OS", y: "2024", img: project2, ratio: "aspect-[4/5]" },
-  { n: "03.", t: "Botly® Port App", y: "2022", img: project3, ratio: "aspect-[4/5]" },
-  { n: "04.", t: "Aurea Studio", y: "2020", img: project4, ratio: "aspect-[4/5]" },
-  { n: "05.", t: "Core Identity", y: "2024", img: project5, ratio: "aspect-[4/5]" },
+  { n: "01.", t: "MYAI500", y: "2025", tags: ["Portfolio", "AI Voice Assistant"], img: project1, ratio: "aspect-[16/10]" },
+  { n: "02.", t: "MYNX Softwares Inc", y: "2024", tags: ["IT Services", "Software Dev"], img: project2, ratio: "aspect-[4/5]" },
+  { n: "03.", t: "Jouri Law", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
+  { n: "04.", t: "MYCA500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
 function SelectedWork() {
   return (
-    <section className="px-6 py-28">
+    <section id="work" className="px-6 py-28">
       <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
         <div>
-          <div className="eyebrow text-muted-foreground mb-4">— Project showcase</div>
+          <div className="eyebrow text-muted-foreground mb-4">— Featured Works</div>
           <h2 className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-            Selected Work.<sup className="text-[0.25em] ml-2 text-muted-foreground">(5)</sup>
+            Selected Work.<sup className="text-[0.25em] ml-2 text-muted-foreground">({PROJECTS.length})</sup>
           </h2>
         </div>
         <p className="max-w-sm text-muted-foreground">
-          We've helped businesses across industries achieve their goals. Here are some of our recent projects.
+          Showcasing our best client work — bold designs crafted to elevate brands and captivate audiences.
         </p>
       </div>
 
       <div className="flex gap-5 overflow-x-auto pb-6 -mx-6 px-6 snap-x">
         {PROJECTS.map((p) => (
-          <a
-            key={p.n}
-            href="#"
-            className={`group hover-lift flex-shrink-0 ${
-              p.ratio === "aspect-[16/10]" ? "w-[680px]" : "w-[360px]"
-            } snap-start`}
-          >
+          <a key={p.n} href="#" className={`group hover-lift flex-shrink-0 ${p.ratio === "aspect-[16/10]" ? "w-[680px]" : "w-[360px]"} snap-start`}>
             <div className={`rounded-3xl overflow-hidden ${p.ratio} bg-muted`}>
-              <img
-                src={p.img}
-                alt={p.t}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              <img src={p.img} alt={p.t} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
             </div>
-            <div className="mt-4 flex items-center justify-between text-sm">
+            <div className="mt-4 flex items-center justify-between text-sm gap-4 flex-wrap">
               <div className="flex items-center gap-3">
                 <span className="text-muted-foreground">{p.n}</span>
                 <span className="font-medium">{p.t}</span>
               </div>
-              <span className="text-muted-foreground">{p.y}</span>
+              <div className="flex items-center gap-2">
+                {p.tags.map((t) => (
+                  <span key={t} className="text-[10px] uppercase tracking-widest px-3 py-1 glass rounded-full">{t}</span>
+                ))}
+                <span className="text-muted-foreground ml-2">{p.y}</span>
+              </div>
             </div>
           </a>
         ))}
@@ -411,21 +284,18 @@ function SelectedWork() {
 
 /* ============ TEAM ============ */
 const TEAM = [
-  { role: "Web Designer", tag: "#theleader", name: "Jame Nolan", img: team1 },
-  { role: "UI Designer", tag: "#dynamic", name: "Jame Obsbon", img: team2 },
-  { role: "Art Director", tag: "#thecreative", name: "Bruno Santos", img: team3 },
+  { role: "Strategy Lead", tag: "#growth", name: "Strategy Team", img: team1 },
+  { role: "Design Lead", tag: "#craft", name: "Design Team", img: team2 },
+  { role: "Growth Lead", tag: "#performance", name: "Performance Team", img: team3 },
 ];
 
 function TeamSection() {
   return (
     <section className="px-6 py-28">
-      <div className="eyebrow text-muted-foreground mb-4">— Our Member</div>
-      <h2
-        className="tighter font-semibold leading-[0.95] mb-14"
-        style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
-      >
-        Meet the Team
-        <br />Behind the Vision.
+      <div className="eyebrow text-muted-foreground mb-4">— Our Crew</div>
+      <h2 className="tighter font-semibold leading-[0.95] mb-14" style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
+        Meet the Minds
+        <br />Behind the Work.
       </h2>
 
       <div className="grid md:grid-cols-3 gap-5">
@@ -451,39 +321,56 @@ function TeamSection() {
 }
 
 /* ============ TESTIMONIALS ============ */
+const TESTIMONIALS_SMALL = [
+  { name: "Priya Iyer", role: "Founder, D2C Brand", text: "I was a bit unsure in the beginning, but the team handled everything so patiently. From content to ads, they took care of it all. Very happy with how our brand looks now.", img: avatar2 },
+  { name: "Rohan Mehta", role: "CEO, SaaS Startup", text: "These guys really know their stuff. The website they built for us is fast, clean, and our customers love it. Best decision we took this year for the business.", img: avatar3 },
+  { name: "Ananya Reddy", role: "Marketing Head", text: "Loved the whole experience. Proper updates, never had to chase them, and the creatives were top-notch. Will definitely keep working with them long term.", img: avatar1 },
+];
+
 function Testimonials() {
   return (
     <section className="px-6 py-28">
       <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
         <div>
-          <div className="eyebrow text-muted-foreground mb-4">— What Our Clients Say</div>
+          <div className="eyebrow text-muted-foreground mb-4">— Client Voices</div>
           <h2 className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-            Testimonials.
+            Trusted By Many.
           </h2>
         </div>
         <p className="max-w-sm text-muted-foreground">
-          Agenzo® supports people from all over the world. Here's what they have to say.
+          Real stories from real clients. See how our work has transformed and elevated businesses.
         </p>
       </div>
 
       <div className="grid md:grid-cols-12 gap-6">
         <div className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]">
           <p className="text-2xl md:text-3xl tight leading-snug">
-            "We were struggling to create a unified design experience until we worked with Agenzo®. The team not only brought consistency but elevated every screen with thoughtful detail."
+            "Honestly, working with DigiFrenzy has been such a smooth ride. They actually listen, deliver on time, and the results speak for themselves. Our enquiries doubled in just two months."
           </p>
           <div className="flex items-center justify-between mt-8">
             <div className="flex items-center gap-4">
               <img src={avatar1} alt="" className="w-12 h-12 rounded-full object-cover" loading="lazy" />
               <div>
-                <div className="font-medium">Liam Chen</div>
-                <div className="text-xs text-muted-foreground">Product Manager, ALYN</div>
+                <div className="font-medium">Aarav Sharma</div>
+                <div className="text-xs text-muted-foreground">Director, Local Business</div>
               </div>
             </div>
             <div className="text-xs text-muted-foreground">01 / 04</div>
           </div>
         </div>
-        <div className="md:col-span-5 rounded-3xl overflow-hidden">
-          <img src={testimonialImg} alt="" className="w-full h-full object-cover" loading="lazy" />
+        <div className="md:col-span-5 flex flex-col gap-6">
+          {TESTIMONIALS_SMALL.map((t) => (
+            <div key={t.name} className="glass rounded-3xl p-6">
+              <p className="text-sm leading-relaxed">{t.text}</p>
+              <div className="flex items-center gap-3 mt-4">
+                <img src={t.img} alt="" className="w-9 h-9 rounded-full object-cover" loading="lazy" />
+                <div>
+                  <div className="text-sm font-medium">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -494,9 +381,9 @@ function Testimonials() {
 function StatsTrio() {
   return (
     <section className="px-6 py-20 grid md:grid-cols-3 gap-5">
-      <BigStat label="Happy people" value="1M+" />
-      <BigStat label="ROI Improvement" value="50%" hint="Clients reported better ROI within 1 month." />
-      <BigStat label="Client Retention" value="50%" hint="Come back for second or third projects." />
+      <BigStat label="Years in Industry" value="10+" hint="Delivering digital excellence worldwide." />
+      <BigStat label="Projects Delivered" value="90+" hint="For clients across industries globally." />
+      <BigStat label="Client Satisfaction" value="50+" hint="Consistently exceeding expectations." />
     </section>
   );
 }
@@ -520,11 +407,11 @@ function PartnersGrid() {
   return (
     <section className="px-6 py-20">
       <div className="text-center mb-12">
-        <div className="eyebrow text-muted-foreground mb-3">— Our Agenzo® relationships</div>
-        <p className="text-lg">Trusted by over 1000+ companies around the world</p>
+        <div className="eyebrow text-muted-foreground mb-3">— Our Relationships</div>
+        <p className="text-lg">Trusted by brands worldwide.</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-px bg-border/60 border border-border/60 rounded-3xl overflow-hidden">
-        {["FORMA", "OBJECT®", "LUMEN", "AXIOM", "NORTH", "VANTAGE", "ECHO"].map((l) => (
+        {["MYAI500", "MYNX®", "JOURI", "MYCA500", "ACT", "PLANTSMED", "HIDEOUT"].map((l) => (
           <div key={l} className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70">
             {l}
           </div>
@@ -550,10 +437,10 @@ function ShowReel() {
         </button>
         <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between text-white">
           <h2 className="font-semibold tighter leading-none" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            Show reel
+            Every Pixel
           </h2>
           <div className="font-semibold tighter" style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}>
-            2025<sup className="text-[0.3em]">®</sup>
+            Crafted<sup className="text-[0.3em]">®</sup>
           </div>
         </div>
       </div>
@@ -561,18 +448,18 @@ function ShowReel() {
   );
 }
 
-/* ============ ACHIEVEMENTS ============ */
+/* ============ ACHIEVEMENTS (Why Choose) ============ */
 const AWARDS = [
-  { n: "(01)", org: "Awwwards", t: "3× Nominated Agency of the year" },
-  { n: "(02)", org: "Dribbble", t: "Featured in Dribbble Top Picks 2024" },
-  { n: "(03)", org: "CSS Design Award", t: "Site of the Day x2 — 2023–2024" },
-  { n: "(04)", org: "The FWA", t: "FWA Winner — Digital Innovation 2024" },
+  { n: "(01)", org: "Speed", t: "Launch your site in just 30 minutes" },
+  { n: "(02)", org: "Platform", t: "From 0 to 100 — all in one platform" },
+  { n: "(03)", org: "Support", t: "24/6 dedicated team, always available" },
+  { n: "(04)", org: "Scale", t: "Built to grow with your business" },
 ];
 
 function Achievements() {
   return (
     <section className="px-6 py-28">
-      <div className="eyebrow text-muted-foreground mb-12">— Our achievements</div>
+      <div className="eyebrow text-muted-foreground mb-12">— Why Choose DigiFrenzy</div>
       <div className="grid md:grid-cols-12 gap-6">
         <div className="md:col-span-5 rounded-3xl overflow-hidden bg-muted">
           <img src={award} alt="" className="w-full h-full object-cover" loading="lazy" />
@@ -596,31 +483,31 @@ function Achievements() {
 
 /* ============ PROCESS ============ */
 const PROCESS = [
-  { n: ".01", title: "Project Kick-Off", sub: "Art Direction and Wireframing", img: process1 },
-  { n: ".02", title: "Design Process", sub: "Design and Prototype Process", img: process2 },
-  { n: ".03", title: "Testing", sub: "Product Testing, Quality Control", img: process3 },
+  { n: ".01", title: "Strategy & Planning", sub: "Discovery, research, and roadmap", img: process1 },
+  { n: ".02", title: "Design & Development", sub: "Brand, web, and creative execution", img: process2 },
+  { n: ".03", title: "Launch & Growth", sub: "Go-live, optimise, scale results", img: process3 },
 ];
 
 function ProcessSection() {
   return (
     <section className="px-6 py-28">
-      <div className="eyebrow text-muted-foreground mb-4">— Our Process</div>
+      <div className="eyebrow text-muted-foreground mb-4">— Our Approach</div>
       <h2 className="tighter font-semibold leading-[0.95] mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
         From Vision to
         <br /> Measurable Value.
       </h2>
       <p className="max-w-md text-muted-foreground mb-14">
-        From breakthrough portfolios to performance-driven platforms — our numbers speak louder than words.
+        A clear, proven process — from understanding your goals to launching and scaling with confidence.
       </p>
 
       <div className="grid md:grid-cols-3 gap-5">
-        {PROCESS.map((p) => (
+        {PROCESS.map((p, i) => (
           <div key={p.n} className="rounded-3xl overflow-hidden bg-muted relative aspect-[4/5]">
             <img src={p.img} alt="" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
             <div className="absolute top-5 left-5 right-5 flex justify-between text-white text-xs">
-              <span className="glass-dark text-white rounded-full px-3 py-1.5">Agenza</span>
-              <span>{p.n}</span>
+              <span className="glass-dark text-white rounded-full px-3 py-1.5">DigiFrenzy</span>
+              <span>{i === 0 ? "FREE" : p.n}</span>
             </div>
             <div className="absolute bottom-5 left-5 right-5 text-white">
               <div className="text-xl font-medium tight">{p.title}</div>
@@ -636,61 +523,63 @@ function ProcessSection() {
 /* ============ PRICING ============ */
 const PLANS = [
   {
-    name: "Low-budget",
-    days: "4-7 Days",
-    price: "$500",
-    blurb: "Have design ready to build? Or small budget?",
+    name: "Starter",
+    days: "Monthly",
+    price: "₹29,999",
+    blurb: "Perfect for startups and small businesses ready to establish a powerful digital presence.",
     features: [
-      "Wireframe-ready project required",
-      "UI design using Figma or Framer",
-      "Online/remote collaboration",
-      "4–7 day turnaround",
-      "Weekday delivery only",
+      "Social Media Management (2 platforms)",
+      "Basic SEO Setup (On-page)",
+      "Monthly Performance Report",
+      "Email Support",
+      "4 Graphic Design Requests/week",
+      "Pause or cancel anytime",
     ],
   },
   {
-    name: "Standard Plan",
-    days: "15 Days",
-    price: "$5,000",
-    blurb: "For growing teams needing full design and build support.",
+    name: "Growth",
+    days: "Monthly + GST",
+    price: "₹49,999",
+    blurb: "For growing businesses needing full-spectrum digital marketing and web support.",
     features: [
-      "Full UI/UX design system",
-      "Brand identity refinement",
-      "Up to 8 unique screens",
-      "Prototype + animations",
-      "Priority delivery",
+      "Social Media (4 platforms)",
+      "Advanced SEO & Content",
+      "Website Maintenance",
+      "Paid Ads (Meta + Google)",
+      "Weekly Reports & Strategy Calls",
+      "10 Graphic Design Requests/week",
     ],
     featured: true,
   },
   {
-    name: "Premium Plan",
-    days: "30 Days",
-    price: "$12,000",
-    blurb: "Complete end-to-end design and development partnership.",
+    name: "Premium",
+    days: "Monthly + GST",
+    price: "₹89,999",
+    blurb: "The complete package for brands serious about dominating their industry online.",
     features: [
-      "Unlimited screens & revisions",
-      "Custom motion + interactions",
-      "Webflow / Framer build",
-      "Dedicated design lead",
-      "Post-launch support",
+      "Full Digital Marketing Suite",
+      "3D Animation (4 videos/month)",
+      "Priority Support & Dedicated Manager",
+      "All Platform Management + PR",
+      "Unlimited Graphic Design Requests",
+      "Pause or cancel anytime",
     ],
   },
 ];
 
 function Pricing() {
   return (
-    <section className="px-6 py-28">
+    <section id="pricing" className="px-6 py-28">
       <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
         <div>
-          <div className="eyebrow text-muted-foreground mb-4">— Our Pricing</div>
+          <div className="eyebrow text-muted-foreground mb-4">— Plans Built for Growth</div>
           <h2 className="tighter font-semibold" style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
             Pricing.<sup className="text-[0.25em] ml-2 text-muted-foreground">(3)</sup>
           </h2>
         </div>
-        <div className="glass rounded-full p-1.5 flex text-sm">
-          <button className="bg-foreground text-background rounded-full px-5 py-2">Monthly</button>
-          <button className="px-5 py-2 text-muted-foreground">Yearly</button>
-        </div>
+        <p className="max-w-sm text-muted-foreground">
+          Transparent pricing tailored to your brand. Find the plan that takes your business to the next level.
+        </p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-5">
@@ -703,23 +592,21 @@ function Pricing() {
           >
             <div className="flex justify-between items-center text-xs">
               <span className={p.featured ? "text-background/70" : "text-muted-foreground"}>{p.name}</span>
-              <span className={`rounded-full px-3 py-1 ${p.featured ? "bg-background/15" : "bg-background/60"}`}>
-                {p.days}
-              </span>
+              <span className={`rounded-full px-3 py-1 ${p.featured ? "bg-background/15" : "bg-background/60"}`}>{p.days}</span>
             </div>
             <div className="font-semibold tighter" style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}>
               {p.price}
-              <span className={`text-sm font-normal ml-1 ${p.featured ? "text-background/60" : "text-muted-foreground"}`}>/ Month</span>
             </div>
             <p className={`text-sm ${p.featured ? "text-background/70" : "text-muted-foreground"}`}>{p.blurb}</p>
-            <button
+            <a
+              href="#contact"
               className={`rounded-full px-5 py-3 text-sm font-medium flex items-center justify-between ${
                 p.featured ? "bg-background text-foreground" : "bg-foreground text-background"
               }`}
             >
-              Choose Plan
+              Get Started
               <ArrowUpRight className="w-4 h-4" />
-            </button>
+            </a>
             <div className={`text-xs uppercase tracking-widest ${p.featured ? "text-background/50" : "text-muted-foreground"}`}>
               What's included:
             </div>
@@ -735,38 +622,5 @@ function Pricing() {
         ))}
       </div>
     </section>
-  );
-}
-
-/* ============ FOOTER CTA ============ */
-function FooterCTA() {
-  return (
-    <footer className="px-6 pt-28 pb-8">
-      <div className="text-center mb-12">
-        <div className="eyebrow text-muted-foreground mb-6">— Let's build</div>
-        <h2
-          className="font-semibold tighter leading-[0.85]"
-          style={{ fontSize: "clamp(4rem, 16vw, 18rem)" }}
-        >
-          Let's talk<sup className="text-[0.25em] align-super">®</sup>
-        </h2>
-        <div className="mt-10 flex justify-center">
-          <PillButton dark>Connect Us</PillButton>
-        </div>
-      </div>
-
-      <div className="border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
-        <div>© {new Date().getFullYear()} Agenzo® Studio. All rights reserved.</div>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-foreground">Instagram</a>
-          <a href="#" className="hover:text-foreground">Twitter</a>
-          <a href="#" className="hover:text-foreground">Dribbble</a>
-          <a href="#" className="hover:text-foreground">LinkedIn</a>
-        </div>
-        <div className="flex items-center gap-1">
-          <Plus className="w-3 h-3" /> Crafted with care
-        </div>
-      </div>
-    </footer>
   );
 }
