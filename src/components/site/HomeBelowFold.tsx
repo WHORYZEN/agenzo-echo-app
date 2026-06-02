@@ -556,8 +556,8 @@ function ShowReel() {
         <img src={showreel} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute top-8 left-8 right-8 flex justify-between text-white">
-          <div className="eyebrow">Show reel</div>
-          <div className="eyebrow">2025</div>
+          <div className="eyebrow">{"\n"}</div>
+          <div className="eyebrow">{"\n"}</div>
         </div>
         <button className="absolute inset-0 m-auto w-24 h-24 bg-white text-foreground rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-500">
           <Play className="w-7 h-7 fill-current" />
