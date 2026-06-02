@@ -39,8 +39,14 @@ export function Nav() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-6 pt-5">
+    <motion.header
+      initial={reduce ? false : { y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 px-6 pt-5"
+    >
       <div className="flex items-center justify-between">
+
         <div className="min-w-[120px] flex items-center">{!merged && Logo}</div>
 
         <motion.nav
@@ -78,6 +84,6 @@ export function Nav() {
           </span>
         </Link>
       </div>
-    </header>
+    </motion.header>
   );
 }
