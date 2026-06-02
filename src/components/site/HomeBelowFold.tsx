@@ -593,7 +593,7 @@ function Achievements() {
           viewport={viewportOnce}
           className="eyebrow text-muted-foreground mb-12"
         >
-          — Why Choose D\ni\ng\ni\nF\nr\ne\nn\nz\ny*
+          — Why Choose {"\n"}\n{"\n"}\n{"\n"}\nF\n{"\n"}\n{"\n"}\n{"\n"}\n{"\n"}\ny*
         </motion.div>
         <motion.div
           className="grid md:grid-cols-12 gap-6 md:gap-8"
