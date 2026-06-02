@@ -78,6 +78,7 @@ function ServicesPage() {
               className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={hoverLift}
               viewport={{ once: true, margin: "-15% 0px" }}
               transition={{ duration: 1.1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
