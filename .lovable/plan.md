@@ -1,44 +1,21 @@
 ## Goal
+Ensure the contact form on this site submits successfully to `support@digifrenzy.com`, matching the working setup in the **Framer Clone Craft** project.
 
-Make the frosted/blur glass effect on the header (and other `.glass` surfaces) render reliably in the published build, not just in the dev preview.
+## Findings
+- `src/components/site/Contact.tsx` already uses the same Web3Forms integration as Framer Clone Craft:
+  - Endpoint: `https://api.web3forms.com/submit`
+  - Access key: `361d4c5a-21f6-46c9-91d0-d6045017fef5` (the same key that routes to `support@digifrenzy.com` in Web3Forms' dashboard)
+  - Same field schema (name, email, mobile, businessName, businessType, services)
+- The recipient address (`support@digifrenzy.com`) is configured on the Web3Forms account tied to that access key — no code change is needed to set the destination.
+- One discrepancy vs. the reference project: `from_name` is currently `"D\ni\ng\ni\nF\nr\ne\nn\nz\ny* Website"` (leftover newline-split string from an earlier logo edit). Framer Clone Craft uses `"DigiFrenzy Website"`. This makes the sender label look broken in the inbox but does not block delivery.
 
-## Root cause
-
-`src/styles.css` defines `.glass` and `.glass-dark` with both the standard `backdrop-filter` and a hand-written `-webkit-backdrop-filter` immediately after it, with identical values:
-
-```css
-.glass {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);  /* ← the problem */
-  border: 1px solid rgba(255,255,255,0.4);
-}
-```
-
-In production, Lightning CSS dedupes the two same-value declarations and keeps the last one in source order (the `-webkit-` form), dropping the standard `backdrop-filter`. Chrome does not honor `-webkit-backdrop-filter` (Safari-only prefix), so the glass effect silently disappears for Chrome users on the published site — which matches "doesn't work seamlessly in the header." Dev preview is fine because Lightning CSS optimization doesn't run the same way.
-
-## Fix
-
-Remove the hand-written `-webkit-backdrop-filter` lines. The build pipeline auto-prefixes for Safari, so the standard property alone is correct and safe.
-
-### Edit `src/styles.css`
-
-```css
-.glass {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.4);
-}
-
-.glass-dark {
-  background: rgba(10,10,10,0.7);
-  backdrop-filter: blur(20px);
-}
-```
-
-No changes to `Nav.tsx` — all the `glass` / `backdrop-blur-md` usages there are already correct.
+## Changes
+1. **`src/components/site/Contact.tsx`** — set `from_name: "DigiFrenzy Website"` to match the reference project and produce a clean sender label in the email.
 
 ## Verification
+- Submit a test enquiry from the live preview and confirm the success toast ("Thanks! We'll be in touch shortly.").
+- Confirm the email lands in `support@digifrenzy.com` with sender label "DigiFrenzy Website".
 
-- View the header in the preview (default scroll and scrolled state) — pill should show a translucent frosted blur over hero content.
-- Confirm in the published URL after deploy that the header glass renders in Chrome (this is the case Lightning CSS broke).
+## Notes
+- No backend, secrets, or Cloud changes required — Web3Forms handles routing.
+- If you ever want to change the recipient email, that is done in the Web3Forms dashboard for this access key, not in code.

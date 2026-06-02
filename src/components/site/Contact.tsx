@@ -72,7 +72,7 @@ export function Contact() {
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: `New enquiry from ${parsed.data.name} — ${parsed.data.businessName}`,
-          from_name: "D\ni\ng\ni\nF\nr\ne\nn\nz\ny* Website",
+          from_name: "DigiFrenzy Website",
           replyto: parsed.data.email,
           ...parsed.data,
         }),
