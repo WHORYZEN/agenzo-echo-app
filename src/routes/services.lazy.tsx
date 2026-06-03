@@ -7,7 +7,7 @@ import { SplitText } from "@/components/site/SplitText";
 import { LazyMount } from "@/components/LazyMount";
 import { fadeUp, staggerParent, viewportOnce, hoverLift, easeOut } from "@/lib/motion";
 
-import s1 from "@/assets/project-1.jpg";
+import s1 from "@/assets/quantstamp-social.jpeg.asset.json";
 import s2 from "@/assets/project-2.jpg";
 import s3 from "@/assets/project-3.jpg";
 import s4 from "@/assets/project-4.jpg";
@@ -20,13 +20,13 @@ export const Route = createLazyFileRoute("/services")({
   component: ServicesPage,
 });
 
-const SERVICES = [
+const SERVICES: { title: string; tag: string; description: string; features: string[]; img: string }[] = [
   {
     title: "Social Media Marketing",
     tag: "Marketing",
     description: "Scroll-stopping social strategies that build communities, drive engagement, and convert followers into loyal customers across every platform.",
     features: ["Content Strategy & Calendar", "Paid Ad Campaigns", "Community Management", "Analytics & Reporting"],
-    img: s1,
+    img: s1.url,
   },
   {
     title: "SEO & Performance",
