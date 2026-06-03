@@ -1,11 +1,11 @@
 ## Plan
 
-Replace the "3D Animation & Branding" image (currently `src/assets/project-4.jpg`) on the Services page with the newly uploaded image.
+The Services page is already wired to a `3d-branding.jpeg.asset.json` asset, but the preview may still be showing the previous asset/cached result. I’ll refresh the asset pointer using the newly uploaded image and keep the selected "3D Animation & Branding" service card pointed at that asset.
 
 ### Steps
-1. Upload the new image to Lovable Assets CDN via `lovable-assets create` from `/mnt/user-uploads/900931100475105883.jpeg`, writing pointer to `src/assets/3d-branding.jpeg.asset.json`.
-2. In `src/routes/services.lazy.tsx`:
-   - Replace the `import s4 from "@/assets/project-4.jpg"` with `import s4 from "@/assets/3d-branding.jpeg.asset.json"`.
-   - Update the `img: s4` reference to use `s4.url`.
+1. Upload the latest attached image (`900931100475105883-3.jpeg`) as a new Lovable Asset pointer.
+2. Replace `src/assets/3d-branding.jpeg.asset.json` with the new pointer so the imported URL changes.
+3. Confirm `src/routes/services.lazy.tsx` still uses `s4.url` for the "3D Animation & Branding" item.
+4. Verify the file references point to the new asset URL.
 
-No other sections or pages are touched.
+No other services, text, or layout will be changed.
