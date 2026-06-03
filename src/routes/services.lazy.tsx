@@ -10,7 +10,7 @@ import { fadeUp, staggerParent, viewportOnce, hoverLift, easeOut } from "@/lib/m
 import s1 from "@/assets/quantstamp-social.jpeg.asset.json";
 import s2 from "@/assets/seo-performance.jpeg.asset.json";
 import s3 from "@/assets/forma-studio.jpeg.asset.json";
-import s4 from "@/assets/project-4.jpg";
+import s4 from "@/assets/3d-branding.jpeg.asset.json";
 
 const FAQ = lazy(() => import("@/components/site/FAQ").then((m) => ({ default: m.FAQ })));
 const Contact = lazy(() => import("@/components/site/Contact").then((m) => ({ default: m.Contact })));
@@ -47,7 +47,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     tag: "Branding",
     description: "Immersive 3D visuals and cohesive brand identities that set you apart from the competition and leave a lasting impression.",
     features: ["3D Product Rendering", "Motion Graphics", "Brand Identity Systems", "Visual Storytelling"],
-    img: s4,
+    img: s4.url,
   },
 ];
 
