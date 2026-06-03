@@ -170,7 +170,7 @@ function FactSection() {
   return (
     <section className="section">
       <motion.div
-        className="container-x grid md:grid-cols-12 gap-6 md:gap-8"
+        className="container-x grid md:grid-cols-12 gap-6 md:gap-8 bg-black text-white rounded-3xl p-8 md:p-12"
         variants={staggerParent(0.12)}
         initial="hidden"
         whileInView="show"
@@ -185,17 +185,17 @@ function FactSection() {
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— DIGIFRENZY FACT</div>
+            <div className="eyebrow text-white/70">— DIGIFRENZY FACT</div>
           </motion.div>
           <div>
             <motion.div
               variants={fadeUp}
-              className="font-semibold tighter leading-[0.9]"
+              className="font-semibold tighter leading-[0.9] text-white"
               style={{ fontSize: "clamp(5rem, 14vw, 14rem)" }}
             >
               90+
             </motion.div>
-            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md">
+            <motion.p variants={fadeUp} className="mt-6 text-xl max-w-md text-white">
               Projects delivered for clients across industries globally.
             </motion.p>
           </div>
