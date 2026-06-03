@@ -43,7 +43,7 @@ export function SiteFooter() {
 
       <div className="container-x border-t border-border/60 pt-8 flex flex-wrap justify-between items-center gap-4 text-sm text-muted-foreground">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="D\ni\ng\ni\nF\nr\ne\nn\nz\ny*" className="h-6 w-auto" style={{ filter: "invert(1)" }} />
+          <img src={logo} alt="DIGIFRENZY." className="h-6 w-auto" style={{ filter: "invert(1)" }} />
           <span>© {new Date().getFullYear()}. All rights reserved.</span>
         </div>
         <div className="flex gap-6">
