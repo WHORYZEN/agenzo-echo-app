@@ -1,16 +1,9 @@
-## Issue
+Add external URLs to all four Selected Work cards so they become clickable links that open in a new tab.
 
-The Selected Work section contains 4 projects, but only 3 are visible. The container uses `overflow-x-auto` horizontal scroll, so the 4th card sits off-screen to the right and isn't discoverable.
-
-## Plan
-
-Switch the Selected Work layout in `src/components/site/HomeBelowFold.tsx` (around lines 255–293) from a single-row horizontal scroller to a responsive grid so all 4 projects render on screen:
-
-- Replace the `flex gap-6 ... overflow-x-auto ... snap-x` container with a CSS grid:
-  - mobile: 1 column
-  - md: 2 columns
-  - xl: 4 columns
-- Remove the per-card fixed widths (`w-[680px]` / `w-[360px]`) and `flex-shrink-0` / `snap-start`, letting cards fill grid tracks.
-- Keep card visuals (rounded image, aspect ratio, hover zoom, tags, year) unchanged.
-
-No data, copy, or other sections are touched.
+- In `src/components/site/HomeBelowFold.tsx`:
+  1. Add a `link` field to each object in the `PROJECTS` array, mapping in order:
+     - Card 1 (n: "03.") → `https://myai500.com/`
+     - Card 2 (n: "02.") → `https://www.mynxsoftwares.com/`
+     - Card 3 (n: "01.") → `https://www.jourilaw.com/`
+     - Card 4 (n: "04.") → `https://www.myca500.com/`
+  2. Change the existing `<motion.a href="#">` to `<motion.a href={p.link} target="_blank" rel="noopener noreferrer">` so each card navigates to its respective URL in a new tab.
