@@ -6,6 +6,7 @@ import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import whyChooseImg from "@/assets/why-digifrenzy-creative.jpeg.asset.json";
 import qualityChess from "@/assets/quality-chess.png.asset.json";
 import qualityGear from "@/assets/quality-gear.png.asset.json";
+import qualityShield from "@/assets/quality-shield.png.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import workMyai500 from "@/assets/work-myai500.png.asset.json";
 import workMynx from "@/assets/work-mynx.png.asset.json";
@@ -313,6 +314,7 @@ const QUALITIES = [
     title: "Exceptional\nSecurity",
     desc: "We build with security-first principles — protecting your data and users at every layer of the product.",
     chip: "Enterprise-grade Security",
+    img: qualityShield.url,
   },
   {
     title: "High\nPerformance",
