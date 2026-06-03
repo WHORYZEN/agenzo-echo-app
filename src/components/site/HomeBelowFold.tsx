@@ -12,9 +12,6 @@ const project1 = workMyai500.url;
 const project2 = workMynx.url;
 const project3 = workJouri.url;
 const project4 = workMyca500.url;
-import qualityIntegration from "@/assets/quality-integration.png";
-import qualitySecurity from "@/assets/quality-security.png";
-import qualityPerformance from "@/assets/quality-performance.png";
 import process1 from "@/assets/process-1.jpg";
 import process2 from "@/assets/process-2.jpg";
 import process3 from "@/assets/process-3.jpg";
@@ -307,19 +304,16 @@ const QUALITIES = [
     title: "Seamless\nIntegration",
     desc: "Our products plug into your existing stack effortlessly, connecting tools and workflows without friction.",
     chip: "Effortless Connectivity",
-    img: qualityIntegration,
   },
   {
     title: "Exceptional\nSecurity",
     desc: "We build with security-first principles — protecting your data and users at every layer of the product.",
     chip: "Enterprise-grade Security",
-    img: qualitySecurity,
   },
   {
     title: "High\nPerformance",
     desc: "Optimized infrastructure and lean code ensure fast load times and a snappy experience at any scale.",
     chip: "Speedy Experience",
-    img: qualityPerformance,
   },
 ];
 
@@ -363,13 +357,6 @@ function QualitySection() {
                 </h3>
                 <p className="mt-4 text-sm text-white/75 max-w-[280px] leading-relaxed">{q.desc}</p>
 
-                <img
-                  src={q.img}
-                  alt=""
-                  className="absolute left-1/2 -translate-x-1/2 bottom-24 w-[78%] max-w-[320px] object-contain pointer-events-none select-none transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                />
 
                 <div className="mt-auto relative z-10 flex items-center justify-between gap-3">
                   <span className="text-[11px] uppercase tracking-widest px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
