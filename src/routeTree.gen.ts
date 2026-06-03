@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesWebsiteDevelopmentRouteImport } from './routes/services.website-development'
 import { Route as ServicesSocialMediaMarketingRouteImport } from './routes/services.social-media-marketing'
 
 const PricingRoute = PricingRouteImport.update({
@@ -31,6 +32,14 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
 } as any).lazy(() =>
   import('./routes/services.index.lazy').then((d) => d.Route),
 )
+const ServicesWebsiteDevelopmentRoute =
+  ServicesWebsiteDevelopmentRouteImport.update({
+    id: '/services/website-development',
+    path: '/services/website-development',
+    getParentRoute: () => rootRouteImport,
+  } as any).lazy(() =>
+    import('./routes/services.website-development.lazy').then((d) => d.Route),
+  )
 const ServicesSocialMediaMarketingRoute =
   ServicesSocialMediaMarketingRouteImport.update({
     id: '/services/social-media-marketing',
@@ -46,12 +55,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
@@ -59,6 +70,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
@@ -67,14 +79,21 @@ export interface FileRouteTypes {
     | '/'
     | '/pricing'
     | '/services/social-media-marketing'
+    | '/services/website-development'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pricing' | '/services/social-media-marketing' | '/services'
+  to:
+    | '/'
+    | '/pricing'
+    | '/services/social-media-marketing'
+    | '/services/website-development'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/pricing'
     | '/services/social-media-marketing'
+    | '/services/website-development'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
@@ -82,6 +101,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PricingRoute: typeof PricingRoute
   ServicesSocialMediaMarketingRoute: typeof ServicesSocialMediaMarketingRoute
+  ServicesWebsiteDevelopmentRoute: typeof ServicesWebsiteDevelopmentRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
@@ -108,6 +128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/website-development': {
+      id: '/services/website-development'
+      path: '/services/website-development'
+      fullPath: '/services/website-development'
+      preLoaderRoute: typeof ServicesWebsiteDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/social-media-marketing': {
       id: '/services/social-media-marketing'
       path: '/services/social-media-marketing'
@@ -122,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PricingRoute: PricingRoute,
   ServicesSocialMediaMarketingRoute: ServicesSocialMediaMarketingRoute,
+  ServicesWebsiteDevelopmentRoute: ServicesWebsiteDevelopmentRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
