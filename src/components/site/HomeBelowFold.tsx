@@ -253,7 +253,7 @@ function SelectedWork() {
         </motion.div>
 
         <motion.div
-          className="flex gap-6 md:gap-8 overflow-x-auto pb-6 -mx-6 md:-mx-10 px-6 md:px-10 snap-x"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8"
           variants={staggerParent(0.1)}
           initial="hidden"
           whileInView="show"
@@ -264,7 +264,7 @@ function SelectedWork() {
               key={p.n}
               variants={fadeUp}
               href="#"
-              className={`group flex-shrink-0 ${p.ratio === "aspect-[16/10]" ? "w-[680px]" : "w-[360px]"} snap-start`}
+              className="group block"
             >
               <div className={`rounded-3xl overflow-hidden ${p.ratio} bg-muted`}>
                 <img
@@ -291,6 +291,7 @@ function SelectedWork() {
             </motion.a>
           ))}
         </motion.div>
+
       </div>
     </section>
   );
