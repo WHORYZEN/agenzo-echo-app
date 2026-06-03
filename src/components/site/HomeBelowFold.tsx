@@ -208,20 +208,20 @@ const PROJECTS = [
     n: "01.",
     t: "\n",
     y: "\n",
-    tags: ["Portfolio", "AI Voice Assistant"],
+    tags: ["SASS", "AI Voice Assistant"],
     img: project1,
     ratio: "aspect-[16/10]",
   },
   {
     n: "02.",
-    t: "\n\n\n\n Softwares Inc",
-    y: "2024",
-    tags: ["IT Services", "Software Dev"],
+    t: "\n",
+    y: "2022",
+    tags: ["IT Services", "SAAS"],
     img: project2,
     ratio: "aspect-[4/5]",
   },
-  { n: "03.", t: "Jou\ni L\nw", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
-  { n: "04.", t: "M\n\n\n500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
+  { n: "03.", t: "\n", y: "2024", tags: ["\n", "PERFORMANCE MARKETING"], img: project3, ratio: "aspect-[4/5]" },
+  { n: "04.", t: "M\n\n\n500", y: "2025", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
 function SelectedWork() {
