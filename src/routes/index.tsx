@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { lazy, Suspense } from "react";
 
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import slideTote from "@/assets/hero-slide-tote.jpeg.asset.json";
@@ -10,10 +9,8 @@ import slideTacobell from "@/assets/hero-slide-tacobell.jpeg.asset.json";
 
 import { Nav } from "@/components/site/Nav";
 import { PillButton } from "@/components/site/PillButton";
-import { LazyMount } from "@/components/LazyMount";
+import HomeBelowFold from "@/components/site/HomeBelowFold";
 import { fadeUp, staggerParent, easeOut } from "@/lib/motion";
-
-const HomeBelowFold = lazy(() => import("@/components/site/HomeBelowFold"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,16 +31,11 @@ export const Route = createFileRoute("/")({
 const slides = [slideTote.url, slideForma.url, slideQuantstamp.url, slideTacobell.url];
 
 function Home() {
-  const fallback = <div style={{ minHeight: "60vh" }} />;
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Nav />
       <Hero />
-      <LazyMount fallback={fallback}>
-        <Suspense fallback={fallback}>
-          <HomeBelowFold />
-        </Suspense>
-      </LazyMount>
+      <HomeBelowFold />
     </div>
   );
 }
