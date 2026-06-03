@@ -20,7 +20,7 @@ export const Route = createLazyFileRoute("/services")({
   component: ServicesPage,
 });
 
-const SERVICES = [
+const SERVICES: { title: string; tag: string; description: string; features: string[]; img: string }[] = [
   {
     title: "Social Media Marketing",
     tag: "Marketing",
