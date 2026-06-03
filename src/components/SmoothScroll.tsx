@@ -30,7 +30,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         const targetId = anchor.getAttribute("href");
         if (targetId && targetId !== "#") {
           const targetElement = document.querySelector(targetId);
-          if (targetElement) {
+          if (targetElement instanceof HTMLElement) {
             e.preventDefault();
             lenis.scrollTo(targetElement);
           }
