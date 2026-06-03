@@ -20,13 +20,14 @@ export const Route = createLazyFileRoute("/services/")({
   component: ServicesPage,
 });
 
-const SERVICES: { title: string; tag: string; description: string; features: string[]; img: string }[] = [
+const SERVICES: { title: string; tag: string; description: string; features: string[]; img: string; href: string }[] = [
   {
     title: "Social Media Marketing",
     tag: "Marketing",
     description: "Scroll-stopping social strategies that build communities, drive engagement, and convert followers into loyal customers across every platform.",
     features: ["Content Strategy & Calendar", "Paid Ad Campaigns", "Community Management", "Analytics & Reporting"],
     img: s1.url,
+    href: "/services/social-media-marketing",
   },
   {
     title: "SEO & Performance",
@@ -34,6 +35,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     description: "Data-driven SEO and performance optimization that puts your brand at the top of search results and keeps your site lightning fast.",
     features: ["Technical SEO Audits", "Keyword Research & Strategy", "On-Page Optimization", "Core Web Vitals"],
     img: s2.url,
+    href: "/#contact",
   },
   {
     title: "Website Development",
@@ -41,6 +43,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     description: "Pixel-perfect, high-performance websites built with modern stacks that deliver exceptional user experiences and drive business results.",
     features: ["Custom Web Applications", "SaaS Software Solutions", "Responsive Design", "CMS Integration"],
     img: s3.url,
+    href: "/#contact",
   },
   {
     title: "3D Animation & Branding",
@@ -48,6 +51,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     description: "Immersive 3D visuals and cohesive brand identities that set you apart from the competition and leave a lasting impression.",
     features: ["3D Product Rendering", "Motion Graphics", "Brand Identity Systems", "Visual Storytelling"],
     img: s4.url,
+    href: "/#contact",
   },
 ];
 
@@ -80,12 +84,13 @@ function ServicesPage() {
           viewport={viewportOnce}
         >
           {SERVICES.map((s) => (
-            <motion.div
+            <motion.a
               key={s.title}
+              href={s.href}
               variants={fadeUp}
               whileHover={hoverLift}
               transition={{ duration: 0.6, ease: easeOut }}
-              className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
+              className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0 cursor-pointer block"
             >
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -102,10 +107,10 @@ function ServicesPage() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-3">
-                  <PillButton dark href="/#contact">Get started</PillButton>
+                  <PillButton dark href={s.href}>Get started</PillButton>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
       </main>
