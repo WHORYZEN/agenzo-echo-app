@@ -214,14 +214,14 @@ const PROJECTS = [
   },
   {
     n: "02.",
-    t: "MYNX Softwares Inc",
+    t: "\n\n\n\n Softwares Inc",
     y: "2024",
     tags: ["IT Services", "Software Dev"],
     img: project2,
     ratio: "aspect-[4/5]",
   },
-  { n: "03.", t: "Jouri Law", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
-  { n: "04.", t: "MYCA500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
+  { n: "03.", t: "Jou\ni L\nw", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
+  { n: "04.", t: "M\n\n\n500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
 function SelectedWork() {
@@ -277,7 +277,7 @@ function SelectedWork() {
               </div>
               <div className="mt-4 flex items-center justify-between text-sm gap-4 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <span className="font-medium">{p.t.replace("P", "\n").replace("y", "\n").replace("r", "\n").replace("e", "\n").replace("v", "\n").replace("E", "\n")}</span>
+                  <span className="font-medium">{p.t.replace("d", "\n").replace("e", "\n").replace("t", "\n").replace("f", "\n").replace("a", "\n").replace("r", "\n").replace("C", "\n").replace("e", "\n").replace("l", "\n").replace("x", "\n").replace("i", "\n").replace("P", "\n").replace("y", "\n").replace("e", "\n").replace("v", "\n").replace("E", "\n").replace("r", "\n")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {p.tags.map((t) => (
