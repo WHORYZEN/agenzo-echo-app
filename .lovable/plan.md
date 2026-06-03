@@ -1,45 +1,25 @@
-## Fix scroll-trigger reveal logic site-wide
+I found the issue: I did not remove your content/assets, but the current structure makes the below-fold animation bundle lazy-mount only after scrolling near it, and several Framer Motion reveal wrappers are now already rendered in their final state by the time you inspect them. That makes the site feel like the transitions are gone even though many `motion.*` calls still exist.
 
-### Root cause
-In `src/lib/motion.ts`, every section uses:
+Plan to restore the earlier feel safely:
 
-```ts
-export const viewportOnce = { once: true, margin: "-15% 0px" } as const;
-```
+1. Keep Lenis smooth/inertia scrolling
+   - Keep `SmoothScroll` wrapped around the app.
+   - Do not ask for or touch credentials, backend, auth, forms, or private data.
 
-The `-15% 0px` rootMargin shrinks the IntersectionObserver trigger area by 15% top+bottom. An element only animates after its top edge has scrolled **15% of viewport height past the top of the screen**. Combined with Lenis smooth scrolling, several real-world failures happen:
+2. Restore reliable section reveal behavior
+   - Remove the homepage-level `LazyMount` wrapper around `HomeBelowFold` so all scroll-trigger sections exist in the DOM from page load.
+   - Keep `React.lazy`/`Suspense` only if it does not interfere, or replace it with a direct import if needed for immediate animation readiness.
+   - This preserves all content, copy, images, links, and assets.
 
-- Tall sections (`SelectedWork` grid, `QualitySection` 520px cards, `ShowReel` 16/9, `Achievements`) — the section's bounding box is already partially visible long before the trigger fires; animations can pop in late or, on shorter viewports, not at all before the user has scrolled past.
-- Short sections near the bottom of the page (`PartnersGrid` text, last `BigStat` tile) — the page may not have enough remaining scroll for the element to cross the -15% line, so the reveal never fires.
-- Hash-anchor jumps via Lenis (`#work`, `#pricing`, `#contact`) — the user lands directly on the section; if the top edge is already at viewport top (margin 0), the negative top margin pushes it out of the trigger zone and the section appears already-hidden.
+3. Strengthen scroll trigger logic globally
+   - Keep `viewportOnce` amount-based, but adjust it to fire earlier and consistently for tall/short sections.
+   - Use a small positive threshold such as `amount: 0.08` so cards/headings animate as soon as they enter the viewport.
 
-This affects every section in `HomeBelowFold.tsx` (Quality, Why Choose Us, Selected Work, Testimonials, StatsTrio, PartnersGrid, ShowReel, Achievements, ProcessSection, Pricing) plus `FAQ` and `Contact` which import the same constant.
+4. Restore more noticeable transitions/effects
+   - Increase the existing reveal movement slightly (`fadeUp` y distance and duration/ease) so sections visibly slide/fade in like before.
+   - Preserve existing hover lifts, marquees, hero character animation, SplitText, and page transitions.
 
-### Fix
-Switch the trigger to an `amount`-based threshold that fires reliably regardless of element height or scroll position:
-
-```ts
-// src/lib/motion.ts
-export const viewportOnce = { once: true, amount: 0.15 } as const;
-```
-
-`amount: 0.15` = fire when 15% of the element is intersecting the viewport. This:
-- Triggers naturally as the user scrolls a section into view from below.
-- Triggers immediately on hash-anchor landings (element is already 100% visible → ≥15%).
-- Works for both tall grids and short cards without per-section tuning.
-- Keeps `once: true` so animations don't replay on scroll-up.
-
-No other changes are needed — every `motion.*` element in the codebase already references `viewportOnce`, so this single edit propagates everywhere.
-
-### Verification after change
-- Scroll from top to bottom of `/` and confirm every section animates in (eyebrow + heading + cards).
-- Click `Work`, `Pricing`, `Contact` nav anchors and confirm the destination section reveals (does not stay hidden).
-- Hard refresh while scrolled mid-page and confirm sections above the fold are visible (not stuck at opacity 0).
-
-### Files
-- `src/lib/motion.ts` — change `viewportOnce` constant only.
-
-### Not changing
-- No content, copy, imagery, asset imports, layout, or component structure.
-- `SmoothScroll` (Lenis), `PageTransition`, `LazyMount`, all variants (`fadeUp`, `fadeIn`, `scaleIn`, `staggerParent`), hover effects, marquee CSS, and `SplitText` are untouched.
-- No per-section overrides added — the single constant fix is sufficient.
+5. Verify in preview
+   - Scroll from hero to Quality, Work, cards, Pricing, FAQ, and Contact.
+   - Confirm sections animate on entry and no assets/content disappear.
+   - Check console for runtime errors after the change.
