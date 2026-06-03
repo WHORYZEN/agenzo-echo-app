@@ -8,7 +8,7 @@ import { LazyMount } from "@/components/LazyMount";
 import { fadeUp, staggerParent, viewportOnce, hoverLift, easeOut } from "@/lib/motion";
 
 import s1 from "@/assets/quantstamp-social.jpeg.asset.json";
-import s2 from "@/assets/project-2.jpg";
+import s2 from "@/assets/seo-performance.jpeg.asset.json";
 import s3 from "@/assets/project-3.jpg";
 import s4 from "@/assets/project-4.jpg";
 
@@ -33,7 +33,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     tag: "Optimization",
     description: "Data-driven SEO and performance optimization that puts your brand at the top of search results and keeps your site lightning fast.",
     features: ["Technical SEO Audits", "Keyword Research & Strategy", "On-Page Optimization", "Core Web Vitals"],
-    img: s2,
+    img: s2.url,
   },
   {
     title: "Website Development",
