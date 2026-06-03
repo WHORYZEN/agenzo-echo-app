@@ -314,7 +314,7 @@ const QUALITIES = [
   },
   {
     title: "High\nPerformance",
-    desc: "Optimized infrastructure and lean code ensure fast load times and a snappy experience at any scale.",
+    desc: "Optimized\ninfrastructure and lean\ncode ensure\nfast load times and a\nsnappy experience at\nany scale.",
     chip: "Speedy Experience",
     img: qualityChess.url,
   },
