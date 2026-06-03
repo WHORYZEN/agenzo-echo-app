@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-import whyDigifrenzy from "@/assets/why-digifrenzy-creative.jpeg.asset.json";
+import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
+import whyChooseImg from "@/assets/why-digifrenzy-creative.jpeg.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import workMyai500 from "@/assets/work-myai500.png.asset.json";
 import workMynx from "@/assets/work-mynx.png.asset.json";
@@ -631,7 +632,7 @@ function Achievements() {
             whileHover={hoverLiftSm}
             className="md:col-span-5 rounded-3xl overflow-hidden bg-muted min-h-[400px]"
           >
-            <img src={award} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src={whyChooseImg.url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
           </motion.div>
           <div className="md:col-span-7 divide-y divide-border/60">
             {AWARDS.map((a) => (
