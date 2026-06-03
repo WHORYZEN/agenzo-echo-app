@@ -15,13 +15,17 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       lerp: 0.1,
     });
 
-    let rafId = 0;
-    const raf = (time: number) => {
+    let rafId = requestAnimationFrame(function raf(time) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
+    });
 
     const onAnchorClick = (e: MouseEvent) => {
-      const a = (e.target as HTMLElement | null)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
-      
+      const target = e.target as HTMLElement | null;
+      const link = target && target.closest ? (target.closest('a[href^="#"]') as HTMLAnchorElement | null) : null;
+      if (!link) return;
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+      const el = document.querySelector(hash);
+      if (!el) return;
+      e.
