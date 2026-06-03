@@ -582,7 +582,7 @@ function ShowReel() {
 const AWARDS = [
   { n: "Speed", org: "Speed", t: "Launch your site in just 30 minutes" },
   { n: "Platform", org: "Platform", t: "From 0 to 100 — all in one platform" },
-  { n: "Support", org: "Support", t: "24/6 dedicated team, always available" },
+  { n: "Support", org: "Support", t: "24/7 dedicated team, always available" },
   { n: "Scale", org: "Scale", t: "Built to grow with your business" },
 ];
 
@@ -597,7 +597,7 @@ function Achievements() {
           viewport={viewportOnce}
           className="eyebrow text-muted-foreground mb-12"
         >
-          — Why Choose {"\n"}\n{"\n"}\n{"\n"}\nF\n{"\n"}\n{"\n"}\n{"\n"}\n{"\n"}\ny*
+          — WHY CHOOSE DIGIFRENZY?
         </motion.div>
         <motion.div
           className="grid md:grid-cols-12 gap-6 md:gap-8"
