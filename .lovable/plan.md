@@ -1,5 +1,11 @@
-In the `PartnersGrid` ("Our Relationships") section, the company name tiles currently lift up on hover via `whileHover={hoverLiftSm}`, which only applies a `y: -4` translation. The user sees a grey shadow/undertone underneath on hover and wants it changed to the brand blue color.
+## Plan
 
-Change: Replace `whileHover={hoverLiftSm}` on each tile with a custom Framer Motion hover animation that preserves the `y: -4` lift and adds a blue `boxShadow` using the brand blue color (`oklch(0.66 0.21 265 / 0.55)`).
+Replace the "3D Animation & Branding" image (currently `src/assets/project-4.jpg`) on the Services page with the newly uploaded image.
 
-File: `src/components/site/HomeBelowFold.tsx` (lines 529-537 in the `PartnersGrid` component).
+### Steps
+1. Upload the new image to Lovable Assets CDN via `lovable-assets create` from `/mnt/user-uploads/900931100475105883.jpeg`, writing pointer to `src/assets/3d-branding.jpeg.asset.json`.
+2. In `src/routes/services.lazy.tsx`:
+   - Replace the `import s4 from "@/assets/project-4.jpg"` with `import s4 from "@/assets/3d-branding.jpeg.asset.json"`.
+   - Update the `img: s4` reference to use `s4.url`.
+
+No other sections or pages are touched.
