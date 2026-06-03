@@ -10,7 +10,7 @@ export function SiteFooter() {
   return (
     <footer className="px-6 md:px-10 pt-28 pb-8">
       <div className="container-x text-center mb-12">
-        <div className="eyebrow text-muted-foreground mb-6">— Let's build</div>
+        <div className="eyebrow text-muted-foreground mb-6">— LET'S BUILD SOMETHING AWESOME</div>
         <h2
           className="font-semibold leading-[0.85]"
           style={{ fontSize: "clamp(4rem, 15vw, 14rem)", letterSpacing: "-0.08em" }}

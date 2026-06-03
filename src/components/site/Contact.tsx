@@ -103,7 +103,7 @@ export function Contact() {
         className="glass rounded-[2rem] p-8 md:p-14 max-w-5xl mx-auto"
       >
         <div className="text-center mb-10">
-          <div className="eyebrow text-muted-foreground mb-4">— Start a Project</div>
+          <div className="eyebrow text-muted-foreground mb-4">— HAVE AN IDEA?</div>
           <h2 className="tighter font-semibold" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
             Tell us about your <span className="text-brand">brand.</span>
           </h2>
@@ -150,7 +150,7 @@ export function Contact() {
 
           <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-4">
             <div className="flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
-              <span className="flex items-center gap-2"><span className="w-2 h-2 bg-foreground rounded-full" /> 24/6 Support</span>
+              <span className="flex items-center gap-2"><span className="w-2 h-2 bg-foreground rounded-full" /> 24/7 SUPPORT</span>
               <span className="flex items-center gap-2"><span className="w-2 h-2 bg-foreground rounded-full" /> Available Worldwide</span>
             </div>
             <PillButton dark type="submit">{submitting ? "Sending…" : "Send enquiry"}</PillButton>

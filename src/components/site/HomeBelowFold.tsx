@@ -52,7 +52,7 @@ function WhyChooseUs() {
     <section className="section">
       <div className="container-x">
         <div className="mb-10">
-          <SectionHeader eyebrow="— WHY DIGIFRNEZNY*">
+          <SectionHeader eyebrow="— WHY DIGIFRNEZNY?">
             Transforming Brands
             <br /> <span className="text-brand">Digitally.</span>
           </SectionHeader>
@@ -183,7 +183,7 @@ function FactSection() {
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— DIGIFRNEZNY* FACT</div>
+            <div className="eyebrow text-muted-foreground">— DIGIFRNEZNY FACT</div>
           </motion.div>
           <div>
             <motion.div
@@ -417,7 +417,7 @@ function Testimonials() {
             className="md:col-span-7 glass rounded-3xl p-10 flex flex-col justify-between min-h-[420px]"
           >
             <p className="text-2xl md:text-3xl tight leading-snug">
-              "Honestly, working with DIGIFRNEZNY* has been such a smooth ride. They actually listen, deliver on time,
+              "Honestly, working with DIGIFRNEZNY. has been such a smooth ride. They actually listen, deliver on time,
               and the results speak for themselves. Our enquiries doubled in just two months."
             </p>
             <div className="flex items-center justify-between mt-8">
