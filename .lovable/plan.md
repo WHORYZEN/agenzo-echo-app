@@ -1,39 +1,35 @@
-## Plan: Social Media Marketing service page
+## Website Development service page
 
-Create a dedicated landing page for Social Media Marketing, reusing the homepage's design language (Nav, glass cards, SplitText hero, motion variants from `@/lib/motion`, PillButton, FAQ, Contact, SiteFooter). Wire the Services page card and its "Get started" button to link there.
+Mirror the Social Media Marketing page structure for a new `/services/website-development` route, and wire the Services page card + "Get started" button to it.
 
 ### New files
-- `src/routes/services.social-media-marketing.tsx` — route config + SEO head meta (title, description, og tags).
-- `src/routes/services.social-media-marketing.lazy.tsx` — page component.
 
-URL: `/services/social-media-marketing`.
+- `src/routes/services.website-development.tsx` — route config + SEO head (title, description, og tags tailored to Website Development).
+- `src/routes/services.website-development.lazy.tsx` — page component, identical layout/sections/animations to the Social Media Marketing page, content swapped for web dev.
 
-### Page wireframe (top → bottom)
+### Page wireframe (same as SMM page)
 
-1. **Nav** (shared component)
-2. **Hero** — eyebrow "— Service / Marketing", huge `SplitText` headline "Social Media Marketing" with brand-colored accent, supporting paragraph, two PillButtons ("Get a quote" → `/#contact`, "View pricing" → `/pricing`).
-3. **Overview split section** — left: heading + descriptive copy about scroll-stopping social strategy; right: hero image (`quantstamp-social.jpeg`) in rounded-3xl glass frame.
-4. **What's included** — 2x2 grid of glass feature cards: Content Strategy & Calendar, Paid Ad Campaigns, Community Management, Analytics & Reporting. Each with icon (lucide), title, short description.
-5. **Process** — 4-step numbered list (Discover → Strategize → Create → Optimize) using stagger motion, matching homepage process visual style.
-6. **Platforms we manage** — pill-style chips: Instagram, TikTok, LinkedIn, X, YouTube, Facebook, Threads, Pinterest.
-7. **Metrics strip** — 3 large stat blocks (e.g., "5x avg engagement", "200%+ follower growth", "40+ brands scaled"). Reuses big-number typography from home.
-8. **CTA band** — full-width dark glass card with headline "Ready to dominate the feed?" + PillButton to contact.
-9. **FAQ** (shared lazy component)
-10. **Contact** (shared lazy)
-11. **SiteFooter** (shared lazy)
+- **Nav** (shared)
+- **Hero**: eyebrow "— Service / Development", `SplitText` headline "Website Development" with brand accent on "Development", subhead, two PillButtons ("Get a quote" → `/#contact`, "View pricing" → `/pricing`).
+- **Overview split**: copy about pixel-perfect, high-performance sites; reuse `forma-studio.jpeg` (already imported in services index for this service) as the hero image.
+- **What's included** (4 glass cards, 2x2):
+  - Custom Web Applications (Code2 icon)
+  - SaaS Software Solutions (Layers icon)
+  - Responsive Design (Smartphone icon)
+  - CMS Integration (Database icon)
+- **Process** (4 steps): Discover → Design → Build → Launch & Iterate.
+- **Tech stack chips** (replaces "Platforms"): React, Next.js, TanStack, TypeScript, Tailwind, Node.js, Supabase, Shopify, Webflow, Headless CMS.
+- **Stats strip** (3 cards): e.g. "100/100" Lighthouse, "2x" conversion lift, "50+" sites shipped.
+- **CTA band**: "Ready to launch something exceptional?" + PillButton → `/#contact`.
+- **FAQ + Contact + SiteFooter** (lazy, same as SMM page).
 
-All sections use existing motion variants (`fadeUp`, `staggerParent`, `viewportOnce`, `hoverLift`) and tailwind tokens (`glass`, `container-x`, `text-brand`, `eyebrow`) — no custom colors.
+All sections use the existing `fadeUp`, `staggerParent`, `viewportOnce`, `hoverLift`, `easeOut` motion helpers and `glass`, `container-x`, `tighter`, `text-brand` tokens — zero new design tokens or assets.
 
-### Services page wiring (`src/routes/services.lazy.tsx`)
-- Add `href` field to each `SERVICES` entry (Social Media Marketing → `/services/social-media-marketing`, others left as `/#contact` for now).
-- Wrap the card's image+content in a `Link to={s.href}` so the whole card is clickable (cursor-pointer + group hover preserved).
-- Change the `PillButton` "Get started" inside the card to use `href={s.href}` so it routes to the service page.
+### Services index wiring
 
-### Future-proofing
-The same route file pattern + SERVICES `href` mapping makes it trivial to add `/services/seo-performance`, `/services/website-development`, `/services/3d-animation-branding` later.
+In `src/routes/services.index.lazy.tsx`, change the Website Development entry's `href` from `/#contact` to `/services/website-development`. The existing `motion.div onClick` + `PillButton href={s.href}` pattern already handles whole-card + button navigation, so no other changes needed.
 
-### Technical notes
-- TanStack Router file-based routing: dots = slashes, so `services.social-media-marketing.tsx` produces `/services/social-media-marketing`.
-- Lazy split via `services.social-media-marketing.lazy.tsx` matching the existing pattern.
-- Head meta set in the non-lazy route file (title "Social Media Marketing — DIGIFRENZY.", unique description, og:title/description).
-- No new assets required (reuse `quantstamp-social.jpeg`).
+### Notes
+
+- TanStack file-based routing picks up the new `services.website-development.*` files automatically; `routeTree.gen.ts` regenerates on dev server reload.
+- SEO & Performance and 3D Animation & Branding remain pointing at `/#contact` for now (next iterations).
