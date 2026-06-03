@@ -526,7 +526,7 @@ function PartnersGrid() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          {["MYAI500", "MYNX", "JOURI", "MYCA500", "ACT", "PLANTSMED", "HIDEOUT"].map((l) => (
+          {["MYCA500", "            MYNX\nSOFTWARES INC.", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"].map((l) => (
             <motion.div
               key={l}
               variants={scaleIn}
@@ -537,7 +537,7 @@ function PartnersGrid() {
               }}
               className="bg-background py-10 flex items-center justify-center text-lg font-medium opacity-70 hover:opacity-100 transition-opacity"
             >
-              {l.replace("C", "\n").replace("e", "\n").replace("l", "\n").replace("x", "\n").replace("i", "\n")}
+              <span className="whitespace-pre-line text-center">{l}</span>
             </motion.div>
           ))}
         </motion.div>
