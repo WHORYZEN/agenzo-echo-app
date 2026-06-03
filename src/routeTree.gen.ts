@@ -25,17 +25,17 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ServicesLazyRoute,
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
 } as any).lazy(() =>
   import('./routes/services.index.lazy').then((d) => d.Route),
 )
 const ServicesSocialMediaMarketingRoute =
   ServicesSocialMediaMarketingRouteImport.update({
-    id: '/social-media-marketing',
-    path: '/social-media-marketing',
-    getParentRoute: () => ServicesLazyRoute,
+    id: '/services/social-media-marketing',
+    path: '/services/social-media-marketing',
+    getParentRoute: () => rootRouteImport,
   } as any).lazy(() =>
     import('./routes/services.social-media-marketing.lazy').then(
       (d) => d.Route,
@@ -81,6 +81,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PricingRoute: typeof PricingRoute
+  ServicesSocialMediaMarketingRoute: typeof ServicesSocialMediaMarketingRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -101,17 +103,17 @@ declare module '@tanstack/react-router' {
     }
     '/services/': {
       id: '/services/'
-      path: '/'
+      path: '/services'
       fullPath: '/services/'
       preLoaderRoute: typeof ServicesIndexRouteImport
-      parentRoute: typeof ServicesLazyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/social-media-marketing': {
       id: '/services/social-media-marketing'
-      path: '/social-media-marketing'
+      path: '/services/social-media-marketing'
       fullPath: '/services/social-media-marketing'
       preLoaderRoute: typeof ServicesSocialMediaMarketingRouteImport
-      parentRoute: typeof ServicesLazyRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -119,17 +121,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PricingRoute: PricingRoute,
+  ServicesSocialMediaMarketingRoute: ServicesSocialMediaMarketingRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
