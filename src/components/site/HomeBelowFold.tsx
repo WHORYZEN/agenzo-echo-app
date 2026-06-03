@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 
 import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import whyChooseImg from "@/assets/why-digifrenzy-creative.jpeg.asset.json";
+import qualityChess from "@/assets/quality-chess.png.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
 import workMyai500 from "@/assets/work-myai500.png.asset.json";
 import workMynx from "@/assets/work-mynx.png.asset.json";
@@ -315,6 +316,7 @@ const QUALITIES = [
     title: "High\nPerformance",
     desc: "Optimized infrastructure and lean code ensure fast load times and a snappy experience at any scale.",
     chip: "Speedy Experience",
+    img: qualityChess.url,
   },
 ];
 
@@ -357,6 +359,16 @@ function QualitySection() {
                   {q.title}
                 </h3>
                 <p className="mt-4 text-sm text-white/75 max-w-[280px] leading-relaxed">{q.desc}</p>
+
+                {q.img && (
+                  <img
+                    src={q.img}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-2 bottom-16 w-56 md:w-60 object-contain drop-shadow-2xl opacity-95"
+                  />
+                )}
+
 
 
                 <div className="mt-auto relative z-10 flex items-center justify-between gap-3">
