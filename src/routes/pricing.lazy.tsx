@@ -18,7 +18,7 @@ export const Route = createLazyFileRoute("/pricing")({
 const PLANS = [
   {
     name: "Starter",
-    days: "Monthly + GST",
+    days: "Monthly +GST",
     price: "₹29,999",
     blurb: "Perfect for startups and small businesses ready to establish a powerful digital presence.",
     features: [
@@ -32,7 +32,7 @@ const PLANS = [
   },
   {
     name: "Growth",
-    days: "Monthly + GST",
+    days: "Monthly +GST",
     price: "₹49,999",
     blurb: "For growing businesses needing full-spectrum digital marketing and web support.",
     features: [
@@ -47,7 +47,7 @@ const PLANS = [
   },
   {
     name: "Premium",
-    days: "Monthly + GST",
+    days: "Monthly +GST",
     price: "₹89,999",
     blurb: "The complete package for brands serious about dominating their industry online.",
     features: [
