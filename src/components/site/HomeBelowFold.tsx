@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 import whyDigifrenzy from "@/assets/why-digifrenzy.jpeg.asset.json";
 import flower from "@/assets/unisure-phone.jpeg.asset.json";
@@ -345,36 +346,40 @@ function QualitySection() {
               variants={fadeUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.5, ease: easeOut }}
-              className="relative rounded-3xl overflow-hidden text-white p-8 flex flex-col min-h-[520px] group"
-              style={{
-                background:
-                  "linear-gradient(160deg, oklch(0.66 0.21 265) 0%, oklch(0.55 0.22 270) 60%, oklch(0.48 0.22 275) 100%)",
-              }}
             >
-              <h3
-                className="font-semibold tighter leading-[0.95] whitespace-pre-line"
-                style={{ fontSize: "clamp(2rem, 2.4vw, 2.75rem)" }}
+              <Link
+                to="/services"
+                className="relative rounded-3xl overflow-hidden text-white p-8 flex flex-col min-h-[520px] group h-full"
+                style={{
+                  background:
+                    "linear-gradient(160deg, oklch(0.66 0.21 265) 0%, oklch(0.55 0.22 270) 60%, oklch(0.48 0.22 275) 100%)",
+                }}
               >
-                {q.title}
-              </h3>
-              <p className="mt-4 text-sm text-white/75 max-w-[280px] leading-relaxed">{q.desc}</p>
+                <h3
+                  className="font-semibold tighter leading-[0.95] whitespace-pre-line"
+                  style={{ fontSize: "clamp(2rem, 2.4vw, 2.75rem)" }}
+                >
+                  {q.title}
+                </h3>
+                <p className="mt-4 text-sm text-white/75 max-w-[280px] leading-relaxed">{q.desc}</p>
 
-              <img
-                src={q.img}
-                alt=""
-                className="absolute left-1/2 -translate-x-1/2 bottom-24 w-[78%] max-w-[320px] object-contain pointer-events-none select-none transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-              />
+                <img
+                  src={q.img}
+                  alt=""
+                  className="absolute left-1/2 -translate-x-1/2 bottom-24 w-[78%] max-w-[320px] object-contain pointer-events-none select-none transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
 
-              <div className="mt-auto relative z-10 flex items-center justify-between gap-3">
-                <span className="text-[11px] uppercase tracking-widest px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
-                  {q.chip}
-                </span>
-                <span className="w-11 h-11 bg-white text-foreground rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform duration-500 flex-shrink-0">
-                  <ArrowUpRight className="w-4 h-4" />
-                </span>
-              </div>
+                <div className="mt-auto relative z-10 flex items-center justify-between gap-3">
+                  <span className="text-[11px] uppercase tracking-widest px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
+                    {q.chip}
+                  </span>
+                  <span className="w-11 h-11 bg-white text-foreground rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform duration-500 flex-shrink-0">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
