@@ -1,16 +1,18 @@
-## Reduce High Performance Card Graphic Size by 20%
+## Restore Lenis smooth scroll + scroll animations
 
-### What
-Reduce the size of the 3D chess graphic inside the "High Performance" card in the Quality section by 20%, while keeping the other two cards (Seamless Integration, Exceptional Security) unchanged.
+### What's wrong
+The Framer Motion animations (fadeUp, staggerParent, SplitText, hover lifts, marquees, page transition) are all still wired up in `HomeBelowFold.tsx`, `index.tsx`, `Nav.tsx`, etc. However the Lenis-powered inertia scrolling is gone because `src/components/SmoothScroll.tsx` exists but is no longer mounted anywhere in the app (grep shows zero usages outside its own definition).
 
-### How
-1. Add a per-card `imgClass` property to the `QUALITIES` array entries.
-2. Keep existing `w-56 md:w-60` for "Seamless Integration" and "Exceptional Security".
-3. Use `w-44 md:w-48` (20% smaller) for "High Performance".
-4. Update the shared card renderer to use `q.imgClass` (or a fallback) on the `<img>` element.
+Without Lenis, scroll feels native/abrupt and the `whileInView` reveals fire all at once on fast scroll, which is likely why it reads as "no animations / no transitions".
+
+### Fix
+1. In `src/routes/__root.tsx`, import `SmoothScroll` and wrap the existing `<PageTransition><Outlet /></PageTransition>` tree with `<SmoothScroll>...</SmoothScroll>` inside `RootComponent`.
+2. Leave `PageTransition`, all Framer Motion variants, marquee CSS, and asset imports untouched.
 
 ### Files
-- `src/components/site/HomeBelowFold.tsx` — add `imgClass` to `QUALITIES` entries and apply it in `QualitySection` renderer.
+- `src/routes/__root.tsx` — add `SmoothScroll` import and wrap `<Outlet />` tree.
 
-### Why
-Currently all three quality cards share the same hardcoded `w-56 md:w-60` image class. To target only the "High Performance" card, we need a per-item size override.
+### Not changing
+- No content, copy, layout, images, or assets are modified.
+- No animation variants, durations, or hover behaviors are changed.
+- `SmoothScroll.tsx` already respects `prefers-reduced-motion` and handles in-page hash anchors — kept as-is.
