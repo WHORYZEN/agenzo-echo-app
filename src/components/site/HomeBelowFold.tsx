@@ -741,7 +741,7 @@ function ProcessSection() {
 const PLANS = [
   {
     name: "Starter",
-    days: "Monthly",
+    days: "Monthly + GST",
     price: "₹29,999",
     blurb: "Perfect for startups and small businesses ready to establish a powerful digital presence.",
     features: [
