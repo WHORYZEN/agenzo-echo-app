@@ -9,7 +9,7 @@ import { fadeUp, staggerParent, viewportOnce, hoverLift, easeOut } from "@/lib/m
 
 import s1 from "@/assets/quantstamp-social.jpeg.asset.json";
 import s2 from "@/assets/seo-performance.jpeg.asset.json";
-import s3 from "@/assets/project-3.jpg";
+import s3 from "@/assets/forma-studio.jpeg.asset.json";
 import s4 from "@/assets/project-4.jpg";
 
 const FAQ = lazy(() => import("@/components/site/FAQ").then((m) => ({ default: m.FAQ })));
@@ -40,7 +40,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     tag: "Development",
     description: "Pixel-perfect, high-performance websites built with modern stacks that deliver exceptional user experiences and drive business results.",
     features: ["Custom Web Applications", "SaaS Software Solutions", "Responsive Design", "CMS Integration"],
-    img: s3,
+    img: s3.url,
   },
   {
     title: "3D Animation & Branding",
