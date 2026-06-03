@@ -97,7 +97,7 @@ function PricingPage() {
               transition={{ duration: 0.5, ease: easeOut }}
               className={`rounded-3xl p-8 flex flex-col gap-6 border h-full ${
                 p.featured
-                  ? "bg-foreground text-background border-foreground shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] md:scale-[1.02]"
+                  ? "bg-foreground text-background border-foreground shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] md:scale-[1.02] bg-[#5873fe]"
                   : "glass border-border/60"
               }`}
             >
@@ -111,8 +111,8 @@ function PricingPage() {
               <p className={`text-sm ${p.featured ? "text-background/70" : "text-muted-foreground"}`}>{p.blurb}</p>
               <a
                 href="#contact"
-                className={`rounded-full px-5 py-3 text-sm font-medium flex items-center justify-between ${
-                  p.featured ? "bg-background text-foreground" : "bg-foreground text-background"
+                className={`rounded-full px-5 py-3 text-sm font-medium flex items-center justify-between transition-transform hover:scale-[1.02] bg-background text-foreground bg-[#526fff] ${
+                  p.featured ? "" : "bg-foreground text-background"
                 }`}
               >
                 Get Started
