@@ -220,7 +220,7 @@ const PROJECTS = [
     img: project2,
     ratio: "aspect-[4/5]",
   },
-  { n: "03.", t: "Jouri Law", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
+  { n: "03.", t: "Jou\ni L\nw", y: "2024", tags: ["Law Firm", "Accident Cases"], img: project3, ratio: "aspect-[4/5]" },
   { n: "04.", t: "M\n\n\n500", y: "2024", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
