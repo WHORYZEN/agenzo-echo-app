@@ -1,6 +1,3 @@
-## Plan — Framer-style smooth scroll + transitions
+## Plan — Site-wide inertia (smooth) scrolling, Framer-style
 
-Add Lenis (the same smooth-scroll engine Framer sites use under the hood) plus a few small page-wide transition refinements so navigation and scroll feel like a Framer template.
-
-### What you'll get
-- Buttery smooth, momentum-based page
+Add **Lenis** — the same momentum-based smooth-
