@@ -129,8 +129,8 @@ function StatTile({ label, value, right }: { label: string; value: string; right
   );
 }
 
-const LOGOS = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
-const LOGOS2 = ["MYAI500", "MYNX", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
+const LOGOS = ["MYCA500", "            MYNX\nSOFTWARES INC.", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
+const LOGOS2 = ["MYCA500", "            MYNX\nSOFTWARES INC.", "JOURI LAW", "MYCA500", "ACT CLINIC", "BIOSAP", "POC"];
 
 function PartnerMarquee() {
   return (
