@@ -1,17 +1,17 @@
-## Add Chess Graphic to High Performance Card
+## Plan
 
-### What
-Add the uploaded blue chess piece image (with background removed → transparent PNG) to ONLY the "High Performance" card in the Quality section on the home page. The other two cards (Seamless Integration, Exceptional Security) remain text-only as they are now.
+Add the uploaded 3D gear graphic (background removed) to the "Seamless Integration" card in the Quality section on the home page, mirroring how the chess graphic is rendered on the "High Performance" card.
 
 ### Steps
-1. Use `imagegen--edit_image` with `transparent_background: true` on the uploaded chess image to produce a transparent PNG at `src/assets/quality-chess.png`.
-2. Upload it via `lovable-assets` to create `src/assets/quality-chess.png.asset.json`, remove the local PNG.
+
+1. Run `imagegen--edit_image` on `user-uploads://Microsoft_s_Flip_3D_Branding.jpeg` with `transparent_background: true`, saving to `src/assets/quality-gear.png`.
+2. Upload via `lovable-assets` to create `src/assets/quality-gear.png.asset.json`, then remove the local PNG.
 3. In `src/components/site/HomeBelowFold.tsx`:
    - Import the new asset.
-   - In the QUALITIES array, add an `img` field only on the "High Performance" entry.
-   - In the card render, conditionally render an `<img>` overlay (absolute-positioned, right side of the card) when `img` is present.
-4. Update `.lovable/plan.md` to reflect this addition.
+   - Add `img: qualityGear.url` to the "Seamless Integration" entry in the `QUALITIES` array.
+   - No render changes needed — the existing `{q.img && <img ... />}` overlay already handles it identically to High Performance.
 
 ### Preserved
-- Other two cards untouched (no graphics).
-- Card layout, gradient, hover, click-through behavior unchanged.
+- Exceptional Security card untouched.
+- High Performance chess graphic untouched.
+- Card layout, gradient, sizing, hover, and link behavior unchanged.
