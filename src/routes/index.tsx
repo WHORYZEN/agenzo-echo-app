@@ -18,13 +18,13 @@ const HomeBelowFold = lazy(() => import("@/components/site/HomeBelowFold"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DIGIFRNEZY. — Digital Agency" },
+      { title: "DIGIFRENZY. — Digital Agency" },
       {
         name: "description",
         content:
-          "DIGIFRNEZY. crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle.",
+          "DIGIFRENZY. crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle.",
       },
-      { property: "og:title", content: "DIGIFRNEZY* — Digital Agency" },
+      { property: "og:title", content: "DIGIFRENZY* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
