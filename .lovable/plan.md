@@ -1,13 +1,15 @@
-### Make Quality Cards Navigate to Services Page
+## Remove Card Images from Quality Section
 
-**What:** Convert the three cards in the "Why Our Products" (`QualitySection`) from static `<motion.div>` elements into clickable links that take the visitor to `/services`.
+### What
+Remove the graphics/images displayed inside the three Quality cards (Seamless Integration, Exceptional Security, High Performance) in the "WHY OUR PRODUCTS" section on the home page.
 
-**Where:** `src/components/site/HomeBelowFold.tsx` — the `QualitySection` component.
+### Changes
+1. **Remove the `<img>` element** inside each Quality card in `HomeBelowFold.tsx` (lines 366-372)
+2. **Remove the `img` property** from each object in the `QUALITIES` array (lines 305-324)
+3. **Remove unused image imports** (`qualityIntegration`, `qualitySecurity`, `qualityPerformance`) from the top of `HomeBelowFold.tsx` (lines 15-17)
 
-**How:**
-1. Import `Link` from `@tanstack/react-router`.
-2. Wrap each card in the `QUALITIES.map()` loop with `<Link to="/services">`.
-3. Ensure the `motion.div` hover lift animation and layout still work correctly inside the link wrapper.
-4. Keep the arrow button and chip styling unchanged.
-
-**No other changes.** The services page already exists at `src/routes/services.tsx`.
+### Preserved
+- Card gradient backgrounds, titles, descriptions, chip labels, arrow icons
+- Card hover animation (lift effect)
+- Click-through to `/services` page
+- All other sections untouched
