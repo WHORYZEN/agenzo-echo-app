@@ -208,7 +208,7 @@ const PROJECTS = [
     n: "01.",
     t: "\n",
     y: "\n",
-    tags: ["SASS", "AI Voice Assistant"],
+    tags: ["SASS", "EMR Assistant"],
     img: project1,
     ratio: "aspect-[16/10]",
   },
@@ -221,7 +221,7 @@ const PROJECTS = [
     ratio: "aspect-[4/5]",
   },
   { n: "03.", t: "\n", y: "2024", tags: ["\n", "PERFORMANCE MARKETING"], img: project3, ratio: "aspect-[4/5]" },
-  { n: "04.", t: "M\n\n\n500", y: "2025", tags: ["AI Voice", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
+  { n: "04.", t: "\n", y: "2022", tags: ["EMR", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
 function SelectedWork() {
