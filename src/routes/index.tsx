@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import slideTote from "@/assets/hero-slide-tote.jpeg.asset.json";
@@ -32,15 +31,8 @@ export const Route = createFileRoute("/")({
 const slides = [slideTote.url, slideForma.url, slideQuantstamp.url, slideTacobell.url];
 
 function Home() {
-  const [motionKey, setMotionKey] = useState("ssr");
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setMotionKey("hydrated"));
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
   return (
-    <div key={motionKey} className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden">
       <Nav />
       <Hero />
       <HomeBelowFold />
