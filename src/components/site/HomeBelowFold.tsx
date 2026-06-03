@@ -205,7 +205,7 @@ function FactSection() {
 
 const PROJECTS = [
   {
-    n: "01.",
+    n: "03.",
     t: "\n",
     y: "\n",
     tags: ["SASS", "EMR Assistant"],
@@ -220,7 +220,7 @@ const PROJECTS = [
     img: project2,
     ratio: "aspect-[4/5]",
   },
-  { n: "03.", t: "\n", y: "2024", tags: ["\n", "PERFORMANCE MARKETING"], img: project3, ratio: "aspect-[4/5]" },
+  { n: "01.", t: "\n", y: "2024", tags: ["\n", "PERFORMANCE MARKETING"], img: project3, ratio: "aspect-[4/5]" },
   { n: "04.", t: "\n", y: "2022", tags: ["EMR", "SaaS Product"], img: project4, ratio: "aspect-[4/5]" },
 ];
 
