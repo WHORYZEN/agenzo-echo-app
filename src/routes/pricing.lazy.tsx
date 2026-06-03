@@ -112,7 +112,7 @@ function PricingPage() {
               <a
                 href="#contact"
                 className={`rounded-full px-5 py-3 text-sm font-medium flex items-center justify-between transition-transform hover:scale-[1.02] bg-background text-foreground bg-[#526fff] ${
-                  p.featured ? "" : "bg-foreground text-background"
+                  p.featured ? "" : "bg-foreground text-white"
                 }`}
               >
                 Get Started
