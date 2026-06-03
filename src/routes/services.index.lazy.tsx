@@ -35,7 +35,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     description: "Data-driven SEO and performance optimization that puts your brand at the top of search results and keeps your site lightning fast.",
     features: ["Technical SEO Audits", "Keyword Research & Strategy", "On-Page Optimization", "Core Web Vitals"],
     img: s2.url,
-    href: "/#contact",
+    href: "/services/seo-performance",
   },
   {
     title: "Website Development",

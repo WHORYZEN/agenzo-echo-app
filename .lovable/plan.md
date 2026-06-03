@@ -1,35 +1,23 @@
-## Website Development service page
+Create an SEO & Performance service detail page mirroring the existing Social Media Marketing and Website Development pages, then wire the Services index card button to route to it.
 
-Mirror the Social Media Marketing page structure for a new `/services/website-development` route, and wire the Services page card + "Get started" button to it.
+**New files:**
+- `src/routes/services.seo-performance.tsx` — Route config with SEO meta (title "SEO & Performance — DIGIFRENZY", description, OG tags).
+- `src/routes/services.seo-performance.lazy.tsx` — Full page component with identical layout/sections/animations, content swapped for SEO & Performance:
+  - Hero eyebrow: "— Service / Optimization"
+  - Hero headline: "SEO & Performance" with SplitText accent
+  - Overview split with `seo-performance.jpeg` image and copy about data-driven SEO
+  - 2×2 glass feature cards: Technical SEO Audits, Keyword Research & Strategy, On-Page Optimization, Core Web Vitals
+  - 4-step process (Discover → Audit → Optimize → Report)
+  - Tools/Technologies chip section (Google Search Console, GA4, Screaming Frog, Ahrefs, SEMrush, PageSpeed Insights, Lighthouse, Schema Markup)
+  - 3 stat cards (e.g., "Top 3 Rankings", "200% Traffic Lift", "40+ Sites Optimized")
+  - CTA band + lazy-loaded FAQ/Contact/SiteFooter
+  - All motion helpers: `fadeUp`, `staggerParent`, `viewportOnce`, `hoverLift`, `easeOut`
+  - All design tokens: `glass`, `container-x`, `tighter`, `text-brand`
 
-### New files
+**Updated files:**
+- `src/routes/services.index.lazy.tsx` — Change SEO & Performance card `href` from `/#contact` to `/services/seo-performance`. No other changes needed; the existing `motion.div onClick` + `PillButton href={s.href}` pattern already handles whole-card and button navigation.
 
-- `src/routes/services.website-development.tsx` — route config + SEO head (title, description, og tags tailored to Website Development).
-- `src/routes/services.website-development.lazy.tsx` — page component, identical layout/sections/animations to the Social Media Marketing page, content swapped for web dev.
-
-### Page wireframe (same as SMM page)
-
-- **Nav** (shared)
-- **Hero**: eyebrow "— Service / Development", `SplitText` headline "Website Development" with brand accent on "Development", subhead, two PillButtons ("Get a quote" → `/#contact`, "View pricing" → `/pricing`).
-- **Overview split**: copy about pixel-perfect, high-performance sites; reuse `forma-studio.jpeg` (already imported in services index for this service) as the hero image.
-- **What's included** (4 glass cards, 2x2):
-  - Custom Web Applications (Code2 icon)
-  - SaaS Software Solutions (Layers icon)
-  - Responsive Design (Smartphone icon)
-  - CMS Integration (Database icon)
-- **Process** (4 steps): Discover → Design → Build → Launch & Iterate.
-- **Tech stack chips** (replaces "Platforms"): React, Next.js, TanStack, TypeScript, Tailwind, Node.js, Supabase, Shopify, Webflow, Headless CMS.
-- **Stats strip** (3 cards): e.g. "100/100" Lighthouse, "2x" conversion lift, "50+" sites shipped.
-- **CTA band**: "Ready to launch something exceptional?" + PillButton → `/#contact`.
-- **FAQ + Contact + SiteFooter** (lazy, same as SMM page).
-
-All sections use the existing `fadeUp`, `staggerParent`, `viewportOnce`, `hoverLift`, `easeOut` motion helpers and `glass`, `container-x`, `tighter`, `text-brand` tokens — zero new design tokens or assets.
-
-### Services index wiring
-
-In `src/routes/services.index.lazy.tsx`, change the Website Development entry's `href` from `/#contact` to `/services/website-development`. The existing `motion.div onClick` + `PillButton href={s.href}` pattern already handles whole-card + button navigation, so no other changes needed.
-
-### Notes
-
-- TanStack file-based routing picks up the new `services.website-development.*` files automatically; `routeTree.gen.ts` regenerates on dev server reload.
-- SEO & Performance and 3D Animation & Branding remain pointing at `/#contact` for now (next iterations).
+**Notes:**
+- TanStack file-based routing will auto-register the new route.
+- `routeTree.gen.ts` regenerates on dev server reload.
+- No new design tokens, assets, or packages needed.
