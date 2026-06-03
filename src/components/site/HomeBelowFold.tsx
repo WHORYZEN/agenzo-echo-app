@@ -669,7 +669,7 @@ function ProcessSection() {
         <div className="mb-10">
           <SectionHeader eyebrow="— Our Approach">
             From Vision to
-            <br /> Measurable Value.
+            <br /> <span className="text-brand">Measurable Value.</span>
           </SectionHeader>
           <motion.p
             variants={fadeUp}
