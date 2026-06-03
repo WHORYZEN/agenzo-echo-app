@@ -18,8 +18,8 @@ const HomeBelowFold = lazy(() => import("@/components/site/HomeBelowFold"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DIGIFRNEZNY* — Digital Agency" },
-      { name: "description", content: "DIGIFRNEZNY* crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
+      { title: "DIGIFRNEZNY. — Digital Agency" },
+      { name: "description", content: "DIGIFRNEZNY. crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
       { property: "og:title", content: "DIGIFRNEZNY* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
@@ -45,7 +45,7 @@ function Home() {
 }
 
 function Hero() {
-  const headline = "DIGIFRENZY*";
+  const headline = "DIGIFRENZY.";
   return (
     <section data-hero className="relative isolate min-h-screen pt-40 pb-4 px-6 md:px-10 overflow-hidden bg-background">
       <video
