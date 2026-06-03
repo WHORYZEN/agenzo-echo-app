@@ -7,7 +7,7 @@ import { SplitText } from "@/components/site/SplitText";
 import { LazyMount } from "@/components/LazyMount";
 import { fadeUp, staggerParent, viewportOnce, hoverLift, easeOut } from "@/lib/motion";
 
-import s1 from "@/assets/project-1.jpg";
+import s1 from "@/assets/quantstamp-social.jpeg.asset.json";
 import s2 from "@/assets/project-2.jpg";
 import s3 from "@/assets/project-3.jpg";
 import s4 from "@/assets/project-4.jpg";
