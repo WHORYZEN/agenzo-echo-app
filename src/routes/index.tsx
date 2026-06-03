@@ -18,9 +18,13 @@ const HomeBelowFold = lazy(() => import("@/components/site/HomeBelowFold"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DIGIFRNEZNY. — Digital Agency" },
-      { name: "description", content: "DIGIFRNEZNY. crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle." },
-      { property: "og:title", content: "DIGIFRNEZNY* — Digital Agency" },
+      { title: "DIGIFRNEZY. — Digital Agency" },
+      {
+        name: "description",
+        content:
+          "DIGIFRNEZY. crafts bold brands, high-performance websites, and data-driven marketing strategies that move the needle.",
+      },
+      { property: "og:title", content: "DIGIFRNEZY* — Digital Agency" },
       { property: "og:description", content: "Bold brands. High-performance websites. Data-driven marketing." },
     ],
   }),
@@ -88,19 +92,27 @@ function Hero() {
             <div className="flex items-start gap-4 mb-8">
               <span className="text-2xl">/</span>
               <p className="text-lg max-w-md leading-snug">
-                We craft bold brands, high-performance websites, and data-driven marketing strategies that move the needle.
+                We craft bold brands, high-performance websites, and data-driven marketing strategies that move the
+                needle.
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              <PillButton dark href="#work">View Our Work</PillButton>
-              <PillButton dark href="#contact">Contact Us</PillButton>
+              <PillButton dark href="#work">
+                View Our Work
+              </PillButton>
+              <PillButton dark href="#contact">
+                Contact Us
+              </PillButton>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUp} className="overflow-hidden rounded-2xl -mr-12 md:-mr-24 marquee-mask">
             <div className="slider-track">
               {slides.concat(slides).map((s, i) => (
-                <div key={i} className="w-[320px] md:w-[400px] aspect-[16/10] rounded-2xl overflow-hidden flex-shrink-0">
+                <div
+                  key={i}
+                  className="w-[320px] md:w-[400px] aspect-[16/10] rounded-2xl overflow-hidden flex-shrink-0"
+                >
                   <img src={s} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 </div>
               ))}
