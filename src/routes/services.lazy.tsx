@@ -26,7 +26,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     tag: "Marketing",
     description: "Scroll-stopping social strategies that build communities, drive engagement, and convert followers into loyal customers across every platform.",
     features: ["Content Strategy & Calendar", "Paid Ad Campaigns", "Community Management", "Analytics & Reporting"],
-    img: s1,
+    img: s1.url,
   },
   {
     title: "SEO & Performance",
