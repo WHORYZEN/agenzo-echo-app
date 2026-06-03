@@ -321,6 +321,7 @@ const QUALITIES = [
     desc: "Optimized\ninfrastructure and lean\ncode ensure\nfast load times and a\nsnappy experience at\nany scale.",
     chip: "Speedy Experience",
     img: qualityChess.url,
+    imgClass: "w-44 md:w-48",
   },
 ];
 
@@ -369,7 +370,7 @@ function QualitySection() {
                     src={q.img}
                     alt=""
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-2 bottom-16 w-56 md:w-60 object-contain drop-shadow-2xl opacity-95"
+                    className={`pointer-events-none absolute right-2 bottom-16 ${("imgClass" in q && q.imgClass) ? q.imgClass : "w-56 md:w-60"} object-contain drop-shadow-2xl opacity-95`}
                   />
                 )}
 
