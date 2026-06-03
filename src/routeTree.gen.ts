@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesSocialMediaMarketingRouteImport } from './routes/services.social-media-marketing'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -28,35 +29,53 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesSocialMediaMarketingRoute =
+  ServicesSocialMediaMarketingRouteImport.update({
+    id: '/social-media-marketing',
+    path: '/social-media-marketing',
+    getParentRoute: () => ServicesRoute,
+  } as any).lazy(() =>
+    import('./routes/services.social-media-marketing.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pricing' | '/services'
+  fullPaths: '/' | '/pricing' | '/services' | '/services/social-media-marketing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pricing' | '/services'
-  id: '__root__' | '/' | '/pricing' | '/services'
+  to: '/' | '/pricing' | '/services' | '/services/social-media-marketing'
+  id:
+    | '__root__'
+    | '/'
+    | '/pricing'
+    | '/services'
+    | '/services/social-media-marketing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PricingRoute: typeof PricingRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +101,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/social-media-marketing': {
+      id: '/services/social-media-marketing'
+      path: '/social-media-marketing'
+      fullPath: '/services/social-media-marketing'
+      preLoaderRoute: typeof ServicesSocialMediaMarketingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesSocialMediaMarketingRoute: typeof ServicesSocialMediaMarketingRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesSocialMediaMarketingRoute: ServicesSocialMediaMarketingRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PricingRoute: PricingRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
