@@ -9,16 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSocialMediaMarketingRouteImport } from './routes/services.social-media-marketing'
 
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/services.lazy').then((d) => d.Route))
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -29,11 +24,18 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesLazyRoute,
+} as any).lazy(() =>
+  import('./routes/services.index.lazy').then((d) => d.Route),
+)
 const ServicesSocialMediaMarketingRoute =
   ServicesSocialMediaMarketingRouteImport.update({
     id: '/social-media-marketing',
     path: '/social-media-marketing',
-    getParentRoute: () => ServicesRoute,
+    getParentRoute: () => ServicesLazyRoute,
   } as any).lazy(() =>
     import('./routes/services.social-media-marketing.lazy').then(
       (d) => d.Route,
@@ -43,50 +45,46 @@ const ServicesSocialMediaMarketingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRouteWithChildren
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRouteWithChildren
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
-  '/services': typeof ServicesRouteWithChildren
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pricing' | '/services' | '/services/social-media-marketing'
+  fullPaths:
+    | '/'
+    | '/pricing'
+    | '/services/social-media-marketing'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pricing' | '/services' | '/services/social-media-marketing'
+  to: '/' | '/pricing' | '/services/social-media-marketing' | '/services'
   id:
     | '__root__'
     | '/'
     | '/pricing'
-    | '/services'
     | '/services/social-media-marketing'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PricingRoute: typeof PricingRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -101,32 +99,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesLazyRoute
+    }
     '/services/social-media-marketing': {
       id: '/services/social-media-marketing'
       path: '/social-media-marketing'
       fullPath: '/services/social-media-marketing'
       preLoaderRoute: typeof ServicesSocialMediaMarketingRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof ServicesLazyRoute
     }
   }
 }
 
-interface ServicesRouteChildren {
-  ServicesSocialMediaMarketingRoute: typeof ServicesSocialMediaMarketingRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesSocialMediaMarketingRoute: ServicesSocialMediaMarketingRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PricingRoute: PricingRoute,
-  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

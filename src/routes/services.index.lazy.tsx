@@ -16,7 +16,7 @@ const FAQ = lazy(() => import("@/components/site/FAQ").then((m) => ({ default: m
 const Contact = lazy(() => import("@/components/site/Contact").then((m) => ({ default: m.Contact })));
 const SiteFooter = lazy(() => import("@/components/site/SiteFooter").then((m) => ({ default: m.SiteFooter })));
 
-export const Route = createLazyFileRoute("/services")({
+export const Route = createLazyFileRoute("/services/")({
   component: ServicesPage,
 });
 
