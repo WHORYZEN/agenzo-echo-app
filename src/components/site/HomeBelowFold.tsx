@@ -327,7 +327,7 @@ function QualitySection() {
     <section className="section">
       <div className="container-x">
         <div className="mb-10">
-          <SectionHeader eyebrow="— Why Our Products">
+          <SectionHeader eyebrow="— WHY OUR PRODUCTS?">
             Built for <span className="text-brand">Quality.</span>
           </SectionHeader>
         </div>
