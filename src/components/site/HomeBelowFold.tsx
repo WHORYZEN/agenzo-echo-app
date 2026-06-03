@@ -265,7 +265,9 @@ function SelectedWork() {
             <motion.a
               key={p.n}
               variants={fadeUp}
-              href="#"
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group block"
             >
               <div className={`rounded-3xl overflow-hidden ${p.ratio} bg-muted`}>
