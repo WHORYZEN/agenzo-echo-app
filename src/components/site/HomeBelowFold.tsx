@@ -11,9 +11,9 @@ const project1 = workMyai500.url;
 const project2 = workMynx.url;
 const project3 = workJouri.url;
 const project4 = workMyca500.url;
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
-import team3 from "@/assets/team-3.jpg";
+import qualityIntegration from "@/assets/quality-integration.png";
+import qualitySecurity from "@/assets/quality-security.png";
+import qualityPerformance from "@/assets/quality-performance.png";
 import process1 from "@/assets/process-1.jpg";
 import process2 from "@/assets/process-2.jpg";
 import process3 from "@/assets/process-3.jpg";
@@ -301,21 +301,34 @@ function SelectedWork() {
   );
 }
 
-const TEAM = [
-  { role: "Strategy Lead", tag: "#growth", name: "Strategy Team", img: team1 },
-  { role: "Design Lead", tag: "#craft", name: "Design Team", img: team2 },
-  { role: "Growth Lead", tag: "#performance", name: "Performance Team", img: team3 },
+const QUALITIES = [
+  {
+    title: "Seamless\nIntegration",
+    desc: "Our products plug into your existing stack effortlessly, connecting tools and workflows without friction.",
+    chip: "Effortless Connectivity",
+    img: qualityIntegration,
+  },
+  {
+    title: "Exceptional\nSecurity",
+    desc: "We build with security-first principles — protecting your data and users at every layer of the product.",
+    chip: "Enterprise-grade Security",
+    img: qualitySecurity,
+  },
+  {
+    title: "High\nPerformance",
+    desc: "Optimized infrastructure and lean code ensure fast load times and a snappy experience at any scale.",
+    chip: "Speedy Experience",
+    img: qualityPerformance,
+  },
 ];
 
-function TeamSection() {
+function QualitySection() {
   return (
     <section className="section">
       <div className="container-x">
         <div className="mb-10">
-          <SectionHeader eyebrow="— Our Crew">
-            Meet the <span className="text-brand">Minds</span>
-            <br />
-            <span className="text-brand">Behind the Work.</span>
+          <SectionHeader eyebrow="— Why Our Products">
+            Built for <span className="text-brand">Quality.</span>
           </SectionHeader>
         </div>
 
@@ -326,29 +339,39 @@ function TeamSection() {
           whileInView="show"
           viewport={viewportOnce}
         >
-          {TEAM.map((m) => (
+          {QUALITIES.map((q) => (
             <motion.div
-              key={m.name}
+              key={q.title}
               variants={fadeUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.5, ease: easeOut }}
-              className="relative rounded-3xl overflow-hidden bg-muted aspect-[4/5] group"
+              className="relative rounded-3xl overflow-hidden text-white p-8 flex flex-col min-h-[520px] group"
+              style={{
+                background:
+                  "linear-gradient(160deg, oklch(0.66 0.21 265) 0%, oklch(0.55 0.22 270) 60%, oklch(0.48 0.22 275) 100%)",
+              }}
             >
+              <h3
+                className="font-semibold tighter leading-[0.95] whitespace-pre-line"
+                style={{ fontSize: "clamp(2rem, 2.4vw, 2.75rem)" }}
+              >
+                {q.title}
+              </h3>
+              <p className="mt-4 text-sm text-white/75 max-w-[280px] leading-relaxed">{q.desc}</p>
+
               <img
-                src={m.img}
-                alt={m.name}
-                className="w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                src={q.img}
+                alt=""
+                className="absolute left-1/2 -translate-x-1/2 bottom-24 w-[78%] max-w-[320px] object-contain pointer-events-none select-none transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute top-5 left-5 right-5 flex justify-between text-xs">
-                <span className="glass rounded-full px-3 py-1.5">{m.role}</span>
-                <span className="glass rounded-full px-3 py-1.5">{m.tag}</span>
-              </div>
-              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between text-white">
-                <h3 className="text-2xl font-medium tight">{m.name}</h3>
-                <span className="w-10 h-10 bg-white text-foreground rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
+
+              <div className="mt-auto relative z-10 flex items-center justify-between gap-3">
+                <span className="text-[11px] uppercase tracking-widest px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
+                  {q.chip}
+                </span>
+                <span className="w-11 h-11 bg-white text-foreground rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform duration-500 flex-shrink-0">
                   <ArrowUpRight className="w-4 h-4" />
                 </span>
               </div>
@@ -847,7 +870,7 @@ export default function HomeBelowFold() {
       <PartnerMarquee />
       <FactSection />
       <SelectedWork />
-      <TeamSection />
+      <QualitySection />
       <Testimonials />
       <StatsTrio />
       <PartnersGrid />
