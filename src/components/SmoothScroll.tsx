@@ -22,7 +22,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     };
     rafId = requestAnimationFrame(raf);
 
-    // Smooth in-page anchor navigation
     const onAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target
+      const a = (e.target as HTMLElement | null)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      
