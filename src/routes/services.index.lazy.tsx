@@ -84,13 +84,17 @@ function ServicesPage() {
           viewport={viewportOnce}
         >
           {SERVICES.map((s) => (
-            <motion.a
+            <motion.div
               key={s.title}
-              href={s.href}
               variants={fadeUp}
               whileHover={hoverLift}
               transition={{ duration: 0.6, ease: easeOut }}
-              className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0 cursor-pointer block"
+              onClick={(e) => {
+                // navigate when clicking blank areas of the card; PillButton handles its own click
+                if ((e.target as HTMLElement).closest("a,button")) return;
+                window.location.assign(s.href);
+              }}
+              className="glass rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0 cursor-pointer"
             >
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -110,7 +114,7 @@ function ServicesPage() {
                   <PillButton dark href={s.href}>Get started</PillButton>
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
       </main>
