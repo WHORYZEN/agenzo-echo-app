@@ -1,25 +1,20 @@
-I found the issue: I did not remove your content/assets, but the current structure makes the below-fold animation bundle lazy-mount only after scrolling near it, and several Framer Motion reveal wrappers are now already rendered in their final state by the time you inspect them. That makes the site feel like the transitions are gone even though many `motion.*` calls still exist.
+## Plan
 
-Plan to restore the earlier feel safely:
+1. **Make scroll reveals more obvious and reliable**
+   - Update the shared motion presets so section headings/cards start visibly offset and fade/slide into place.
+   - Keep `once: true`, but use a more forgiving viewport trigger so animations fire as sections enter the screen.
 
-1. Keep Lenis smooth/inertia scrolling
-   - Keep `SmoothScroll` wrapped around the app.
-   - Do not ask for or touch credentials, backend, auth, forms, or private data.
+2. **Fix nested heading animation conflicts**
+   - `SectionHeader` already animates the heading container, but some headings also contain `SplitText` characters that each have their own `whileInView` observer. I’ll make these nested heading characters animate from the parent trigger instead, so the whole heading visibly reveals when its section enters.
 
-2. Restore reliable section reveal behavior
-   - Remove the homepage-level `LazyMount` wrapper around `HomeBelowFold` so all scroll-trigger sections exist in the DOM from page load.
-   - Keep `React.lazy`/`Suspense` only if it does not interfere, or replace it with a direct import if needed for immediate animation readiness.
-   - This preserves all content, copy, images, links, and assets.
+3. **Ensure every homepage card group has a trigger**
+   - Review homepage groups such as Quality, Selected Work, Why Choose Us, testimonials, stats, process, pricing, FAQ/contact/footer.
+   - Add or adjust `initial="hidden"`, `whileInView="show"`, `viewport={viewportOnce}`, and staggered child variants where missing.
+   - Do not change copy, images, links, forms, assets, or layout content.
 
-3. Strengthen scroll trigger logic globally
-   - Keep `viewportOnce` amount-based, but adjust it to fire earlier and consistently for tall/short sections.
-   - Use a small positive threshold such as `amount: 0.08` so cards/headings animate as soon as they enter the viewport.
+4. **Preserve Lenis and existing functionality**
+   - Leave `SmoothScroll`, routes, links, assets, and content intact.
+   - No backend, credentials, auth, forms, or data changes.
 
-4. Restore more noticeable transitions/effects
-   - Increase the existing reveal movement slightly (`fadeUp` y distance and duration/ease) so sections visibly slide/fade in like before.
-   - Preserve existing hover lifts, marquees, hero character animation, SplitText, and page transitions.
-
-5. Verify in preview
-   - Scroll from hero to Quality, Work, cards, Pricing, FAQ, and Contact.
-   - Confirm sections animate on entry and no assets/content disappear.
-   - Check console for runtime errors after the change.
+5. **Verify after implementation**
+   - Use the preview/browser to scroll through homepage sections and confirm headings/cards animate on entry without disappearing or breaking assets.
