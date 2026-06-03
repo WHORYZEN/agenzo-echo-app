@@ -183,7 +183,7 @@ function FactSection() {
         </motion.div>
         <div className="md:col-span-7 flex flex-col justify-between gap-6">
           <motion.div variants={fadeIn} className="flex items-center justify-between">
-            <div className="eyebrow text-muted-foreground">— DIGIFRNEZNY FACT</div>
+            <div className="eyebrow text-muted-foreground">— DIGIFRENZY FACT</div>
           </motion.div>
           <div>
             <motion.div
