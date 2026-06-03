@@ -208,7 +208,7 @@ const PROJECTS = [
     n: "03.",
     t: "\n",
     y: "\n",
-    tags: ["SASS", "EMR Assistant"],
+    tags: ["SASS", "VOICE ASSISTANT"],
     img: project1,
     ratio: "aspect-[16/10]",
     link: "https://myai500.com/",
@@ -222,7 +222,7 @@ const PROJECTS = [
     ratio: "aspect-[4/5]",
     link: "https://www.mynxsoftwares.com/",
   },
-  { n: "01.", t: "\n", y: "2024", tags: ["\n", "PERFORMANCE MARKETING"], img: project3, ratio: "aspect-[4/5]", link: "https://www.jourilaw.com/" },
+  { n: "01.", t: "\n", y: "2024", tags: ["\n", "LAW FIRM"], img: project3, ratio: "aspect-[4/5]", link: "https://www.jourilaw.com/" },
   { n: "04.", t: "\n", y: "2022", tags: ["EMR", "SaaS Product"], img: project4, ratio: "aspect-[4/5]", link: "https://www.myca500.com/" },
 ];
 
