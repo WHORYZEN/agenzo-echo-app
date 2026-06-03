@@ -21,5 +21,5 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     });
 
     const onAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      const link = (
+      const t = e.target as HTMLElement | null;
+      const link = t && t.closest ? (t.closest('a[href^="#"]
