@@ -51,7 +51,7 @@ const SERVICES: { title: string; tag: string; description: string; features: str
     description: "Immersive 3D visuals and cohesive brand identities that set you apart from the competition and leave a lasting impression.",
     features: ["3D Product Rendering", "Motion Graphics", "Brand Identity Systems", "Visual Storytelling"],
     img: s4.url,
-    href: "/#contact",
+    href: "/services/3d-animation-branding",
   },
 ];
 

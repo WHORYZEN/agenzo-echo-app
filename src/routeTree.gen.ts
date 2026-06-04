@@ -15,6 +15,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesWebsiteDevelopmentRouteImport } from './routes/services.website-development'
 import { Route as ServicesSocialMediaMarketingRouteImport } from './routes/services.social-media-marketing'
 import { Route as ServicesSeoPerformanceRouteImport } from './routes/services.seo-performance'
+import { Route as Services3dAnimationBrandingRouteImport } from './routes/services.3d-animation-branding'
 
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
@@ -58,10 +59,19 @@ const ServicesSeoPerformanceRoute = ServicesSeoPerformanceRouteImport.update({
 } as any).lazy(() =>
   import('./routes/services.seo-performance.lazy').then((d) => d.Route),
 )
+const Services3dAnimationBrandingRoute =
+  Services3dAnimationBrandingRouteImport.update({
+    id: '/services/3d-animation-branding',
+    path: '/services/3d-animation-branding',
+    getParentRoute: () => rootRouteImport,
+  } as any).lazy(() =>
+    import('./routes/services.3d-animation-branding.lazy').then((d) => d.Route),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
+  '/services/3d-animation-branding': typeof Services3dAnimationBrandingRoute
   '/services/seo-performance': typeof ServicesSeoPerformanceRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
   '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
@@ -70,6 +80,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
+  '/services/3d-animation-branding': typeof Services3dAnimationBrandingRoute
   '/services/seo-performance': typeof ServicesSeoPerformanceRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
   '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
@@ -79,6 +90,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/pricing': typeof PricingRoute
+  '/services/3d-animation-branding': typeof Services3dAnimationBrandingRoute
   '/services/seo-performance': typeof ServicesSeoPerformanceRoute
   '/services/social-media-marketing': typeof ServicesSocialMediaMarketingRoute
   '/services/website-development': typeof ServicesWebsiteDevelopmentRoute
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/pricing'
+    | '/services/3d-animation-branding'
     | '/services/seo-performance'
     | '/services/social-media-marketing'
     | '/services/website-development'
@@ -97,6 +110,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/pricing'
+    | '/services/3d-animation-branding'
     | '/services/seo-performance'
     | '/services/social-media-marketing'
     | '/services/website-development'
@@ -105,6 +119,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/pricing'
+    | '/services/3d-animation-branding'
     | '/services/seo-performance'
     | '/services/social-media-marketing'
     | '/services/website-development'
@@ -114,6 +129,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PricingRoute: typeof PricingRoute
+  Services3dAnimationBrandingRoute: typeof Services3dAnimationBrandingRoute
   ServicesSeoPerformanceRoute: typeof ServicesSeoPerformanceRoute
   ServicesSocialMediaMarketingRoute: typeof ServicesSocialMediaMarketingRoute
   ServicesWebsiteDevelopmentRoute: typeof ServicesWebsiteDevelopmentRoute
@@ -164,12 +180,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSeoPerformanceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/3d-animation-branding': {
+      id: '/services/3d-animation-branding'
+      path: '/services/3d-animation-branding'
+      fullPath: '/services/3d-animation-branding'
+      preLoaderRoute: typeof Services3dAnimationBrandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PricingRoute: PricingRoute,
+  Services3dAnimationBrandingRoute: Services3dAnimationBrandingRoute,
   ServicesSeoPerformanceRoute: ServicesSeoPerformanceRoute,
   ServicesSocialMediaMarketingRoute: ServicesSocialMediaMarketingRoute,
   ServicesWebsiteDevelopmentRoute: ServicesWebsiteDevelopmentRoute,
